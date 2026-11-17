@@ -1,0 +1,8 @@
+-r requirements.txt
+pytest==9.2.0
+pytest-asyncio==1.5.0
+bandit==1.9.4
+yara-python==4.5.4
+pathspec==1.1.1
+PyYAML==6.0.3
+requests>=2.32

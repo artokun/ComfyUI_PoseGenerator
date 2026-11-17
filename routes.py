@@ -1,0 +1,67 @@
+"""Read-only endpoints for the local thumbnail picker."""
+
+from aiohttp import web
+
+from .library import catalog, image_path, selected
+from .prompts import render_prompt
+
+IMAGE_TYPES = {".png": "image/png", ".jpg": "image/jpeg", ".jpeg": "image/jpeg", ".webp": "image/webp"}
+
+
+async def get_catalog(request):
+    try:
+        data = catalog()
+        payload = {}
+        for kind, entries in data.items():
+            payload[kind] = [
+                {key: value for key, value in entry.items() if key not in ("image", "thumbnail")}
+                for entry in entries.values()
+            ]
+        return web.json_response(payload)
+    except (ValueError, OSError) as error:
+        return web.json_response({"error": str(error)}, status=400)
+
+
+async def get_image(request):
+    kind = request.match_info["kind"]
+    if kind not in ("pose", "outfit"):
+        raise web.HTTPNotFound()
+    try:
+        entry = selected(kind, request.match_info["identity"])
+        if entry is None:
+            raise web.HTTPNotFound()
+        field = "image" if request.query.get("full") == "1" else "thumbnail"
+        path = image_path(entry[field])
+        if not path.is_file():
+            raise web.HTTPNotFound()
+        return web.FileResponse(path, headers={"X-Content-Type-Options": "nosniff", "Content-Type": IMAGE_TYPES[path.suffix.lower()]})
+    except ValueError as error:
+        raise web.HTTPNotFound(text=str(error)) from error
+
+
+async def preview_prompt(request):
+    try:
+        body = await request.json()
+        if not isinstance(body, dict):
+            raise ValueError("Expected a prompt object.")
+        pose = selected("pose", body.get("pose", "None"))
+        outfit = selected("outfit", body.get("outfit", "None"))
+        values = {
+            "subject": body.get("subject", ""), "extra": body.get("extra", ""),
+            "pose": body.get("pose_override", "").strip() or (pose["prompt"] if pose else ""),
+            "outfit": body.get("outfit_override", "").strip() or (outfit["prompt"] if outfit else ""),
+            "pose_name": pose["label"] if pose else "", "outfit_name": outfit["label"] if outfit else "",
+            "angle": pose.get("angle", "") if pose else "",
+        }
+        return web.json_response({"prompt": render_prompt(body.get("prompt_template", ""), values)})
+    except (ValueError, TypeError, AttributeError) as error:
+        return web.json_response({"error": str(error)}, status=400)
+
+
+def register_routes():
+    from server import PromptServer
+
+    routes = PromptServer.instance.routes
+    routes.get("/pose-generator/catalog")(get_catalog)
+    routes.get("/pose-generator/image/{kind}/{identity}")(get_image)
+    routes.post("/pose-generator/preview")(preview_prompt)

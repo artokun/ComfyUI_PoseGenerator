@@ -1,0 +1,24 @@
+[project]
+name = "comfyui-pose-generator"
+version = "0.1.0"
+description = "Browse local pose and outfit references, output images, and compose an editable positive prompt."
+requires-python = ">=3.10"
+license = { file = "LICENSE" }
+dependencies = ["numpy", "Pillow", "torch", "aiohttp"]
+
+[project.urls]
+Repository = "https://github.com/artokun/ComfyUI_PoseGenerator"
+Documentation = "https://github.com/artokun/ComfyUI_PoseGenerator#readme"
+"Bug Tracker" = "https://github.com/artokun/ComfyUI_PoseGenerator/issues"
+
+[tool.comfy]
+PublisherId = "artokun"
+DisplayName = "Pose & Outfit Reference"
+Tags = ["pose", "reference", "outfit", "prompt", "image"]
+Icon = "https://raw.githubusercontent.com/artokun/ComfyUI_PoseGenerator/main/assets/icon.png"
+Banner = "https://raw.githubusercontent.com/artokun/ComfyUI_PoseGenerator/main/assets/banner.png"
+
+[tool.pytest.ini_options]
+testpaths = ["tests"]
+asyncio_mode = "auto"
+asyncio_default_fixture_loop_scope = "function"
