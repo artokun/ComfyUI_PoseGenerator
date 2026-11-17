@@ -1,0 +1,19 @@
+/.cache/
+/.venv/
+/.build/
+/.pytest_cache/
+/.ruff_cache/
+/node_modules/
+__pycache__/
+*.py[cod]
+.DS_Store
+/assets/gallery*/
+/test-results/
+/.playwright-mcp/
+.env
+.env.*
+
+# Local research material pending original rights-holder permission.
+/scripts/download_assets.py
+/scripts/data/pose_english.json
+/docs/screenshots/*.png

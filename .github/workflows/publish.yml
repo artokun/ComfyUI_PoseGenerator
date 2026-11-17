@@ -1,0 +1,69 @@
+name: Publish to Comfy Registry
+
+on:
+  workflow_dispatch:
+  push:
+    branches: [main]
+    paths: [pyproject.toml]
+
+permissions:
+  contents: read
+
+concurrency:
+  group: comfy-registry-publish
+  cancel-in-progress: false
+
+jobs:
+  checks:
+    uses: ./.github/workflows/checks.yml
+
+  publish:
+    if: github.ref == 'refs/heads/main'
+    needs: checks
+    runs-on: ubuntu-latest
+    steps:
+      - uses: actions/checkout@v7
+      - uses: actions/setup-python@v7
+        with:
+          python-version: '3.11'
+      - uses: actions/download-artifact@v7
+        with:
+          name: checked-registry-package
+          path: .build/checked
+      - name: Prepare the exact validated package
+        shell: python
+        run: |
+          import hashlib
+          import json
+          import pathlib
+          import zipfile
+
+          root = pathlib.Path('.build/checked')
+          report = json.loads((root / 'manifest.json').read_text())
+          target = pathlib.Path('.build/publish')
+          target.mkdir(parents=True, exist_ok=True)
+          with zipfile.ZipFile(root / 'node.zip') as archive:
+              expected = {row['path'] for row in report['files']}
+              if set(archive.namelist()) != expected:
+                  raise SystemExit('Checked archive contents differ from its manifest')
+              for row in report['files']:
+                  path = (target / row['path']).resolve()
+                  if not path.is_relative_to(target.resolve()):
+                      raise SystemExit('Unsafe archive path')
+                  content = archive.read(row['path'])
+                  if hashlib.sha256(content).hexdigest() != row['sha256']:
+                      raise SystemExit('Checked archive checksum mismatch')
+                  path.parent.mkdir(parents=True, exist_ok=True)
+                  path.write_bytes(content)
+      - name: Publish only after every pre-upload check passes
+        working-directory: .build/publish
+        env:
+          REGISTRY_TOKEN: ${{ secrets.REGISTRY_ACCESS_TOKEN }}
+        run: |
+          set -euo pipefail
+          test -n "$REGISTRY_TOKEN" || { echo 'REGISTRY_ACCESS_TOKEN is required'; exit 1; }
+          git init -b main
+          git add .
+          python -m pip install comfy-cli==1.26.0
+          comfy --skip-prompt --no-enable-telemetry env
+          comfy node publish --token "$REGISTRY_TOKEN"

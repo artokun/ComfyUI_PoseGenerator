@@ -1,0 +1,18 @@
+# Publish the node software only. Everything else remains in the source checkout.
+/*
+!/*.py
+!/web/
+!/pyproject.toml
+!/requirements.txt
+!/LICENSE
+!/THIRD_PARTY.md
+!/README.md
+!/docs/
+/docs/*
+!/docs/notices/
+
+# Never include generated Python files, even below a runtime directory.
+__pycache__/
+*.py[cod]
+.env
+.env.*
