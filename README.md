@@ -84,8 +84,13 @@ catalog contained 1,439 poses and 1,407 outfits; these are not included download
 Choose **None** or **Clear selection** to omit a reference from the prompt.
 An omitted image output is a black 1×1 placeholder; leave it unconnected.
 
-<!-- Screenshot insertion points: pose-gallery.png, outfit-gallery.png,
-     and prompt-preview.png under docs/screenshots/. Add after permission. -->
+![Pose and outfit workflow with two image previews and a composed prompt](docs/screenshots/workflow-overview.png)
+
+![Pose browser with search, camera-angle filtering, and English descriptions](docs/screenshots/pose-gallery.png)
+
+![Outfit browser with thumbnails and selected reference details](docs/screenshots/outfit-gallery.png)
+
+![Preview of the composed positive prompt](docs/screenshots/prompt-preview.png)
 
 ## Prompt templates
 
