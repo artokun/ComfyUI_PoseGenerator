@@ -14,6 +14,7 @@
   - **Caption outfits** asks a vision model (Grok or Nemotron VL) for each outfit's label, prompt, category and body-zone tags, all editable.
   - **Save outfits to gallery** writes them to a folder gallery under `assets/` with `{category}_O001` IDs. Move that folder into `assets/shipped/` to ship it.
   - Development tool only: the ComfyUI node never calls it.
+- Three more outfits in the Instagram category (`instagram_O021`–`instagram_O023`): a black blazer and pinstripe corset look, a black cami with a grey bow mini skirt, and a white faux-fur jacket look. They were assembled from flat-lay collages with gpt-image-2, with all brand names and logos removed. 94 outfits in total.
 
 ## 0.1.5
 

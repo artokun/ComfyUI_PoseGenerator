@@ -60,7 +60,7 @@ match. Legacy catalogs can still use their category and camera angle filters.
 ## Add your own outfits
 
 Outfits live in a **folder gallery**: any folder directly under `assets/` with a
-`catalog.json`. The pack ships one, `assets/shipped/Outfits/` (91 outfits); its first
+`catalog.json`. The pack ships one, `assets/shipped/Outfits/` (94 outfits); its first
 entry (`preppy_O001`) is the template to copy. Put your own outfits in your own
 folder such as `assets/My Outfits/`. A folder that only holds outfits does not
 appear in the **Pose gallery** picker; its outfits show up in **Browse outfits**

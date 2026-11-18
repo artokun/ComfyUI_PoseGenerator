@@ -55,7 +55,7 @@ Add **Pose & Outfit Reference** from **image → reference**.
 
 **Two pose galleries come with the pack:** **Instagram Poses** (28 poses) and **OF poses** (22 poses), each pose with a saved depth map. Both are mannequin drawings made with Pose Studio from the publisher's own photos. Pick them from the node's **Pose gallery** dropdown; no setup needed. Outfits are separate (below).
 
-**91 outfits ship too**, in `assets/shipped/Outfits/`: original ghost-mannequin outfits in 15 styles, with tags by body zone, colour, fabric and season that you can filter by. [How to add outfits](docs/library.md#add-your-own-outfits).
+**94 outfits ship too**, in `assets/shipped/Outfits/`: original ghost-mannequin outfits in 15 styles, with tags by body zone, colour, fabric and season that you can filter by. [How to add outfits](docs/library.md#add-your-own-outfits).
 
 **Bring references you have permission to use.** Put your images and a
 `catalog.json` in `assets/gallery`, or point `POSE_GENERATOR_ASSETS` to your own

@@ -3980,5 +3980,212 @@
     "summer"
    ]
   }
+ },
+ {
+  "id": "instagram_O021",
+  "label": "Black tailored blazer, pinstripe corset, mini skirt, grey leg warmers, pointed boots",
+  "prompt": "wearing a fitted black blazer with a stand collar over a charcoal pinstripe corset top, a black mini skirt, charcoal ribbed knit leg warmers over black pointed-toe leather boots, round black glasses, a silver heart pendant, a silver watch and a slouchy black leather shoulder bag",
+  "category": "Instagram",
+  "tags": [
+   "autumn",
+   "black",
+   "blazer",
+   "charcoal",
+   "corset top",
+   "glasses",
+   "knit",
+   "leather",
+   "leg warmers",
+   "mini skirt",
+   "office siren",
+   "pendant necklace",
+   "pinstripe",
+   "pointed boots",
+   "ribbed",
+   "shoulder bag",
+   "silver",
+   "watch",
+   "winter"
+  ],
+  "tag_groups": {
+   "Head": [
+    "glasses"
+   ],
+   "Outerwear": [
+    "blazer"
+   ],
+   "Top": [
+    "corset top"
+   ],
+   "Bottom": [
+    "mini skirt"
+   ],
+   "Legs": [
+    "leg warmers"
+   ],
+   "Feet": [
+    "pointed boots"
+   ],
+   "Accessories": [
+    "shoulder bag",
+    "watch",
+    "pendant necklace"
+   ],
+   "Colors": [
+    "black",
+    "charcoal",
+    "silver"
+   ],
+   "Patterns & fabrics": [
+    "pinstripe",
+    "ribbed",
+    "knit",
+    "leather"
+   ],
+   "Season": [
+    "autumn",
+    "winter"
+   ]
+  }
+ },
+ {
+  "id": "instagram_O022",
+  "label": "Black lace-trim cami, grey bow pleated mini skirt, tall black boots",
+  "prompt": "wearing a black satin camisole with lace trim, a grey pinstripe pleated mini skirt with two black satin bows, white frilled socks under tall black leather knee-high boots, thin silver-rimmed glasses, silver bow earrings and a black leather top-handle bag with a bow",
+  "category": "Instagram",
+  "tags": [
+   "autumn",
+   "black",
+   "bow earrings",
+   "bows",
+   "camisole",
+   "coquette",
+   "dark coquette",
+   "frilled socks",
+   "glasses",
+   "grey",
+   "knee-high boots",
+   "lace",
+   "leather",
+   "pinstripe",
+   "pleated",
+   "pleated mini skirt",
+   "satin",
+   "silver",
+   "top-handle bag",
+   "white"
+  ],
+  "tag_groups": {
+   "Head": [
+    "glasses"
+   ],
+   "Top": [
+    "camisole"
+   ],
+   "Bottom": [
+    "pleated mini skirt"
+   ],
+   "Legs": [
+    "frilled socks"
+   ],
+   "Feet": [
+    "knee-high boots"
+   ],
+   "Accessories": [
+    "top-handle bag",
+    "bow earrings",
+    "bows"
+   ],
+   "Colors": [
+    "black",
+    "grey",
+    "silver",
+    "white"
+   ],
+   "Patterns & fabrics": [
+    "pinstripe",
+    "pleated",
+    "lace",
+    "satin",
+    "leather"
+   ],
+   "Season": [
+    "autumn"
+   ]
+  }
+ },
+ {
+  "id": "instagram_O023",
+  "label": "White faux-fur jacket, denim bustier, white belted mini skirt, knit leg warmers, cream loafers",
+  "prompt": "wearing a cropped white faux-fur jacket over a sage knit cardigan and a blue pinstripe denim bustier top with a lace-trim camisole, a white pleated mini skirt with a studded white belt, cream cable-knit leg warmers with bows, white frilled socks, cream chunky loafers, a pearl choker with a heart charm and a metallic silver shoulder bag",
+  "category": "Instagram",
+  "tags": [
+   "belt",
+   "blue",
+   "bustier top",
+   "cable knit",
+   "camisole",
+   "cardigan",
+   "cream",
+   "denim",
+   "faux fur",
+   "faux-fur jacket",
+   "frilled socks",
+   "leg warmers",
+   "loafers",
+   "metallic",
+   "pearl choker",
+   "pleated",
+   "pleated mini skirt",
+   "sage",
+   "shoulder bag",
+   "silver",
+   "snow bunny",
+   "white",
+   "winter",
+   "y2k"
+  ],
+  "tag_groups": {
+   "Outerwear": [
+    "faux-fur jacket",
+    "cardigan"
+   ],
+   "Top": [
+    "bustier top",
+    "camisole"
+   ],
+   "Bottom": [
+    "pleated mini skirt"
+   ],
+   "Legs": [
+    "leg warmers",
+    "frilled socks"
+   ],
+   "Feet": [
+    "loafers"
+   ],
+   "Accessories": [
+    "shoulder bag",
+    "belt",
+    "pearl choker"
+   ],
+   "Colors": [
+    "white",
+    "cream",
+    "blue",
+    "sage",
+    "silver"
+   ],
+   "Patterns & fabrics": [
+    "faux fur",
+    "denim",
+    "cable knit",
+    "pleated",
+    "metallic"
+   ],
+   "Season": [
+    "winter"
+   ]
+  }
  }
 ]
