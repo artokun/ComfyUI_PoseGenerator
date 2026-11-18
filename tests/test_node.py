@@ -295,12 +295,26 @@ def test_new_nodes_edit_the_pose_by_default():
 def test_location_points_at_the_subject_photo_only_when_the_pose_is_edited(local_library):
     photo = torch.rand(1, 64, 64, 3)
     node = PoseOutfitReference()
-    args = ("pose-a", "None", "a traveler", "{location}", "")
+    args = ("pose-a", "None", "a traveler", "{edit}|{location}", "")
     def prompt(**kwargs):
-        return node.generate(*args, picture_tag=H3, **kwargs)[2]
+        return node.generate(*args, picture_tag=H3, **kwargs)[2].partition("|")[2]
     assert prompt(edit_target="Pose", location="From the subject photo", subject_image=photo) == "in the same location, background and lighting as <Picture 2>"
     assert prompt(edit_target="Subject", location="From the subject photo", subject_image=photo) == ""  # the photo is picture 1
     assert prompt(edit_target="Pose", location="From the subject photo") == ""  # no photo to point at
     assert prompt(edit_target="Pose", location="Plain studio", subject_image=photo) == "on a plain white studio background"
     assert prompt(edit_target="Pose", location="Custom", subject_image=photo) == ""
-    assert node.generate(*args, location="Plain studio", subject_image=photo)[2] == ""  # picture references off
+    assert node.generate(*args, location="Plain studio", subject_image=photo)[2] == "|"  # picture references off
+
+
+def test_old_templates_still_get_the_edit_opener_and_the_location(local_library):
+    photo = torch.rand(1, 64, 64, 3)
+    node = PoseOutfitReference()
+    old = "{subject}, {pose}, {outfit}, {extra}"
+    prompt = node.generate("pose-a", "None", "Celia", old, "soft light", picture_tag=H3, edit_target="Pose",
+                           location="From the subject photo", reference_text="Image only", subject_image=photo)[2]
+    assert prompt.startswith("Edit <Picture 1>: replace the mannequin drawing with a real photo of Celia from <Picture 2>")
+    assert prompt.endswith("in the same location, background and lighting as <Picture 2>, soft light")
+    custom = node.generate("pose-a", "None", "Celia", "portrait of {subject}", "", picture_tag=H3, edit_target="Pose",
+                           location="Plain studio", subject_image=photo)[2]
+    assert custom.endswith("on a plain white studio background")
+    assert node.generate("pose-a", "None", "Celia", old, "", subject_image=photo)[2] == "Celia, standing, front view"  # references off

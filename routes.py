@@ -3,7 +3,7 @@
 from aiohttp import web
 
 from .library import gallery_index, image_path, selected
-from .prompts import compose_values, picture_order, render_prompt
+from .prompts import compose_values, picture_order, render_prompt, with_picture_fields
 
 IMAGE_TYPES = {".png": "image/png", ".jpg": "image/jpeg", ".jpeg": "image/jpeg", ".webp": "image/webp"}
 
@@ -56,7 +56,7 @@ async def preview_prompt(request):
             pose_name=pose["label"] if pose else "", outfit_name=outfit["label"] if outfit else "",
             angle=pose.get("angle", "") if pose else "",
         )
-        return web.json_response({"prompt": render_prompt(body.get("prompt_template", ""), values)})
+        return web.json_response({"prompt": render_prompt(with_picture_fields(body.get("prompt_template", ""), values), values)})
     except (ValueError, TypeError, AttributeError) as error:
         return web.json_response({"error": str(error)}, status=400)
 

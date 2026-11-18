@@ -67,6 +67,17 @@ def compose_values(subject, pose_text, outfit_text, extra, *, order=(), picture_
     return values
 
 
+def with_picture_fields(template, values):
+    """Templates written before {edit} and {location} existed still get both: the settings on
+    the node decide whether they say anything, not whether the template mentions them."""
+    if values.get("edit") and "{edit}" not in template:
+        template = "{edit} " + template
+    if values.get("location") and "{location}" not in template:
+        head, comma, tail = template.rpartition(", {extra}")
+        template = head + ", {location}, {extra}" + tail if comma else template + ", {location}"
+    return template
+
+
 def render_prompt(template, values):
     parts = []
     try:
