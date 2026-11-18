@@ -3,6 +3,10 @@
 ## 0.1.3
 
 - Ship two pose galleries made with Pose Studio from our own photos: **Instagram Poses** (28 drawings, 24 with saved depth maps) and **OF poses** (24 drawings). They appear in the **Pose gallery** dropdown with no setup. Drawings are WebP with thumbnails; depth maps sit beside the drawings.
+- Folder galleries can carry **outfits**, not just poses. Ship `assets/Outfits/` with one ghost-mannequin outfit rendered with MiniMax H3 Image (`preppy_O001`), which is also the template for adding your own.
+- **Browse outfits** filters by grouped tags (Tops, Bottoms, Colors, Season, …) the same way Browse poses does.
+- Document the outfit naming convention (`{style}_O{NNN}`), catalog fields, tag vocabulary and the ghost-mannequin prompt (`scripts/prompts/outfit-ghost-mannequin.txt`) in docs/library.md.
+- The **Pose gallery** picker no longer offers an empty "Original gallery" when it isn't installed, or folders that only hold outfits.
 - Add `scripts/bundle_gallery.py`, which turns a finished Pose Studio run into a shippable folder gallery (drawings, depth maps and reviewed catalog rows only; no source photos, comparisons, history or batch receipts).
 - The release check allowlists those two galleries (WebP and JSON only) and still refuses the original gallery.
 

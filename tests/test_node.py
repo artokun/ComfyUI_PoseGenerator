@@ -191,3 +191,45 @@ def test_studio_depth_wins_over_a_file_beside_the_drawing(local_library):
     (local_library / "depth").mkdir()
     Image.new("RGB", (12, 8), (255, 255, 255)).save(local_library / "depth" / f"{digest}.png")
     assert torch.all(node.generate(*args, pose_image_mode="Saved depth")[0] == 1)
+
+
+def test_fresh_install_lists_only_bundled_galleries(tmp_path, monkeypatch):
+    # A Registry install has no original gallery, only the bundled folder galleries.
+    from pose_generator import library
+    primary = tmp_path / "assets" / "gallery"  # standard location, never created
+    monkeypatch.delenv("POSE_GENERATOR_ASSETS", raising=False)
+    monkeypatch.setattr(library, "DEFAULT_ROOT", primary)
+    library._read_catalog.cache_clear()
+    bundled = tmp_path / "assets" / "Instagram Poses"
+    (bundled / "img").mkdir(parents=True)
+    Image.new("RGB", (12, 8), "blue").save(bundled / "img" / "p.webp")
+    row = {"id": "p", "label": "Standing", "prompt": "standing", "category": "Full body",
+           "image": "img/p.webp", "thumbnail": "img/p.webp", "angle": "front view"}
+    (bundled / "catalog.json").write_text(json.dumps({"schema_version": 1, "pose": [row], "outfit": []}))
+    galleries, entries = library.gallery_index()
+    assert [g["label"] for g in galleries] == ["Instagram Poses"]
+    identity = next(key for key in choices("pose") if key != "None")
+    pose = PoseOutfitReference().generate(identity, "None", "a", DEFAULT_TEMPLATE, "")[0]
+    assert pose[0, 0, 0].tolist() == pytest.approx([0, 0, 1], abs=0.02)  # lossy WebP
+    library._read_catalog.cache_clear()
+
+
+def test_folder_gallery_can_carry_outfits(tmp_path, monkeypatch):
+    # Users' own outfits go in a folder gallery (assets/<name>/catalog.json "outfit"),
+    # not in the original gallery's folder.
+    from pose_generator import library
+    monkeypatch.delenv("POSE_GENERATOR_ASSETS", raising=False)
+    monkeypatch.setattr(library, "DEFAULT_ROOT", tmp_path / "assets" / "gallery")
+    library._read_catalog.cache_clear()
+    mine = tmp_path / "assets" / "My Outfits"
+    (mine / "img").mkdir(parents=True)
+    Image.new("RGB", (12, 8), (0, 255, 0)).save(mine / "img" / "o.png")
+    row = {"id": "o", "label": "Green coat", "prompt": "wearing a green coat", "category": "Coats",
+           "image": "img/o.png", "thumbnail": "img/o.png"}
+    (mine / "catalog.json").write_text(json.dumps({"schema_version": 1, "pose": [], "outfit": [row]}))
+    assert "My Outfits" not in [g["label"] for g in library.gallery_index()[0]]  # no poses: not a pose gallery
+    outfit_id = next(key for key in choices("outfit") if key != "None")
+    _, outfit, prompt, _, outfit_text = PoseOutfitReference().generate("None", outfit_id, "a", DEFAULT_TEMPLATE, "")
+    assert outfit[0, 0, 0].tolist() == [0, 1, 0]
+    assert outfit_text == "wearing a green coat"
+    library._read_catalog.cache_clear()

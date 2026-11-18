@@ -211,7 +211,9 @@ async function openGallery(node, initialKind) {
     if (flat.length) rows.set("Tags", [...(rows.get("Tags") || []), ...flat]);
     return rows;
   }
-  const poseTags = new Map(data.pose.map((entry) => [entry.id, tagsByRow(entry)]));
+  // Grouped tags per tab: poses and outfits both filter by their tag_groups rows.
+  const tagIndex = Object.fromEntries(["pose", "outfit"].map((name) =>
+    [name, new Map((data[name] || []).map((entry) => [entry.id, tagsByRow(entry)]))]));
 
   function resetFilters() {
     const entries = data[kind].filter(inGallery);
@@ -222,12 +224,10 @@ async function openGallery(node, initialKind) {
     selectedTags.clear();
     tagFilters.replaceChildren();
     const vocabulary = new Map();
-    if (kind === "pose") {
-      for (const entry of entries) {
-        for (const [row, tags] of poseTags.get(entry.id)) {
-          if (!vocabulary.has(row)) vocabulary.set(row, new Set());
-          for (const tag of tags) vocabulary.get(row).add(tag);
-        }
+    for (const entry of entries) {
+      for (const [row, tags] of tagIndex[kind].get(entry.id) || []) {
+        if (!vocabulary.has(row)) vocabulary.set(row, new Set());
+        for (const tag of tags) vocabulary.get(row).add(tag);
       }
     }
     for (const [row, tags] of vocabulary) {
@@ -282,7 +282,7 @@ async function openGallery(node, initialKind) {
       if (category.value && category.value !== entry.category) return false;
       if (kind === "pose" && angle.value && angle.value !== entry.angle) return false;
       for (const [row, tags] of selectedTags) {
-        if (!poseTags.get(entry.id)?.get(row)?.some((value) => tags.has(value))) return false;
+        if (!tagIndex[kind].get(entry.id)?.get(row)?.some((value) => tags.has(value))) return false;
       }
       const tags = Array.isArray(entry.tags) ? entry.tags.join(" ") : "";
       const text = `${entry.catalog_id || entry.id} ${entry.label} ${entry.prompt} ${entry.source_label || ""} ${tags}`.toLocaleLowerCase();

@@ -37,7 +37,7 @@ def test_bundled_galleries_ship_but_original_gallery_and_other_assets_do_not(tmp
     (tmp_path / ".comfyignore").write_text((ROOT / ".comfyignore").read_text())
     (tmp_path / ".gitignore").write_text((ROOT / ".gitignore").read_text())
     bundled = {"assets/Instagram Poses/catalog.json", "assets/Instagram Poses/img/a.webp",
-               "assets/Instagram Poses/img/depth/a.webp", "assets/OF poses/thumbs/b.webp"}
+               "assets/Instagram Poses/img/depth/a.webp", "assets/OF poses/thumbs/b.webp", "assets/Outfits/catalog.json", "assets/Outfits/img/preppy_O001.webp"}
     elsewhere = {"assets/gallery/img/p.webp", "assets/gallery-webp/costume/o.webp",
                  "assets/cozy_poses/img/c.png", "assets/gallery-studio/x/img/d.png"}
     for relative in REQUIRED | bundled | elsewhere:

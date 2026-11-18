@@ -22,9 +22,9 @@ REQUIRED = {"__init__.py", "nodes.py", "library.py", "prompts.py", "routes.py",
             "web/pose-gallery.js", "web/pose-gallery.css", "pyproject.toml",
             "requirements.txt", "LICENSE", "THIRD_PARTY.md", "README.md",
             "docs/notices/anhao-LICENSE.txt"}
-# Galleries made with Pose Studio from the publisher's own photos. Only their
+# Galleries made by the publisher (Pose Studio poses from their own photos; generated outfits). Only their
 # drawings, depth maps and catalogs ship; never the original gallery (assets/gallery*).
-BUNDLED_GALLERIES = ("assets/Instagram Poses/", "assets/OF poses/")
+BUNDLED_GALLERIES = ("assets/Instagram Poses/", "assets/OF poses/", "assets/Outfits/")
 BUNDLED_SUFFIXES = {".webp", ".json"}
 
 

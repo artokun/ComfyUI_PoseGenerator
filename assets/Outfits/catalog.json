@@ -1,0 +1,58 @@
+{
+ "schema_version": 1,
+ "pose": [],
+ "outfit": [
+  {
+   "id": "preppy_O001",
+   "label": "Sage cropped cardigan, cream lace cami, plaid pleated mini skirt, ruffle socks, platform loafers",
+   "prompt": "wearing a sage-green cropped knit cardigan over a cream lace camisole, a sage and cream plaid pleated mini skirt, white ruffled ankle socks and cream platform loafers",
+   "category": "Preppy",
+   "image": "img/preppy_O001.webp",
+   "thumbnail": "thumbs/preppy_O001.webp",
+   "tags": [
+    "autumn",
+    "camisole",
+    "cardigan",
+    "cream",
+    "knit",
+    "lace",
+    "loafers",
+    "plaid",
+    "sage green",
+    "skirt",
+    "socks",
+    "spring",
+    "white"
+   ],
+   "tag_groups": {
+    "Tops": [
+     "cardigan",
+     "camisole"
+    ],
+    "Bottoms": [
+     "skirt"
+    ],
+    "Footwear": [
+     "loafers"
+    ],
+    "Accessories": [
+     "socks"
+    ],
+    "Colors": [
+     "sage green",
+     "cream",
+     "white"
+    ],
+    "Patterns & fabrics": [
+     "plaid",
+     "lace",
+     "knit"
+    ],
+    "Season": [
+     "spring",
+     "autumn"
+    ]
+   }
+  }
+ ]
+}

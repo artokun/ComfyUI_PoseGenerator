@@ -14,6 +14,7 @@
 /assets/*
 !/assets/Instagram Poses/
 !/assets/OF poses/
+!/assets/Outfits/
 
 # Never include generated Python files, even below a runtime directory.
 __pycache__/

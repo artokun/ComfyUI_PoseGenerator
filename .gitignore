@@ -14,6 +14,7 @@ __pycache__/
 # Galleries made with Pose Studio from our own photos; these ship (see scripts/bundle_gallery.py).
 !/assets/Instagram Poses/
 !/assets/OF poses/
+!/assets/Outfits/
 /test-results/
 /.playwright-mcp/
 .env
