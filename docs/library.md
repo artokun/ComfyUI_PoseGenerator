@@ -60,7 +60,7 @@ match. Legacy catalogs can still use their category and camera angle filters.
 ## Add your own outfits
 
 Outfits live in a **folder gallery**: any folder directly under `assets/` with a
-`catalog.json`. The pack ships one, `assets/Outfits/`, whose first entry
+`catalog.json`. The pack ships one, `assets/Outfits/` (71 outfits); its first entry
 (`preppy_O001`) is the template to copy. Put new outfits there, or in your own
 folder such as `assets/My Outfits/`. A folder that only holds outfits does not
 appear in the **Pose gallery** picker; its outfits show up in **Browse outfits**
@@ -129,11 +129,25 @@ Leave out a row an outfit does not use.
 
 Outfits are ghost-mannequin renders: clothes floating in their worn shape with no
 body, so they never fight the pose. `scripts/prompts/outfit-ghost-mannequin.txt`
-is the prompt; replace `{outfit}` with a description of the garments. With
-MiniMax H3 Image, render at **1664 x 2496**, 6 steps, cfg 1, euler / simple,
-batch size 1, and check there is no skin between garments before adding it.
+is the prompt; replace `{outfit}` with a description of the garments. Name the
+footwear: with a style reference, an outfit without shoes tends to borrow the
+reference's. Check there is no skin between garments before adding an outfit.
 Save the image as WebP (quality about 90) and a thumbnail about 512 px on the
 long edge.
+
+The bundled set was made with these scripts (paid, optional; the node never
+calls them):
+
+```sh
+# 1. Describe outfits in scripts/outfits/outfit_specs.json (id, label, prompt, category, tags, tag_groups).
+# 2. Render with gpt-image-2 through the Batch API (half price, usually minutes):
+OPENAI_API_KEY=... python scripts/generate_outfits.py --batch
+OPENAI_API_KEY=... python scripts/generate_outfits.py --collect
+# 3. Any refusals: render those ids with Seedream 5.5 instead.
+SPICY_API_KEY=... python scripts/generate_outfits_seedream.py --only <ids>
+# 4. Build the gallery (WebP, thumbnails, catalog).
+python scripts/build_outfit_gallery.py --dest "assets/My Outfits"
+```
 
 ## Generate your own mannequin references
 
