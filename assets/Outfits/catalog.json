@@ -10,6 +10,7 @@
    "image": "img/preppy_O001.webp",
    "thumbnail": "thumbs/preppy_O001.webp",
    "tags": [
+    "ankle socks",
     "autumn",
     "camisole",
     "cardigan",
@@ -20,23 +21,22 @@
     "plaid",
     "sage green",
     "skirt",
-    "socks",
     "spring",
     "white"
    ],
    "tag_groups": {
-    "Tops": [
+    "Top": [
      "cardigan",
      "camisole"
     ],
-    "Bottoms": [
+    "Bottom": [
      "skirt"
     ],
-    "Footwear": [
-     "loafers"
+    "Legs": [
+     "ankle socks"
     ],
-    "Accessories": [
-     "socks"
+    "Feet": [
+     "loafers"
     ],
     "Colors": [
      "sage green",

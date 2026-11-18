@@ -83,12 +83,12 @@ and the catalog `id`: `img/preppy_O001.webp`, `thumbs/preppy_O001.webp`.
  "category": "Preppy",
  "image": "img/preppy_O001.webp",
  "thumbnail": "thumbs/preppy_O001.webp",
- "tags": ["autumn", "camisole", "cardigan", "cream", "knit", "lace", "loafers", "plaid", "sage green", "skirt", "socks", "spring", "white"],
+ "tags": ["ankle socks", "autumn", "camisole", "cardigan", "cream", "knit", "lace", "loafers", "plaid", "sage green", "skirt", "spring", "white"],
  "tag_groups": {
-  "Tops": ["cardigan", "camisole"],
-  "Bottoms": ["skirt"],
-  "Footwear": ["loafers"],
-  "Accessories": ["socks"],
+  "Top": ["cardigan", "camisole"],
+  "Bottom": ["skirt"],
+  "Legs": ["ankle socks"],
+  "Feet": ["loafers"],
   "Colors": ["sage green", "cream", "white"],
   "Patterns & fabrics": ["plaid", "lace", "knit"],
   "Season": ["spring", "autumn"]
@@ -107,18 +107,22 @@ and the catalog `id`: `img/preppy_O001.webp`, `thumbs/preppy_O001.webp`.
 
 Use these rows and lowercase words so filters stay consistent across outfits:
 
-| Row | Example tags |
-|---|---|
-| Tops | t-shirt, blouse, shirt, camisole, tank top, crop top, sweater, cardigan, hoodie, corset |
-| Outerwear | blazer, jacket, leather jacket, denim jacket, coat, trench coat, puffer, vest |
-| Bottoms | skirt, jeans, trousers, shorts, leggings, cargo pants |
-| Dresses & one-pieces | dress, mini dress, maxi dress, slip dress, jumpsuit, romper |
-| Footwear | sneakers, loafers, boots, ankle boots, heels, sandals, flats |
-| Accessories | bag, hat, belt, scarf, socks, tights, gloves, jewelry, sunglasses |
-| Colors | black, white, cream, beige, brown, grey, navy, blue, sage green, green, red, pink, purple, yellow, orange |
-| Patterns & fabrics | plaid, stripes, floral, polka dot, denim, leather, knit, lace, satin, linen |
-| Season | spring, summer, autumn, winter |
+| Row | What goes in it | Example tags |
+|---|---|---|
+| Head | headwear and hair accessories | hat, cap, beret, beanie, headband, hair bow, hair clip |
+| Outerwear | layers worn over the top | blazer, jacket, leather jacket, denim jacket, coat, trench coat, puffer, vest |
+| Top | upper-body garments | t-shirt, blouse, shirt, camisole, tank top, crop top, sweater, cardigan, hoodie, corset |
+| Bottom | lower-body garments | skirt, mini skirt, jeans, trousers, shorts, leggings, cargo pants |
+| Full body | one piece covering top and bottom | dress, mini dress, maxi dress, slip dress, jumpsuit, romper, overalls |
+| Underwear | visible underwear or lingerie | bra, bralette, slip, garter belt |
+| Legs | anything worn on the leg, any length | tights, stockings, thigh-highs, knee-high socks, ankle socks, leg warmers |
+| Feet | footwear only | sneakers, loafers, boots, ankle boots, heels, sandals, flats |
+| Accessories | carried or worn extras | bag, belt, scarf, gloves, jewelry, sunglasses |
+| Colors | main colours, most visible first | black, white, cream, beige, brown, grey, navy, blue, sage green, green, red, pink, purple, yellow, orange |
+| Patterns & fabrics | prints and materials | plaid, stripes, floral, polka dot, denim, leather, knit, lace, satin, linen |
+| Season | when it would be worn | spring, summer, autumn, winter |
 
+Socks always go in **Legs**, whatever their length; **Feet** is only footwear.
 Leave out a row an outfit does not use.
 
 ### Rendering an outfit
