@@ -29,7 +29,7 @@ def test_optional_selections_and_overrides(local_library):
     output = PoseOutfitReference().generate("None", "None", "a traveler", DEFAULT_TEMPLATE, "")
     assert output[0].shape == output[1].shape == (1, 1, 1, 3)
     assert output[2:5] == ("a traveler", "", "")
-    assert output[5:] == (None, None, None, 0, 0)
+    assert output[5:] == (None, None, None, 0, 0, None)
     output = PoseOutfitReference().generate("pose-a", "outfit-a", "a traveler", DEFAULT_TEMPLATE, "", "running", "wearing boots")
     assert output[2] == "a traveler, running, wearing boots"
 
@@ -248,7 +248,7 @@ def test_subject_first_numbers_pictures_and_writes_an_edit_instruction(local_lib
         "in the exact pose of the mannequin drawing in <Picture 2> (copy only the pose, not its look): standing, front view, "
         "wearing the outfit shown in <Picture 3> (only the clothes, not its background): a blue jacket, soft lighting"
     )
-    picture_1, picture_2, picture_3, width, height = output[5:]
+    picture_1, picture_2, picture_3, width, height = output[5:10]
     assert picture_1.shape == (1, height, width, 3) and width % 32 == height % 32 == 0
     assert abs(width * height - 1_000_000) < 80_000 and abs(width / height - 400 / 600) < 0.05
     assert picture_2[0, 0, 0].tolist() == [1, 0, 0] and picture_3[0, 0, 0].tolist() == [0, 1, 0]
@@ -283,7 +283,8 @@ def test_empty_picture_tag_keeps_the_plain_prompt_and_bad_tags_are_rejected(loca
 def test_new_widgets_and_outputs_are_appended_for_saved_workflows():
     optional = list(PoseOutfitReference.INPUT_TYPES()["optional"])
     assert optional[:3] == ["pose_override", "outfit_override", "pose_image_mode"]
-    assert optional[3:] == ["picture_tag", "edit_target", "megapixels", "reference_text", "location", "subject_image"]
+    assert optional[3:] == ["picture_tag", "edit_target", "megapixels", "reference_text", "location", "subject_image", "location_image"]
+    assert PoseOutfitReference.RETURN_NAMES[5:] == ("picture_1", "picture_2", "picture_3", "width", "height", "picture_4")
     assert PoseOutfitReference.RETURN_NAMES[:5] == ("pose_image", "outfit_image", "positive_prompt", "pose_text", "outfit_text")
 
 
@@ -338,3 +339,22 @@ def test_shipped_and_local_galleries_share_ids_and_the_local_folder_wins(tmp_pat
     assert entries["pose"]["@folder.Studio%20Set:p"]["label"] == "local"
     assert "@folder.Beach%20Set:p" in entries["pose"]
     library._read_catalog.cache_clear()
+
+
+def test_location_image_is_the_last_picture_and_sets_the_scene(local_library):
+    photo, place = torch.rand(1, 64, 64, 3), torch.rand(2, 48, 80, 3)
+    node = PoseOutfitReference()
+    def run(**kwargs):
+        return node.generate("pose-a", "outfit-a", "Celia", "{edit}|{location}", "", picture_tag=H3, **kwargs)
+    output = run(edit_target="Pose", location="From the subject photo", subject_image=photo, location_image=place)
+    assert output[2].partition("|")[2] == "in the place shown in <Picture 4> (its setting, background and lighting only, not any people in it)"
+    assert torch.equal(output[10], place[:1]) and output[7] is not None
+    # Also when the photo is the edited picture, and without a subject photo (the place is then picture 3).
+    assert "<Picture 4>" in run(edit_target="Subject", location="From the subject photo", subject_image=photo, location_image=place)[2]
+    output = run(edit_target="Pose", location="From the subject photo", location_image=place)
+    assert "in the place shown in <Picture 3>" in output[2] and torch.equal(output[7], place[:1]) and output[10] is None
+    # Custom passes the picture on without a sentence; Plain studio ignores it.
+    output = run(edit_target="Pose", location="Custom", subject_image=photo, location_image=place)
+    assert output[2].partition("|")[2] == "" and output[10] is not None
+    output = run(edit_target="Pose", location="Plain studio", subject_image=photo, location_image=place)
+    assert output[2].endswith("on a plain white studio background") and output[10] is None
