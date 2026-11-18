@@ -1,6 +1,7 @@
 """A single picker node with two independent image outputs."""
 
 import hashlib
+from pathlib import PurePosixPath
 
 import numpy as np
 import torch
@@ -10,13 +11,30 @@ from .library import NONE, catalog_stamp, choices, image_path, selected
 from .prompts import DEFAULT_TEMPLATE, render_prompt
 
 
+def _depth_candidates(entry, digest):
+    """Where a pose's saved depth map can live, in the order to try them.
+
+    Pose Studio writes depth/<sha256 of the drawing>.png at the gallery root.
+    The original gallery keeps one per drawing beside it, under the same name:
+    img/depth/<drawing file name>.
+    """
+    image = PurePosixPath(entry["image"])
+    return (f"depth/{digest}.png", str(image.parent / "depth" / image.name))
+
+
 def reference_path(entry, depth=False):
-    path = image_path(entry["image"], entry.get("_root"))
+    root = entry.get("_root")
+    path = image_path(entry["image"], root)
     if depth and path.is_file():
         digest = hashlib.sha256(path.read_bytes()).hexdigest()
-        path = image_path(f"depth/{digest}.png", entry.get("_root"))
-        if not path.is_file():
-            raise ValueError("Generate a depth map for this pose in Pose Studio or select Drawing.")
+        for candidate in _depth_candidates(entry, digest):
+            try:
+                found = image_path(candidate, root)
+            except ValueError:  # outside the gallery or not an image: not a depth map
+                continue
+            if found.is_file():
+                return found
+        raise ValueError("Generate a depth map for this pose in Pose Studio or select Drawing.")
     return path
 
 

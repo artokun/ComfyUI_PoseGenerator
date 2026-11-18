@@ -4,7 +4,7 @@
 
 - Choose a pose gallery on the node: named Pose Studio folders and other catalogs under `assets/` appear in a **Pose gallery** dropdown, and **Browse poses** can switch galleries.
 - Filter thumbnails by saved tags as well as category, camera angle, and search.
-- Add a **pose_image_mode** input: output the pose drawing, or a saved depth map for that pose.
+- Add a **pose_image_mode** input: output the pose drawing, or a saved depth map for that pose (from Pose Studio's `depth/` folder, or a `depth/` folder beside the drawing as in the original gallery).
 - Stop listing `torch` as a dependency. ComfyUI already provides it, and installing it from the node pack could replace a working CUDA build.
 
 ## 0.1.0
