@@ -1,0 +1,4 @@
+# Standalone browser UI; no ComfyUI or torch installation required.
+aiohttp>=3.10
+requests>=2.32
+Pillow>=10

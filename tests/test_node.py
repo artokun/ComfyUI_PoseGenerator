@@ -1,4 +1,5 @@
 import json
+import hashlib
 from pathlib import Path
 
 import pytest
@@ -119,3 +120,47 @@ def test_actual_downloaded_catalog_when_present(monkeypatch):
     assert output[0].shape[-1] == output[1].shape[-1] == 3
     assert "contrapposto" in output[2]
     assert "wearing ivory" in output[2]
+
+
+def test_named_galleries_resolve_collisions_recaptions_and_depth(local_library, monkeypatch):
+    from pose_generator import library
+    from shutil import copytree
+    primary = local_library / "collections" / "gallery"
+    primary.mkdir(parents=True)
+    for name in ("img", "thumbs"):
+        copytree(local_library / name, primary / name)
+    (primary / "catalog.json").write_bytes((local_library / "catalog.json").read_bytes())
+    monkeypatch.setenv("POSE_GENERATOR_ASSETS", str(primary))
+    monkeypatch.setattr(library, "DEFAULT_ROOT", primary)
+    doc = json.loads((local_library / "catalog.json").read_text())
+    folder = primary.parent / "gallery-studio" / "example-run"
+    folder.mkdir(parents=True)
+    (folder / "studio.json").write_text(json.dumps({"label": "Instagram Poses"}))
+    row = {**doc["pose"][0], "image": "mannequin.png", "thumbnail": "mannequin.png",
+           "tag_groups": {"Character stance": ["standing"]}}
+    Image.new("RGB", (12, 8), "blue").save(folder / "mannequin.png")
+    digest = hashlib.sha256((folder / "mannequin.png").read_bytes()).hexdigest()
+    (folder / "batch.json").write_text(json.dumps({"jobs": {"image.jpg": {
+        "id": "stable", "downloaded": True, "output": "mannequin.png"}}}))
+    (folder / "catalog.json").write_text(json.dumps({**doc, "pose": [row]}))
+    retry = folder.with_name("retry")
+    retry.mkdir()
+    (retry / "studio.json").write_text('{"regenerated_from":{"id":"example-run"}}')
+    (retry / "catalog.json").write_text(json.dumps(doc))
+    galleries, entries = library.gallery_index()
+    assert [g["label"] for g in galleries] == ["Original gallery", "Instagram Poses"]
+    assert set(entries["outfit"]) == {"outfit-a"}
+    identity = next(key for key in choices("pose") if key.startswith("@studio."))
+    assert library.selected("pose", identity)["catalog_id"] == "pose-a"
+    node = PoseOutfitReference()
+    args = (identity, "None", "", "{pose}", "")
+    assert node.generate(*args)[0][0, 0, 0].tolist() == [0, 0, 1]
+    with pytest.raises(ValueError, match="depth map"):
+        node.generate(*args, pose_image_mode="Saved depth")
+    (folder / "depth").mkdir()
+    Image.new("RGB", (12, 8), "white").save(folder / "depth" / (digest + ".png"))
+    assert torch.all(node.generate(*args, pose_image_mode="Saved depth")[0] == 1)
+    (folder / "studio.json").write_text(json.dumps({"label": "Renamed"}))
+    (folder / "catalog.json").write_text(json.dumps({**doc, "pose": [{**row, "id": "new-angle", "prompt": "reaching up"}]}))
+    assert library.selected("pose", identity)["prompt"] == "reaching up"
+    assert library.gallery_index()[0][1]["label"] == "Renamed"
