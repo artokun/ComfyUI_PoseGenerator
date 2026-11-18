@@ -105,3 +105,52 @@
   .has-editor .comparison-layout { grid-template-columns: minmax(0, 1fr); }
   .comparison-actions { justify-content: flex-start; }
 }
+
+/* Page switcher (Poses / Outfits) */
+.pages { display: flex; gap: 6px; margin-left: auto; margin-right: 28px; }
+.pages a { text-decoration: none; font-size: 12px; color: var(--muted); padding: 8px 12px; border: 1px solid transparent; border-radius: 5px; }
+.pages a:hover { color: var(--text); border-color: var(--line); }
+.pages a[aria-current="page"] { color: var(--ink); background: var(--accent); }
+
+/* Outfit Studio */
+.mode-tabs { display: grid; grid-template-columns: 1fr 1fr; gap: 6px; margin-top: 22px; }
+.mode-tabs button { padding: 10px; border-radius: 5px; border: 1px solid var(--line); background: var(--bg); color: var(--muted); font-size: 12px; }
+.mode-tabs button[aria-selected="true"] { color: var(--text); border-color: var(--accent); background: var(--raised); }
+label.check { display: flex; align-items: center; gap: 9px; color: var(--text); font-size: 12px; margin: 14px 0 0; }
+label.check input { width: auto; margin: 0; accent-color: var(--accent); }
+.pipeline { display: grid; grid-template-columns: minmax(0, 1fr) auto minmax(0, 1fr) auto minmax(0, 1fr); align-items: center; gap: 14px; margin-bottom: 28px; }
+.pipeline:has(#stage-photo[hidden]) { grid-template-columns: minmax(0, 420px); justify-content: center; }
+.stage { margin: 0; min-width: 0; }
+.stage figcaption { font-size: 10px; letter-spacing: 1.4px; text-transform: uppercase; color: var(--muted); margin-bottom: 10px; }
+.stage .frame { aspect-ratio: 3 / 4; border: 1px solid var(--line); border-radius: 6px; background: #ededeb; display: flex; align-items: center; justify-content: center; overflow: hidden; }
+.stage .frame img { width: 100%; height: 100%; object-fit: contain; display: block; }
+.stage .frame span { color: #6d7470; font-size: 12px; padding: 18px; text-align: center; line-height: 1.6; }
+.stage.working .frame { background: radial-gradient(ellipse at center, #242a25 0%, #161917 75%); }
+.stage.working .frame span { color: var(--accent); animation: pulse 1.8s ease-in-out infinite; }
+.pipeline .arrow { color: var(--muted); font-size: 20px; padding-top: 22px; }
+.save-panel { margin-bottom: 28px; padding: 22px; border: 1px solid var(--line); border-radius: 6px; background: var(--panel); }
+.save-grid { display: grid; grid-template-columns: 1fr 1fr; gap: 0 14px; margin-bottom: 16px; }
+.save-grid .wide { grid-column: 1 / -1; }
+.save-panel code { font-size: 11px; }
+.card-info .card-delete { margin-top: 6px; color: var(--danger); }
+@media (max-width: 760px) {
+  .pages { margin-right: 10px; }
+  .pipeline { grid-template-columns: 1fr; }
+  .pipeline .arrow { display: none; }
+  .save-grid { grid-template-columns: 1fr; }
+}
+
+/* Outfit runs */
+.triptych { display: grid; grid-template-columns: repeat(3, minmax(0, 1fr)); gap: 14px; }
+#detail .comparison-layout { display: grid; grid-template-columns: minmax(0, 1fr) minmax(245px, 28%); gap: 20px; }
+#detail textarea { min-height: 0; }
+.card-text { display: flex; align-items: center; justify-content: center; height: 100%; padding: 16px; background: #1d2120; color: var(--muted); font-size: 12px; line-height: 1.6; text-align: left; overflow: hidden; }
+.card.deleted { opacity: .45; }
+.card-saved { display: block; margin-top: 6px; font-size: 10px; color: var(--accent); overflow: hidden; text-overflow: ellipsis; white-space: nowrap; }
+.card-error { display: block; margin-top: 6px; font-size: 10px; line-height: 1.5; color: var(--danger); }
+.card-buttons { display: flex; gap: 12px; align-items: center; }
+#curation .save-grid { margin: 14px 0; }
+@media (max-width: 900px) {
+  .triptych { grid-template-columns: 1fr; }
+  #detail .comparison-layout { grid-template-columns: minmax(0, 1fr); }
+}

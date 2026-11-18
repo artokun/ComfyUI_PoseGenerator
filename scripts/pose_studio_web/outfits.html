@@ -1,0 +1,139 @@
+<!doctype html>
+<html lang="en">
+<head>
+  <meta charset="utf-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1">
+  <meta name="color-scheme" content="dark">
+  <title>Outfit Studio</title>
+  <link rel="stylesheet" href="/static/studio.css">
+  <script src="/static/outfits.js" defer></script>
+</head>
+<body>
+  <header class="topbar">
+    <a class="brand" href="/" aria-label="Pose Studio home"><span class="brand-mark">P<span>·</span></span><span>Pose Studio<small>REFERENCE WORKSHOP</small></span></a>
+    <nav class="pages"><a href="/">Poses</a><a href="/outfits" aria-current="page">Outfits</a></nav>
+    <div class="connection"><span class="dot" id="connection-dot"></span><span id="connection-label">Connecting</span><span class="local-badge">LOCAL</span></div>
+  </header>
+  <div class="layout">
+    <aside class="controls">
+      <div class="section-heading"><span class="eyebrow">WORKSPACE</span><button id="new-run" class="text-button" type="button">New run +</button></div>
+      <label for="history">Saved runs</label>
+      <select id="history"><option value="">New run</option></select>
+
+      <section class="control-section">
+        <h2><span class="step">01</span> Source</h2>
+        <div class="mode-tabs" role="tablist" aria-label="Outfit source">
+          <button id="tab-photo" role="tab" type="button" aria-selected="true">Photos</button>
+          <button id="tab-text" role="tab" type="button" aria-selected="false">Descriptions</button>
+        </div>
+        <div id="photo-mode">
+          <button class="dropzone" id="folder-button" type="button">
+            <svg viewBox="0 0 32 32" aria-hidden="true"><path d="M4 10V7h9l3 3h12v17H4zM4 13h24M16 17v7m-3-3 3 3 3-3"/></svg>
+            <strong id="folder-title">Choose a folder of outfit pictures</strong>
+            <span id="folder-subtitle">or drop or paste images here · PNG, JPEG, WebP · up to 200</span>
+          </button>
+          <button id="files-button" type="button" class="text-button preset">Or pick individual photos</button>
+          <input type="file" id="folder-input" webkitdirectory multiple hidden>
+          <input type="file" id="files-input" accept="image/png,image/jpeg,image/webp" multiple hidden>
+          <progress id="upload-progress" max="1" value="0" hidden aria-label="Photo upload progress"></progress>
+          <p class="help">Pictures are copied locally. Selected ones are sent to the image model when the run starts. Dropping or pasting adds to the pictures already here.</p>
+        </div>
+        <div id="text-mode" hidden>
+          <label for="outfit-texts">One outfit per line <span id="text-count" class="label-end"></span></label>
+          <textarea id="outfit-texts" rows="8" spellcheck="true" placeholder="a cropped pink cardigan, a white pleated tennis skirt, white crew socks and white sneakers&#10;a navy blazer, cream trousers and brown loafers"></textarea>
+          <p class="help">Name the shoes. If you leave them out, the model tends to copy the style reference's loafers.</p>
+        </div>
+      </section>
+
+      <section class="control-section">
+        <h2><span class="step">02</span> Steps</h2>
+        <label for="provider">Image model</label>
+        <select id="provider">
+          <option value="openai">gpt-image-2 · OpenAI</option>
+          <option value="spicy">Seedream 5.5 edit · SpicyAPI</option>
+        </select>
+        <p class="help" id="provider-note"></p>
+        <div id="pose-field">
+          <label for="pose">What the pictures show</label>
+          <select id="pose">
+            <option value="a-pose">A person: A-pose on white, then extract</option>
+            <option value="i-pose">A person: I-pose on white, then extract</option>
+            <option value="skip">A person: extract straight from the photo</option>
+            <option value="collage">Flat lay or collage: assemble the pieces</option>
+          </select>
+        </div>
+        <label class="check"><input type="checkbox" id="use-style" checked> Match the Outfits gallery look (style reference)</label>
+        <label for="extra">Extra instructions</label>
+        <input id="extra" maxlength="1000" placeholder="e.g. keep the gold necklace">
+      </section>
+
+      <section class="control-section">
+        <h2><span class="step">03</span> Run &amp; budget</h2>
+        <label for="run-name">Run name</label><input id="run-name" placeholder="Outfit run" maxlength="100">
+        <div class="two-fields" id="spicy-caps" hidden>
+          <div><label for="per-image">Cap per image · USD</label><input id="per-image" type="number" min="0.001" step="0.001" value="0.060"></div>
+          <div><label for="total-cap">Total cap · USD</label><input id="total-cap" type="number" min="0.001" step="0.01" value="3.00"></div>
+        </div>
+        <div class="budget"><span>Paid image requests</span><strong id="ceiling">0</strong></div>
+        <p class="help" id="budget-note"></p>
+        <button id="generate" class="primary" type="button" disabled>Generate selected outfits <span>↗</span></button>
+        <p class="help">Runs queue one after another and can be paused after the current outfit. Nothing restarts by itself after the server stops.</p>
+      </section>
+      <div class="model-label">OUTPUT <span id="output-size">1152 × 1536 · 3:4</span></div>
+    </aside>
+
+    <main>
+      <div class="workspace-heading"><div><span class="eyebrow">PHOTO → POSE → GHOST MANNEQUIN</span><h1 id="workspace-title">Build your outfit library.</h1><p id="workspace-subtitle">Choose photos or write descriptions, then queue the run and watch each outfit come off the person.</p></div></div>
+      <div id="notice" role="alert" hidden></div>
+      <div id="run-panel" hidden>
+        <div class="run-top"><div><span id="run-state" class="status-pill"></span><span id="run-progress-label"></span></div><div class="run-actions"><button id="reuse" class="secondary" type="button">Use settings for new run</button><button id="pause" class="secondary" type="button">Pause after current</button><button id="resume" class="primary compact" type="button" hidden>Resume run</button></div></div>
+        <progress id="run-progress" value="0" max="1" aria-label="Run progress"></progress>
+        <div class="run-metrics"><span>Paid requests <strong id="requests">0</strong></span><span id="charged-metric" hidden>Charged ceiling <strong id="charged">$0.000</strong></span><span id="cap-metric" hidden>Total cap <strong id="run-cap">$0.00</strong></span><span>Failed <strong id="failed">0</strong></span></div>
+        <p id="run-message" class="help"></p>
+        <p class="destination"><span>RUN FOLDER</span><code id="destination"></code></p>
+        <section id="curation" class="curation" hidden>
+          <div class="curation-heading"><h2>Captions &amp; gallery</h2></div>
+          <div class="curation-actions">
+            <label for="caption-provider">Vision model</label>
+            <select id="caption-provider"><option value="xai">Grok 4.7 · xAI</option><option value="spicy">Nemotron VL · SpicyAPI</option></select>
+            <button id="caption" class="secondary" type="button">Caption outfits</button>
+            <button id="caption-all" class="text-button" type="button">Redo all captions</button>
+          </div>
+          <p class="help">Captions write each outfit's label, prompt and tags. One paid vision request per outfit.</p>
+          <p id="caption-status" class="help" role="status"></p>
+          <div class="save-grid">
+            <div><label for="gallery">Gallery folder</label><input id="gallery" list="gallery-list" value="My Outfits" maxlength="60"><datalist id="gallery-list"></datalist></div>
+            <div><label for="category">Category when an outfit has none</label><input id="category" value="Custom" maxlength="40"></div>
+          </div>
+          <button id="save" class="primary compact" type="button">Save outfits to gallery</button>
+          <p id="save-status" class="help" role="status"></p>
+        </section>
+      </div>
+      <div class="gallery-toolbar"><div><h2 id="gallery-title">Your rack is empty</h2><span id="gallery-count" class="muted"></span></div><div id="selection-tools" hidden><button id="select-all" type="button" class="text-button">Select all</button><button id="select-none" type="button" class="text-button">Clear</button></div></div>
+      <div id="empty-state">
+        <h3>Photos in. Outfits out.</h3><p>Your photos or descriptions appear here. Select one for a test or queue them all.</p><span class="empty-footnote">Ghost mannequin · no skin · 3:4 on light grey</span>
+      </div>
+      <div id="gallery" class="gallery"></div>
+    </main>
+  </div>
+  <dialog id="detail">
+    <div class="dialog-header"><div><span class="eyebrow">OUTFIT CHECK</span><h2 id="detail-title"></h2></div><button id="close-detail" class="secondary" type="button">Close</button></div>
+    <div class="comparison-caption"><p id="detail-status"></p><div class="comparison-actions"><button id="redo-pose" type="button" class="secondary">Regenerate pose</button><button id="redo-outfit" type="button" class="secondary">Regenerate outfit</button><button id="detail-delete" type="button" class="text-button card-delete">Delete</button><a id="detail-download" download="outfit.png" hidden>Download PNG ↗</a></div></div>
+    <div class="comparison-layout">
+      <div class="triptych">
+        <figure class="stage" id="detail-source"><figcaption>Photo</figcaption><div class="frame"><img alt="Source photo" hidden><span>No photo</span></div></figure>
+        <figure class="stage" id="detail-posed"><figcaption>Posed on white</figcaption><div class="frame"><img alt="Posed person on white" hidden><span>Not posed</span></div></figure>
+        <figure class="stage" id="detail-outfit"><figcaption>Outfit</figcaption><div class="frame"><img alt="Ghost-mannequin outfit" hidden><span>Not ready</span></div></figure>
+      </div>
+      <form id="outfit-editor">
+        <label for="edit-label">Label</label><input id="edit-label" maxlength="120">
+        <label for="edit-prompt">Prompt text</label><textarea id="edit-prompt" rows="4" maxlength="600"></textarea>
+        <label for="edit-category">Category</label><input id="edit-category" maxlength="40">
+        <label for="edit-tags">Tags · comma separated</label><textarea id="edit-tags" rows="3" maxlength="900"></textarea>
+        <div class="drawing-edit-actions"><button id="save-edit" class="primary compact" type="submit">Save changes</button></div>
+        <p id="edit-status" class="help" role="status"></p>
+      </form>
+    </div>
+  </dialog>
+</body>
+</html>

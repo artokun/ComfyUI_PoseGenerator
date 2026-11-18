@@ -1,5 +1,19 @@
 # Changelog
 
+## Unreleased
+
+- Pose Studio gets an **Outfits** page (`/outfits`) that makes outfit references in queued runs, the way the Poses page makes drawings:
+  - **Pictures**: choose a folder, pick files, or drop or paste images onto the page.
+    - **A person**: posed in an A-pose or I-pose on white, then removed, keeping the clothes as a ghost mannequin. Posing can be skipped.
+    - **Flat lay or collage** (for example a Pinterest outfit board): the separate pieces are assembled into one worn outfit in a single step. Brand names, logos and text are removed, and items that are not worn (perfume, cosmetics, phones) are left out.
+  - **Descriptions**: one outfit per line becomes a ghost-mannequin outfit.
+  - Each run uses OpenAI gpt-image-2 or Seedream 5.5 on SpicyAPI. Results are 1152 × 1536 (3:4).
+  - Runs queue one after another, can be paused after the current outfit and resumed, and never restart paid work by themselves after the server stops. A failed outfit does not stop the run and can be retried; the pose or the outfit of any item can be regenerated.
+  - SpicyAPI requests are quoted first and held to a per-image and a total cap; an accepted job is picked up again after a restart, not submitted twice.
+  - **Caption outfits** asks a vision model (Grok or Nemotron VL) for each outfit's label, prompt, category and body-zone tags, all editable.
+  - **Save outfits to gallery** writes them to a folder gallery under `assets/` with `{category}_O001` IDs. Move that folder into `assets/shipped/` to ship it.
+  - Development tool only: the ComfyUI node never calls it.
+
 ## 0.1.5
 
 - **`location` and the edit opener now work with any prompt template.** A template without `{location}` or `{edit}`, which includes every workflow saved before 0.1.4, ignored the location setting and left out the "Edit <Picture 1>:" opener. The node now adds both itself when the template leaves them out: the opener at the start and the location before `{extra}`. To leave the location out, set `location` to **Custom**.
