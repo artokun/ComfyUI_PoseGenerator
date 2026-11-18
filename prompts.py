@@ -42,7 +42,8 @@ def compose_values(subject, pose_text, outfit_text, extra, *, order=(), picture_
         values["subject"] = who + ", keeping their face, hair and body"
     if "pose" in tags:
         if order[0] == "pose":
-            phrase = f"keeping the exact pose, framing and camera angle of the {guide} in {tags['pose']}"
+            phrase = (f"in exactly the same pose, framing and camera angle as the {guide} in {tags['pose']} "
+                      "(a real human body with natural skin, no mannequin joints)")
         else:
             phrase = f"in the exact pose of the {guide} in {tags['pose']} (copy only the pose, not its look)"
         values["pose"] = phrase + (f": {pose_text.strip()}" if describe and pose_text.strip() else "")
@@ -50,10 +51,13 @@ def compose_values(subject, pose_text, outfit_text, extra, *, order=(), picture_
         phrase = f"wearing the outfit shown in {tags['outfit']} (only the clothes, not its background)"
         described = re.sub(r"^wearing\s+", "", outfit_text.strip(), flags=re.I)
         values["outfit"] = phrase + (f": {described}" if describe and described else "")
+    elif "subject" in tags and not outfit_text.strip():
+        # Nothing chosen to wear: without this a pose edit keeps the bare mannequin body.
+        values["outfit"] = f"wearing the same clothes as in {tags['subject']}"
     if order[0] == "subject":
         values["edit"] = f"Edit {tags['subject']}: show"
     elif order[0] == "pose":
-        values["edit"] = f"Edit {tags['pose']}: turn the {guide} into a photo of"
+        values["edit"] = f"Edit {tags['pose']}: replace the {guide} with a real photo of"
     return values
 
 

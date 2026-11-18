@@ -259,9 +259,11 @@ def test_pose_first_edits_the_drawing_and_skips_missing_pictures(local_library):
     node = PoseOutfitReference()
     output = node.generate("pose-a", "None", "a traveler", DEFAULT_TEMPLATE, "", picture_tag="image {n}",
                            edit_target="Pose", reference_text="Image only", subject_image=photo)
-    assert output[2] == ("Edit image 1: turn the mannequin drawing into a photo of a traveler from image 2, "
-                         "keeping their face, hair and body, keeping the exact pose, framing and camera angle of the mannequin drawing in image 1")
-    assert output[5][0, 0, 0].tolist() == [1, 0, 0] and output[6] is photo[:1] or torch.equal(output[6], photo[:1])
+    assert output[2] == ("Edit image 1: replace the mannequin drawing with a real photo of a traveler from image 2, "
+                         "keeping their face, hair and body, in exactly the same pose, framing and camera angle as the mannequin drawing in image 1 "
+                         "(a real human body with natural skin, no mannequin joints), wearing the same clothes as in image 2")
+    assert output[5][0, 0, 0].tolist() == [1, 0, 0]
+    assert torch.equal(output[6], photo[:1])
     assert output[7] is None
     # No subject photo: the outfit is the only picture, so it is picture 1 and nothing is "edited".
     output = node.generate("None", "outfit-a", "a traveler", DEFAULT_TEMPLATE, "", picture_tag=H3)
