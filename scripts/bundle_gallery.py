@@ -26,8 +26,8 @@ def bundle(source: Path, dest: Path, quality: int = 90) -> dict:
     (dest / "thumbs").mkdir()
     kept, skipped, depths = [], [], 0
     for entry in catalog.get("pose", []):
-        if str(entry.get("label", "")).startswith("Unreviewed"):
-            skipped.append(entry["id"])  # never captioned: label is just the source file name
+        if str(entry.get("label", "")).startswith("Unreviewed") or entry.get("category") == "Unreviewed":
+            skipped.append(entry["id"])  # never captioned, or flagged for pose review
             continue
         drawing = source / entry["image"]
         stem = Path(entry["image"]).stem

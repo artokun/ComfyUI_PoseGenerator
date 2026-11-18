@@ -2,13 +2,14 @@
 
 ## 0.1.3
 
-- Ship two pose galleries made with Pose Studio from our own photos: **Instagram Poses** (28 drawings, 24 with saved depth maps) and **OF poses** (24 drawings). They appear in the **Pose gallery** dropdown with no setup. Drawings are WebP with thumbnails; depth maps sit beside the drawings.
-- Folder galleries can carry **outfits**, not just poses. Ship `assets/Outfits/` with **71 original ghost-mannequin outfits** across 14 categories: Casual, Preppy, Streetwear, Formal, Business, Party, Sporty, Loungewear, Boho, Y2K, Gothic, Cottagecore, Lingerie and Swimwear. Each has a label, a `wearing …` prompt and body-zone tags. The descriptions are our own, rendered with OpenAI gpt-image-2: `preppy_O001` from text alone as the style baseline, every other outfit with it as the presentation reference.
+- Ship two pose galleries made with Pose Studio from our own photos: **Instagram Poses** (28 drawings) and **OF poses** (22 drawings), every drawing with a saved depth map. They appear in the **Pose gallery** dropdown with no setup. Drawings are WebP with thumbnails; depth maps sit beside the drawings.
+- Folder galleries can carry **outfits**, not just poses. Ship `assets/Outfits/` with **91 original ghost-mannequin outfits** across 15 categories: Instagram (20 trend looks: coquette, balletcore, clean girl, Parisian, tenniscore, brunch, cozy and more), Casual, Preppy, Streetwear, Formal, Business, Party, Sporty, Loungewear, Boho, Y2K, Gothic, Cottagecore, Lingerie and Swimwear. Each has a label, a `wearing …` prompt and body-zone tags. The descriptions are our own, rendered with OpenAI gpt-image-2: `preppy_O001` from text alone as the style baseline, every other outfit with it as the presentation reference.
 - Add the outfit tooling: `scripts/outfits/outfit_specs.json` (the descriptions and tags), `scripts/generate_outfits.py` (gpt-image-2, per request or `--batch` / `--collect` through the OpenAI Batch API at half price), `scripts/generate_outfits_seedream.py` (Seedream 5.5 on SpicyAPI, for outfits OpenAI refuses) and `scripts/build_outfit_gallery.py` (renders to WebP gallery).
 - **Browse outfits** filters by grouped tags the same way Browse poses does. Outfit rows follow the body: Head, Outerwear, Top, Bottom, Full body, Underwear, Legs, Feet, Accessories, plus Colors, Patterns & fabrics and Season.
 - Document the outfit naming convention (`{style}_O{NNN}`), catalog fields, tag vocabulary and the ghost-mannequin prompt (`scripts/prompts/outfit-ghost-mannequin.txt`) in docs/library.md.
 - The **Pose gallery** picker no longer offers an empty "Original gallery" when it isn't installed, or folders that only hold outfits.
 - Add `scripts/bundle_gallery.py`, which turns a finished Pose Studio run into a shippable folder gallery (drawings, depth maps and reviewed catalog rows only; no source photos, comparisons, history or batch receipts).
+- `scripts/bundle_gallery.py` also holds back drawings whose category is `Unreviewed` (flagged for pose review).
 - The release check allowlists those two galleries (WebP and JSON only) and still refuses the original gallery.
 
 ## 0.1.2

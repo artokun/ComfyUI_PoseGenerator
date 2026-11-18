@@ -56,18 +56,6 @@
    "thumbnail": "thumbs/full_single_P030_high.webp"
   },
   {
-   "id": "pose-cfcd8406b6a016ba",
-   "label": "Needs pose review",
-   "prompt": "",
-   "category": "Unreviewed",
-   "angle": "",
-   "tags": [
-    "needs-review"
-   ],
-   "image": "img/pose-cfcd8406b6a016ba.webp",
-   "thumbnail": "thumbs/pose-cfcd8406b6a016ba.webp"
-  },
-  {
    "id": "upper80v2_P032_low",
    "label": "Reclining with legs raised and one hand on the inner thigh, vulva exposed",
    "prompt": "reclining with legs raised and one hand on the inner thigh, vulva exposed, low-angle view",
@@ -260,18 +248,6 @@
    },
    "image": "img/upper80v2_P039_low.webp",
    "thumbnail": "thumbs/upper80v2_P039_low.webp"
-  },
-  {
-   "id": "pose-03783ed68fc5c1db",
-   "label": "Needs pose review",
-   "prompt": "",
-   "category": "Unreviewed",
-   "angle": "",
-   "tags": [
-    "needs-review"
-   ],
-   "image": "img/pose-03783ed68fc5c1db.webp",
-   "thumbnail": "thumbs/pose-03783ed68fc5c1db.webp"
   },
   {
    "id": "upper80v2_P044_front",
