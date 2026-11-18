@@ -359,7 +359,10 @@ async function previewPrompt(node) {
   output.value = "Composing…";
   dialog.append(output);
   try {
-    const body = Object.fromEntries(["pose", "outfit", "subject", "prompt_template", "extra", "pose_override", "outfit_override"].map((name) => [name, widget(node, name)?.value ?? ""]));
+    const body = Object.fromEntries(["pose", "outfit", "subject", "prompt_template", "extra", "pose_override", "outfit_override",
+      "pose_image_mode", "picture_tag", "edit_target", "reference_text", "location"].map((name) => [name, widget(node, name)?.value ?? ""]));
+    // Picture numbers depend on whether a subject photo is wired in.
+    body.has_subject_image = node.inputs?.some((input) => input.name === "subject_image" && input.link != null) ?? false;
     const response = await api.fetchApi("/pose-generator/preview", {
       method: "POST", headers: { "Content-Type": "application/json" }, body: JSON.stringify(body),
     });
@@ -381,6 +384,22 @@ app.registerExtension({
     stylesheet.rel = "stylesheet";
     stylesheet.href = new URL("./pose-gallery.css", import.meta.url).href;
     document.head.append(stylesheet);
+  },
+  beforeRegisterNodeDef(nodeType, nodeData) {
+    if (nodeData.name !== NODE) return;
+    // Workflows saved before 0.1.4 have no values for the widgets added after pose_image_mode,
+    // and widget values are stored by position. Give those workflows the old behaviour:
+    // no picture references, no resizing.
+    const configure = nodeType.prototype.configure;
+    nodeType.prototype.configure = function (info) {
+      let values = info?.widgets_values;
+      // 0.1.0 had no pose_image_mode either.
+      if (Array.isArray(values) && values.length === 11) values = [...values.slice(0, 7), "Drawing", ...values.slice(7)];
+      if (Array.isArray(values) && values.length === 12) {
+        info = { ...info, widgets_values: [...values.slice(0, 8), "", "Subject", 0, "Image and description", "Custom", ...values.slice(8)] };
+      }
+      return configure.call(this, info);
+    };
   },
   nodeCreated(node) {
     if (node.comfyClass !== NODE) return;

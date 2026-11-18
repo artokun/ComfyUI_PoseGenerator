@@ -1,0 +1,1023 @@
+{
+ "id": "ccd982a4-4096-4e4d-a7dd-d4eb36cc7556",
+ "revision": 0,
+ "last_node_id": 10,
+ "last_link_id": 17,
+ "nodes": [
+  {
+   "id": 1,
+   "type": "UNETLoader",
+   "pos": [
+    60,
+    90
+   ],
+   "size": [
+    270,
+    82
+   ],
+   "flags": {},
+   "order": 0,
+   "mode": 0,
+   "inputs": [
+    {
+     "localized_name": "unet_name",
+     "name": "unet_name",
+     "type": "COMBO",
+     "widget": {
+      "name": "unet_name"
+     },
+     "link": null
+    },
+    {
+     "localized_name": "weight_dtype",
+     "name": "weight_dtype",
+     "type": "COMBO",
+     "widget": {
+      "name": "weight_dtype"
+     },
+     "link": null
+    }
+   ],
+   "outputs": [
+    {
+     "localized_name": "MODEL",
+     "name": "MODEL",
+     "type": "MODEL",
+     "links": [
+      11
+     ]
+    }
+   ],
+   "properties": {
+    "Node name for S&R": "UNETLoader"
+   },
+   "widgets_values": [
+    "minimax_h3_image_pruned_int8_convrot.safetensors",
+    "default"
+   ],
+   "widgets_values_named": {
+    "unet_name": "minimax_h3_image_pruned_int8_convrot.safetensors",
+    "weight_dtype": "default"
+   }
+  },
+  {
+   "id": 2,
+   "type": "CLIPLoader",
+   "pos": [
+    60,
+    262
+   ],
+   "size": [
+    270,
+    106
+   ],
+   "flags": {},
+   "order": 1,
+   "mode": 0,
+   "inputs": [
+    {
+     "localized_name": "clip_name",
+     "name": "clip_name",
+     "type": "COMBO",
+     "widget": {
+      "name": "clip_name"
+     },
+     "link": null
+    },
+    {
+     "localized_name": "type",
+     "name": "type",
+     "type": "COMBO",
+     "widget": {
+      "name": "type"
+     },
+     "link": null
+    },
+    {
+     "localized_name": "device",
+     "name": "device",
+     "shape": 7,
+     "type": "COMBO",
+     "widget": {
+      "name": "device"
+     },
+     "link": null
+    }
+   ],
+   "outputs": [
+    {
+     "localized_name": "CLIP",
+     "name": "CLIP",
+     "type": "CLIP",
+     "links": [
+      2
+     ]
+    }
+   ],
+   "properties": {
+    "Node name for S&R": "CLIPLoader"
+   },
+   "widgets_values": [
+    "qwen3vl_32b_minimax_h3_nvfp4_awq.safetensors",
+    "minimax",
+    "default"
+   ],
+   "widgets_values_named": {
+    "clip_name": "qwen3vl_32b_minimax_h3_nvfp4_awq.safetensors",
+    "type": "minimax",
+    "device": "default"
+   }
+  },
+  {
+   "id": 3,
+   "type": "VAELoader",
+   "pos": [
+    60,
+    458
+   ],
+   "size": [
+    270,
+    58
+   ],
+   "flags": {},
+   "order": 2,
+   "mode": 0,
+   "inputs": [
+    {
+     "localized_name": "vae_name",
+     "name": "vae_name",
+     "type": "COMBO",
+     "widget": {
+      "name": "vae_name"
+     },
+     "link": null
+    }
+   ],
+   "outputs": [
+    {
+     "localized_name": "VAE",
+     "name": "VAE",
+     "type": "VAE",
+     "links": [
+      3,
+      16
+     ]
+    }
+   ],
+   "properties": {
+    "Node name for S&R": "VAELoader"
+   },
+   "widgets_values": [
+    "minimax_h3_image_vae_fp16.safetensors"
+   ],
+   "widgets_values_named": {
+    "vae_name": "minimax_h3_image_vae_fp16.safetensors"
+   }
+  },
+  {
+   "id": 4,
+   "type": "LoadImage",
+   "pos": [
+    60,
+    606
+   ],
+   "size": [
+    282.798828125,
+    102
+   ],
+   "flags": {},
+   "order": 3,
+   "mode": 0,
+   "inputs": [
+    {
+     "localized_name": "image",
+     "name": "image",
+     "type": "COMBO",
+     "widget": {
+      "name": "image"
+     },
+     "link": null
+    },
+    {
+     "localized_name": "choose file to upload",
+     "name": "upload",
+     "type": "IMAGEUPLOAD",
+     "widget": {
+      "name": "upload"
+     },
+     "link": null
+    }
+   ],
+   "outputs": [
+    {
+     "localized_name": "IMAGE",
+     "name": "IMAGE",
+     "type": "IMAGE",
+     "links": [
+      1
+     ]
+    },
+    {
+     "localized_name": "MASK",
+     "name": "MASK",
+     "type": "MASK",
+     "links": null
+    }
+   ],
+   "properties": {
+    "Node name for S&R": "LoadImage"
+   },
+   "widgets_values": [
+    "subject.png",
+    "image"
+   ],
+   "widgets_values_named": {
+    "image": "subject.png",
+    "upload": "image"
+   },
+   "title": "Subject photo (optional)"
+  },
+  {
+   "id": 5,
+   "type": "PoseOutfitReference",
+   "pos": [
+    402.798828125,
+    90
+   ],
+   "size": [
+    400,
+    904
+   ],
+   "flags": {},
+   "order": 4,
+   "mode": 0,
+   "inputs": [
+    {
+     "localized_name": "subject_image",
+     "name": "subject_image",
+     "shape": 7,
+     "type": "IMAGE",
+     "link": 1
+    },
+    {
+     "localized_name": "pose",
+     "name": "pose",
+     "type": "COMBO",
+     "widget": {
+      "name": "pose"
+     },
+     "link": null
+    },
+    {
+     "localized_name": "outfit",
+     "name": "outfit",
+     "type": "COMBO",
+     "widget": {
+      "name": "outfit"
+     },
+     "link": null
+    },
+    {
+     "localized_name": "subject",
+     "name": "subject",
+     "type": "STRING",
+     "widget": {
+      "name": "subject"
+     },
+     "link": null
+    },
+    {
+     "localized_name": "prompt_template",
+     "name": "prompt_template",
+     "type": "STRING",
+     "widget": {
+      "name": "prompt_template"
+     },
+     "link": null
+    },
+    {
+     "localized_name": "extra",
+     "name": "extra",
+     "type": "STRING",
+     "widget": {
+      "name": "extra"
+     },
+     "link": null
+    },
+    {
+     "localized_name": "pose_override",
+     "name": "pose_override",
+     "shape": 7,
+     "type": "STRING",
+     "widget": {
+      "name": "pose_override"
+     },
+     "link": null
+    },
+    {
+     "localized_name": "outfit_override",
+     "name": "outfit_override",
+     "shape": 7,
+     "type": "STRING",
+     "widget": {
+      "name": "outfit_override"
+     },
+     "link": null
+    },
+    {
+     "localized_name": "pose_image_mode",
+     "name": "pose_image_mode",
+     "shape": 7,
+     "type": "COMBO",
+     "widget": {
+      "name": "pose_image_mode"
+     },
+     "link": null
+    },
+    {
+     "localized_name": "picture_tag",
+     "name": "picture_tag",
+     "shape": 7,
+     "type": "STRING",
+     "widget": {
+      "name": "picture_tag"
+     },
+     "link": null
+    },
+    {
+     "localized_name": "edit_target",
+     "name": "edit_target",
+     "shape": 7,
+     "type": "COMBO",
+     "widget": {
+      "name": "edit_target"
+     },
+     "link": null
+    },
+    {
+     "localized_name": "megapixels",
+     "name": "megapixels",
+     "shape": 7,
+     "type": "FLOAT",
+     "widget": {
+      "name": "megapixels"
+     },
+     "link": null
+    },
+    {
+     "localized_name": "reference_text",
+     "name": "reference_text",
+     "shape": 7,
+     "type": "COMBO",
+     "widget": {
+      "name": "reference_text"
+     },
+     "link": null
+    },
+    {
+     "localized_name": "location",
+     "name": "location",
+     "shape": 7,
+     "type": "COMBO",
+     "widget": {
+      "name": "location"
+     },
+     "link": null
+    }
+   ],
+   "outputs": [
+    {
+     "localized_name": "pose_image",
+     "name": "pose_image",
+     "type": "IMAGE",
+     "links": null
+    },
+    {
+     "localized_name": "outfit_image",
+     "name": "outfit_image",
+     "type": "IMAGE",
+     "links": null
+    },
+    {
+     "localized_name": "positive_prompt",
+     "name": "positive_prompt",
+     "type": "STRING",
+     "links": [
+      4
+     ]
+    },
+    {
+     "localized_name": "pose_text",
+     "name": "pose_text",
+     "type": "STRING",
+     "links": null
+    },
+    {
+     "localized_name": "outfit_text",
+     "name": "outfit_text",
+     "type": "STRING",
+     "links": null
+    },
+    {
+     "localized_name": "picture_1",
+     "name": "picture_1",
+     "type": "IMAGE",
+     "links": [
+      7
+     ]
+    },
+    {
+     "localized_name": "picture_2",
+     "name": "picture_2",
+     "type": "IMAGE",
+     "links": [
+      8
+     ]
+    },
+    {
+     "localized_name": "picture_3",
+     "name": "picture_3",
+     "type": "IMAGE",
+     "links": [
+      9
+     ]
+    },
+    {
+     "localized_name": "width",
+     "name": "width",
+     "type": "INT",
+     "links": [
+      5
+     ]
+    },
+    {
+     "localized_name": "height",
+     "name": "height",
+     "type": "INT",
+     "links": [
+      6
+     ]
+    }
+   ],
+   "properties": {
+    "Node name for S&R": "PoseOutfitReference"
+   },
+   "widgets_values": [
+    "@folder.Instagram%20Poses:full_single_P018_diag",
+    "@folder.Outfits:instagram_O003",
+    "the woman",
+    "{edit} {subject}, {pose}, {outfit}, {location}, {extra}",
+    "photorealistic, natural light",
+    "",
+    "",
+    "Drawing",
+    "<Picture {n}>",
+    "Pose",
+    4,
+    "Image and description",
+    "From the subject photo",
+    null,
+    null,
+    null,
+    ""
+   ],
+   "widgets_values_named": {
+    "pose": "@folder.Instagram%20Poses:full_single_P018_diag",
+    "outfit": "@folder.Outfits:instagram_O003",
+    "subject": "the woman",
+    "prompt_template": "{edit} {subject}, {pose}, {outfit}, {location}, {extra}",
+    "extra": "photorealistic, natural light",
+    "pose_override": "",
+    "outfit_override": "",
+    "pose_image_mode": "Drawing",
+    "picture_tag": "<Picture {n}>",
+    "edit_target": "Pose",
+    "megapixels": 4,
+    "reference_text": "Image and description",
+    "location": "From the subject photo",
+    "Browse poses": null,
+    "Browse outfits": null,
+    "Preview positive prompt": null,
+    "reference_preview": ""
+   }
+  },
+  {
+   "id": 6,
+   "type": "MiniMaxH3ImageConditioning",
+   "pos": [
+    862.798828125,
+    90
+   ],
+   "size": [
+    400,
+    236
+   ],
+   "flags": {},
+   "order": 5,
+   "mode": 0,
+   "inputs": [
+    {
+     "localized_name": "clip",
+     "name": "clip",
+     "type": "CLIP",
+     "link": 2
+    },
+    {
+     "localized_name": "vae",
+     "name": "vae",
+     "shape": 7,
+     "type": "VAE",
+     "link": 3
+    },
+    {
+     "localized_name": "image_0",
+     "name": "images.image_0",
+     "shape": 7,
+     "type": "IMAGE",
+     "link": 7
+    },
+    {
+     "localized_name": "image_1",
+     "name": "images.image_1",
+     "shape": 7,
+     "type": "IMAGE",
+     "link": 8
+    },
+    {
+     "localized_name": "image_2",
+     "name": "images.image_2",
+     "shape": 7,
+     "type": "IMAGE",
+     "link": 9
+    },
+    {
+     "localized_name": "image_3",
+     "name": "images.image_3",
+     "shape": 7,
+     "type": "IMAGE",
+     "link": null
+    },
+    {
+     "localized_name": "prompt",
+     "name": "prompt",
+     "type": "STRING",
+     "widget": {
+      "name": "prompt"
+     },
+     "link": 4
+    },
+    {
+     "localized_name": "width",
+     "name": "width",
+     "type": "INT",
+     "widget": {
+      "name": "width"
+     },
+     "link": 5
+    },
+    {
+     "localized_name": "height",
+     "name": "height",
+     "type": "INT",
+     "widget": {
+      "name": "height"
+     },
+     "link": 6
+    }
+   ],
+   "outputs": [
+    {
+     "localized_name": "positive",
+     "name": "positive",
+     "type": "CONDITIONING",
+     "links": [
+      10,
+      12
+     ]
+    },
+    {
+     "localized_name": "LATENT",
+     "name": "LATENT",
+     "type": "LATENT",
+     "links": [
+      14
+     ]
+    }
+   ],
+   "properties": {
+    "Node name for S&R": "MiniMaxH3ImageConditioning"
+   },
+   "widgets_values": [
+    "",
+    0,
+    0
+   ],
+   "widgets_values_named": {
+    "prompt": "",
+    "width": 0,
+    "height": 0
+   }
+  },
+  {
+   "id": 7,
+   "type": "ConditioningZeroOut",
+   "pos": [
+    1322.798828125,
+    90
+   ],
+   "size": [
+    204.134765625,
+    26
+   ],
+   "flags": {},
+   "order": 6,
+   "mode": 0,
+   "inputs": [
+    {
+     "localized_name": "conditioning",
+     "name": "conditioning",
+     "type": "CONDITIONING",
+     "link": 10
+    }
+   ],
+   "outputs": [
+    {
+     "localized_name": "CONDITIONING",
+     "name": "CONDITIONING",
+     "type": "CONDITIONING",
+     "links": [
+      13
+     ]
+    }
+   ],
+   "properties": {
+    "Node name for S&R": "ConditioningZeroOut"
+   }
+  },
+  {
+   "id": 8,
+   "type": "KSampler",
+   "pos": [
+    1586.93359375,
+    90
+   ],
+   "size": [
+    270,
+    262
+   ],
+   "flags": {},
+   "order": 7,
+   "mode": 0,
+   "inputs": [
+    {
+     "localized_name": "model",
+     "name": "model",
+     "type": "MODEL",
+     "link": 11
+    },
+    {
+     "localized_name": "positive",
+     "name": "positive",
+     "type": "CONDITIONING",
+     "link": 12
+    },
+    {
+     "localized_name": "negative",
+     "name": "negative",
+     "type": "CONDITIONING",
+     "link": 13
+    },
+    {
+     "localized_name": "latent_image",
+     "name": "latent_image",
+     "type": "LATENT",
+     "link": 14
+    },
+    {
+     "localized_name": "seed",
+     "name": "seed",
+     "type": "INT",
+     "widget": {
+      "name": "seed"
+     },
+     "link": null
+    },
+    {
+     "localized_name": "steps",
+     "name": "steps",
+     "type": "INT",
+     "widget": {
+      "name": "steps"
+     },
+     "link": null
+    },
+    {
+     "localized_name": "cfg",
+     "name": "cfg",
+     "type": "FLOAT",
+     "widget": {
+      "name": "cfg"
+     },
+     "link": null
+    },
+    {
+     "localized_name": "sampler_name",
+     "name": "sampler_name",
+     "type": "COMBO",
+     "widget": {
+      "name": "sampler_name"
+     },
+     "link": null
+    },
+    {
+     "localized_name": "scheduler",
+     "name": "scheduler",
+     "type": "COMBO",
+     "widget": {
+      "name": "scheduler"
+     },
+     "link": null
+    },
+    {
+     "localized_name": "denoise",
+     "name": "denoise",
+     "type": "FLOAT",
+     "widget": {
+      "name": "denoise"
+     },
+     "link": null
+    }
+   ],
+   "outputs": [
+    {
+     "localized_name": "LATENT",
+     "name": "LATENT",
+     "type": "LATENT",
+     "links": [
+      15
+     ]
+    }
+   ],
+   "properties": {
+    "Node name for S&R": "KSampler"
+   },
+   "widgets_values": [
+    71321007633221,
+    "randomize",
+    6,
+    1,
+    "euler",
+    "simple",
+    1
+   ],
+   "widgets_values_named": {
+    "seed": 71321007633221,
+    "control_after_generate": "randomize",
+    "steps": 6,
+    "cfg": 1,
+    "sampler_name": "euler",
+    "scheduler": "simple",
+    "denoise": 1
+   }
+  },
+  {
+   "id": 9,
+   "type": "VAEDecode",
+   "pos": [
+    1916.93359375,
+    90
+   ],
+   "size": [
+    140,
+    46
+   ],
+   "flags": {},
+   "order": 8,
+   "mode": 0,
+   "inputs": [
+    {
+     "localized_name": "samples",
+     "name": "samples",
+     "type": "LATENT",
+     "link": 15
+    },
+    {
+     "localized_name": "vae",
+     "name": "vae",
+     "type": "VAE",
+     "link": 16
+    }
+   ],
+   "outputs": [
+    {
+     "localized_name": "IMAGE",
+     "name": "IMAGE",
+     "type": "IMAGE",
+     "links": [
+      17
+     ]
+    }
+   ],
+   "properties": {
+    "Node name for S&R": "VAEDecode"
+   }
+  },
+  {
+   "id": 10,
+   "type": "SaveImage",
+   "pos": [
+    2116.93359375,
+    90
+   ],
+   "size": [
+    270,
+    58
+   ],
+   "flags": {},
+   "order": 9,
+   "mode": 0,
+   "inputs": [
+    {
+     "localized_name": "images",
+     "name": "images",
+     "type": "IMAGE",
+     "link": 17
+    },
+    {
+     "localized_name": "filename_prefix",
+     "name": "filename_prefix",
+     "type": "STRING",
+     "widget": {
+      "name": "filename_prefix"
+     },
+     "link": null
+    }
+   ],
+   "outputs": [
+    {
+     "localized_name": "images",
+     "name": "images",
+     "type": "IMAGE",
+     "links": null
+    }
+   ],
+   "properties": {},
+   "widgets_values": [
+    "pose_outfit_h3"
+   ],
+   "widgets_values_named": {
+    "filename_prefix": "pose_outfit_h3"
+   }
+  }
+ ],
+ "links": [
+  [
+   1,
+   4,
+   0,
+   5,
+   0,
+   "IMAGE"
+  ],
+  [
+   2,
+   2,
+   0,
+   6,
+   0,
+   "CLIP"
+  ],
+  [
+   3,
+   3,
+   0,
+   6,
+   1,
+   "VAE"
+  ],
+  [
+   7,
+   5,
+   5,
+   6,
+   2,
+   "IMAGE"
+  ],
+  [
+   8,
+   5,
+   6,
+   6,
+   3,
+   "IMAGE"
+  ],
+  [
+   9,
+   5,
+   7,
+   6,
+   4,
+   "IMAGE"
+  ],
+  [
+   4,
+   5,
+   2,
+   6,
+   6,
+   "STRING"
+  ],
+  [
+   5,
+   5,
+   8,
+   6,
+   7,
+   "INT"
+  ],
+  [
+   6,
+   5,
+   9,
+   6,
+   8,
+   "INT"
+  ],
+  [
+   10,
+   6,
+   0,
+   7,
+   0,
+   "CONDITIONING"
+  ],
+  [
+   11,
+   1,
+   0,
+   8,
+   0,
+   "MODEL"
+  ],
+  [
+   12,
+   6,
+   0,
+   8,
+   1,
+   "CONDITIONING"
+  ],
+  [
+   13,
+   7,
+   0,
+   8,
+   2,
+   "CONDITIONING"
+  ],
+  [
+   14,
+   6,
+   1,
+   8,
+   3,
+   "LATENT"
+  ],
+  [
+   15,
+   8,
+   0,
+   9,
+   0,
+   "LATENT"
+  ],
+  [
+   16,
+   3,
+   0,
+   9,
+   1,
+   "VAE"
+  ],
+  [
+   17,
+   9,
+   0,
+   10,
+   0,
+   "IMAGE"
+  ]
+ ],
+ "groups": [],
+ "config": {},
+ "extra": {
+  "ds": {
+   "scale": 0.9,
+   "offset": [
+    0,
+    40
+   ]
+  }
+ },
+ "version": 0.4
+}

@@ -84,6 +84,8 @@ catalog contained 1,439 poses and 1,407 outfits; these are not included download
 | `positive_prompt` | `STRING` | Composed text for your positive prompt |
 | `pose_text` | `STRING` | Pose description on its own |
 | `outfit_text` | `STRING` | Outfit description on its own |
+| `picture_1`, `picture_2`, `picture_3` | `IMAGE` | The subject photo, pose and outfit that exist, in prompt order |
+| `width`, `height` | `INT` | Size of `picture_1` (0 without pictures) |
 
 Choose **None** or **Clear selection** to omit a reference from the prompt.
 An omitted image output is a black 1×1 placeholder; leave it unconnected.
@@ -96,10 +98,34 @@ An omitted image output is a black 1×1 placeholder; leave it unconnected.
 
 ![Preview of the composed positive prompt](docs/screenshots/prompt-preview.png)
 
+## Edit a photo of a person
+
+Connect a photo to the optional **subject_image** input to put that person in the
+chosen pose and outfit with an image-edit model such as MiniMax H3 Image.
+
+1. Wire `picture_1`, `picture_2`, `picture_3` to the model's image 1, 2, 3, in that
+   order, and `positive_prompt` to its prompt. Wire them straight into the model:
+   a missing reference leaves its output empty.
+2. Wire `width` and `height` to the model's size inputs.
+
+The node numbers the pictures and writes the prompt to match, so you never type
+picture numbers yourself.
+
+| Input | What it does |
+| --- | --- |
+| `picture_tag` | How the prompt names a picture. `<Picture {n}>` for MiniMax H3, `image {n}` for Qwen Edit, Kontext or Seedream. Empty gives a plain text prompt. |
+| `edit_target` | Which picture is `picture_1`, the one the model edits. **Pose** keeps the drawing's pose, framing and camera angle. **Subject** keeps the photo's scene and is looser on the pose. |
+| `location` | With the pose as the edited picture: **From the subject photo** takes the photo's place and lighting, **Plain studio** gives a white background and the tightest pose match, **Custom** leaves it to `extra`. |
+| `megapixels` | Resizes `picture_1` to about this area. 0 leaves it as it is. |
+| `reference_text` | Adds the pose and outfit descriptions alongside the pictures, or points at the pictures only. |
+
+With no outfit selected, the person keeps the clothes from their photo.
+[MiniMax H3 Image example](examples/README.md#minimax-h3-image-edit).
+
 ## Prompt templates
 
 ```text
-{subject}, {pose}, {outfit}, {extra}
+{edit} {subject}, {pose}, {outfit}, {location}, {extra}
 ```
 
 For example, with your own descriptions:
@@ -108,8 +134,9 @@ For example, with your own descriptions:
 a traveler, standing with one hand on the hip, front view, wearing a blue jacket, soft studio light
 ```
 
-Supported fields: `{subject}`, `{pose}`, `{outfit}`, `{extra}`, `{pose_name}`,
-`{outfit_name}`, and `{angle}`. Outfit text already begins with “wearing”.
+Supported fields: `{edit}`, `{subject}`, `{pose}`, `{outfit}`, `{location}`, `{extra}`,
+`{pose_name}`, `{outfit_name}`, and `{angle}`. `{edit}` and `{location}` are empty
+unless `picture_tag` is set and there is a picture to refer to. Outfit text already begins with “wearing”.
 Use `pose_override` and `outfit_override` to refine the text.
 
 Prompt weights such as `({pose}:1.2)` and line breaks work. Use `{{` and `}}` for

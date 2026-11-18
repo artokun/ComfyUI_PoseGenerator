@@ -1,0 +1,24 @@
+{
+  "1": {"class_type": "UNETLoader", "inputs": {"unet_name": "minimax_h3_image_pruned_int8_convrot.safetensors", "weight_dtype": "default"}},
+  "2": {"class_type": "CLIPLoader", "inputs": {"clip_name": "qwen3vl_32b_minimax_h3_nvfp4_awq.safetensors", "type": "minimax", "device": "default"}},
+  "3": {"class_type": "VAELoader", "inputs": {"vae_name": "minimax_h3_image_vae_fp16.safetensors"}},
+  "4": {"class_type": "LoadImage", "inputs": {"image": "subject.png"}},
+  "5": {"class_type": "PoseOutfitReference", "inputs": {
+    "pose": "@folder.Instagram%20Poses:full_single_P018_diag",
+    "outfit": "@folder.Outfits:instagram_O003",
+    "subject": "the woman",
+    "prompt_template": "{edit} {subject}, {pose}, {outfit}, {location}, {extra}",
+    "extra": "photorealistic, natural light",
+    "pose_override": "", "outfit_override": "", "pose_image_mode": "Drawing",
+    "picture_tag": "<Picture {n}>", "edit_target": "Pose", "megapixels": 4.0,
+    "reference_text": "Image and description", "location": "From the subject photo",
+    "subject_image": ["4", 0]}},
+  "6": {"class_type": "MiniMaxH3ImageConditioning", "inputs": {
+    "clip": ["2", 0], "vae": ["3", 0], "prompt": ["5", 2], "width": ["5", 8], "height": ["5", 9],
+    "images.image_0": ["5", 5], "images.image_1": ["5", 6], "images.image_2": ["5", 7]}},
+  "7": {"class_type": "ConditioningZeroOut", "inputs": {"conditioning": ["6", 0]}},
+  "8": {"class_type": "KSampler", "inputs": {"model": ["1", 0], "positive": ["6", 0], "negative": ["7", 0], "latent_image": ["6", 1],
+    "seed": 71321007633221, "steps": 6, "cfg": 1.0, "sampler_name": "euler", "scheduler": "simple", "denoise": 1.0}},
+  "9": {"class_type": "VAEDecode", "inputs": {"samples": ["8", 0], "vae": ["3", 0]}},
+  "10": {"class_type": "SaveImage", "inputs": {"images": ["9", 0], "filename_prefix": "pose_outfit_h3"}}
+}
