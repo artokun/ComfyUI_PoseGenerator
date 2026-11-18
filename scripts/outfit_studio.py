@@ -52,8 +52,8 @@ POSES = {
 }
 STYLE_NOTE = (
     "Image {n} is a presentation reference ONLY: match its ghost-mannequin style, front view, framing, "
-    "scale, soft studio lighting and plain light-grey background. Do not copy any of its garments, "
-    "colours or patterns."
+    "scale, soft studio lighting and plain light-grey background. Never add its cardigan, top, skirt, "
+    "socks or loafers, or any of its colours or patterns, to this outfit."
 )
 GALLERY_NAME = re.compile(r"[A-Za-z0-9][A-Za-z0-9 _.-]{0,59}")
 OUTFIT_STUDIO = web.AppKey("outfit_studio", object)
