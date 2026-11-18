@@ -8,7 +8,7 @@ DEFAULT_TEMPLATE = "{edit} {subject}, {pose}, {outfit}, {location}, {extra}"
 DEFAULT_PICTURE_TAG = "<Picture {n}>"
 EDIT_TARGETS = ("Pose", "Subject")
 REFERENCE_TEXT = ("Image and description", "Image only")
-LOCATIONS = ("From the subject photo", "Plain studio", "Custom")
+LOCATIONS = ("From the subject photo", "From the location image", "Plain studio", "Custom")
 
 
 def validate_picture_tag(tag):
@@ -18,10 +18,10 @@ def validate_picture_tag(tag):
     return tag
 
 
-def picture_order(has_subject, has_pose, has_outfit, edit_target="Subject"):
+def picture_order(has_subject, has_pose, has_outfit, edit_target="Subject", has_location=False):
     """The pictures that exist, in the order a model numbers them. The edit target comes first."""
-    order = ["pose", "subject", "outfit"] if edit_target == "Pose" else ["subject", "pose", "outfit"]
-    present = {"subject": has_subject, "pose": has_pose, "outfit": has_outfit}
+    order = ["pose", "subject", "outfit", "location"] if edit_target == "Pose" else ["subject", "pose", "outfit", "location"]
+    present = {"subject": has_subject, "pose": has_pose, "outfit": has_outfit, "location": has_location}
     return [kind for kind in order if present[kind]]
 
 
@@ -58,6 +58,8 @@ def compose_values(subject, pose_text, outfit_text, extra, *, order=(), picture_
     if location == "From the subject photo" and "subject" in tags and order[0] != "subject":
         # Picture 1 sets the scene unless told otherwise; when the photo is picture 1 it already does.
         values["location"] = f"in the same location, background and lighting as {tags['subject']}"
+    elif location == "From the location image" and "location" in tags:
+        values["location"] = f"in the same location, background and lighting as {tags['location']}"
     elif location == "Plain studio":
         values["location"] = "on a plain white studio background"
     if order[0] == "subject":

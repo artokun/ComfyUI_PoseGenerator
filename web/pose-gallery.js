@@ -361,8 +361,9 @@ async function previewPrompt(node) {
   try {
     const body = Object.fromEntries(["pose", "outfit", "subject", "prompt_template", "extra", "pose_override", "outfit_override",
       "pose_image_mode", "picture_tag", "edit_target", "reference_text", "location"].map((name) => [name, widget(node, name)?.value ?? ""]));
-    // Picture numbers depend on whether a subject photo is wired in.
+    // Picture numbers depend on whether subject or location photos are wired in.
     body.has_subject_image = node.inputs?.some((input) => input.name === "subject_image" && input.link != null) ?? false;
+    body.has_location_image = node.inputs?.some((input) => input.name === "location_image" && input.link != null) ?? false;
     const response = await api.fetchApi("/pose-generator/preview", {
       method: "POST", headers: { "Content-Type": "application/json" }, body: JSON.stringify(body),
     });

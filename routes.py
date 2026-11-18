@@ -46,13 +46,15 @@ async def preview_prompt(request):
             raise ValueError("Expected a prompt object.")
         pose = selected("pose", body.get("pose", "None"))
         outfit = selected("outfit", body.get("outfit", "None"))
+        location = str(body.get("location", "Custom"))
+        has_location = bool(body.get("has_location_image")) and location == "From the location image"
         order = picture_order(bool(body.get("has_subject_image")), pose is not None, outfit is not None,
-                              body.get("edit_target", "Subject"))
+                              body.get("edit_target", "Subject"), has_location=has_location)
         values = compose_values(
             str(body.get("subject", "")), body.get("pose_override", "").strip() or (pose["prompt"] if pose else ""),
             body.get("outfit_override", "").strip() or (outfit["prompt"] if outfit else ""), str(body.get("extra", "")),
             order=order, picture_tag=str(body.get("picture_tag", "")), depth=body.get("pose_image_mode") == "Saved depth",
-            describe=body.get("reference_text") != "Image only", location=str(body.get("location", "Custom")),
+            describe=body.get("reference_text") != "Image only", location=location,
             pose_name=pose["label"] if pose else "", outfit_name=outfit["label"] if outfit else "",
             angle=pose.get("angle", "") if pose else "",
         )

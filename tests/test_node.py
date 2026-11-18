@@ -29,7 +29,7 @@ def test_optional_selections_and_overrides(local_library):
     output = PoseOutfitReference().generate("None", "None", "a traveler", DEFAULT_TEMPLATE, "")
     assert output[0].shape == output[1].shape == (1, 1, 1, 3)
     assert output[2:5] == ("a traveler", "", "")
-    assert output[5:] == (None, None, None, 0, 0)
+    assert output[5:] == (None, None, None, 0, 0, None)
     output = PoseOutfitReference().generate("pose-a", "outfit-a", "a traveler", DEFAULT_TEMPLATE, "", "running", "wearing boots")
     assert output[2] == "a traveler, running, wearing boots"
 
@@ -248,7 +248,8 @@ def test_subject_first_numbers_pictures_and_writes_an_edit_instruction(local_lib
         "in the exact pose of the mannequin drawing in <Picture 2> (copy only the pose, not its look): standing, front view, "
         "wearing the outfit shown in <Picture 3> (only the clothes, not its background): a blue jacket, soft lighting"
     )
-    picture_1, picture_2, picture_3, width, height = output[5:]
+    picture_1, picture_2, picture_3, width, height, picture_4 = output[5:]
+    assert picture_4 is None
     assert picture_1.shape == (1, height, width, 3) and width % 32 == height % 32 == 0
     assert abs(width * height - 1_000_000) < 80_000 and abs(width / height - 400 / 600) < 0.05
     assert picture_2[0, 0, 0].tolist() == [1, 0, 0] and picture_3[0, 0, 0].tolist() == [0, 1, 0]
@@ -283,8 +284,9 @@ def test_empty_picture_tag_keeps_the_plain_prompt_and_bad_tags_are_rejected(loca
 def test_new_widgets_and_outputs_are_appended_for_saved_workflows():
     optional = list(PoseOutfitReference.INPUT_TYPES()["optional"])
     assert optional[:3] == ["pose_override", "outfit_override", "pose_image_mode"]
-    assert optional[3:] == ["picture_tag", "edit_target", "megapixels", "reference_text", "location", "subject_image"]
+    assert optional[3:] == ["picture_tag", "edit_target", "megapixels", "reference_text", "location", "subject_image", "location_image"]
     assert PoseOutfitReference.RETURN_NAMES[:5] == ("pose_image", "outfit_image", "positive_prompt", "pose_text", "outfit_text")
+    assert PoseOutfitReference.RETURN_NAMES[5:] == ("picture_1", "picture_2", "picture_3", "width", "height", "picture_4")
 
 
 def test_new_nodes_edit_the_pose_by_default():
@@ -318,3 +320,32 @@ def test_old_templates_still_get_the_edit_opener_and_the_location(local_library)
                            location="Plain studio", subject_image=photo)[2]
     assert custom.endswith("on a plain white studio background")
     assert node.generate("pose-a", "None", "Celia", old, "", subject_image=photo)[2] == "Celia, standing, front view"  # references off
+
+
+def test_location_image_provides_fourth_picture_and_location_phrase(local_library):
+    photo = torch.rand(1, 64, 64, 3)
+    bg = torch.rand(2, 48, 48, 3)
+    node = PoseOutfitReference()
+    # With pose, subject, outfit, and location_image all present, location becomes Picture 4.
+    output = node.generate("pose-a", "outfit-a", "a traveler", "{edit}|{location}", "",
+                           picture_tag=H3, edit_target="Pose", location="From the location image",
+                           subject_image=photo, location_image=bg)
+    assert output[2].partition("|")[2] == "in the same location, background and lighting as <Picture 4>"
+    assert output[5][0, 0, 0].tolist() == [1, 0, 0]  # pose is picture_1
+    assert torch.equal(output[6], photo[:1])          # subject is picture_2
+    assert output[7][0, 0, 0].tolist() == [0, 1, 0]  # outfit is picture_3
+    assert torch.equal(output[10], bg[:1])            # location is picture_4
+    # Works even when edit_target is Subject (location is a separate picture).
+    subj_edit = node.generate("pose-a", "None", "a traveler", "{edit}|{location}", "",
+                              picture_tag=H3, edit_target="Subject", location="From the location image",
+                              subject_image=photo, location_image=bg)
+    assert subj_edit[2].partition("|")[2] == "in the same location, background and lighting as <Picture 3>"
+    assert torch.equal(subj_edit[7], bg[:1])
+    assert subj_edit[10] is None
+    # Missing location_image or Plain studio leaves location_image out of the picture slots.
+    no_bg = node.generate("pose-a", "None", "a traveler", "{edit}|{location}", "",
+                          picture_tag=H3, edit_target="Pose", location="From the location image")
+    assert no_bg[2].partition("|")[2] == "" and no_bg[6] is None
+    studio = node.generate("pose-a", "None", "a traveler", "{edit}|{location}", "",
+                           picture_tag=H3, edit_target="Pose", location="Plain studio", location_image=bg)
+    assert studio[2].partition("|")[2] == "on a plain white studio background" and studio[6] is None

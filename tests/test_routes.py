@@ -33,6 +33,14 @@ async def test_prompt_preview_matches_node_output(http_client):
     response = await http_client.post("/pose-generator/preview", json=body)
     assert response.status == 200
     assert (await response.json())["prompt"] == PoseOutfitReference().generate(**body)[2]
+    loc_body = {"pose": "pose-a", "outfit": "outfit-a", "subject": "a traveler",
+                "prompt_template": "{edit}|{location}", "extra": "",
+                "picture_tag": "<Picture {n}>", "edit_target": "Pose",
+                "location": "From the location image",
+                "has_subject_image": True, "has_location_image": True}
+    response = await http_client.post("/pose-generator/preview", json=loc_body)
+    assert response.status == 200
+    assert (await response.json())["prompt"].endswith("in the same location, background and lighting as <Picture 4>")
     body["prompt_template"] = "{bad}"
     response = await http_client.post("/pose-generator/preview", json=body)
     assert response.status == 400
