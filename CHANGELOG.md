@@ -1,5 +1,9 @@
 # Changelog
 
+## 0.1.5
+
+- **`location` and the edit opener now work with any prompt template.** A template without `{location}` or `{edit}`, which includes every workflow saved before 0.1.4, ignored the location setting and left out the "Edit <Picture 1>:" opener. The node now adds both itself when the template leaves them out: the opener at the start and the location before `{extra}`. To leave the location out, set `location` to **Custom**.
+
 ## 0.1.4
 
 - **Subject photo.** Connect a photo of a person to the new optional `subject_image` input and the prompt refers to that person by picture number.

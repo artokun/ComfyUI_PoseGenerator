@@ -136,7 +136,9 @@ a traveler, standing with one hand on the hip, front view, wearing a blue jacket
 
 Supported fields: `{edit}`, `{subject}`, `{pose}`, `{outfit}`, `{location}`, `{extra}`,
 `{pose_name}`, `{outfit_name}`, and `{angle}`. `{edit}` and `{location}` are empty
-unless `picture_tag` is set and there is a picture to refer to. Outfit text already begins with “wearing”.
+unless `picture_tag` is set and there is a picture to refer to. A template that leaves
+them out still gets both: the opener at the start and the location before `{extra}`.
+Set `location` to **Custom** to leave the location out. Outfit text already begins with “wearing”.
 Use `pose_override` and `outfit_override` to refine the text.
 
 Prompt weights such as `({pose}:1.2)` and line breaks work. Use `{{` and `}}` for
