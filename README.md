@@ -28,7 +28,7 @@ I will gladly take it down. [Full credits and image terms](THIRD_PARTY.md).
 
 ## What it does
 
-- Browse a local thumbnail library with search, categories, and camera angles.
+- Switch pose galleries on the node and filter thumbnails by saved tags, category, camera angle, or search.
 - Choose pose and outfit references independently.
 - Compose a positive prompt with a simple text template.
 - Override either description without changing its reference image.

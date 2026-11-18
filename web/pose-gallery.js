@@ -76,6 +76,22 @@ async function refreshNode(node) {
   try {
     const data = await loadCatalog();
     if (serial !== view.serial) return;
+    const galleries = data.galleries || [];
+    const current = data.pose.find((entry) => entry.id === widget(node, "pose")?.value);
+    view.currentGallery = current?.gallery;
+    let scope = node.properties?.pose_gallery ?? current?.gallery ?? "";
+    if (scope && !galleries.some((group) => group.id === scope)) scope = "";
+    if (scope && current && current.gallery !== scope) scope = current.gallery;
+    view.gallery.replaceChildren(new Option("All pose galleries", ""),
+      ...galleries.map((group) => new Option(group.label, group.id)));
+    view.gallery.value = scope;
+    const pose = widget(node, "pose");
+    if (pose?.options) {
+      const visible = data.pose.filter((entry) => !scope || entry.gallery === scope);
+      const names = new Map(visible.map((entry) => [entry.id, entry.catalog_id || entry.id]));
+      pose.options = { ...pose.options, values: [NONE, ...names.keys()],
+        getOptionLabel: (value) => names.get(value) || value || NONE };
+    }
     view.root.replaceChildren();
     for (const kind of ["pose", "outfit"]) {
       const id = widget(node, kind)?.value;
@@ -138,6 +154,13 @@ async function openGallery(node, initialKind) {
   const outfitTab = button(`Outfits · ${data.outfit.length.toLocaleString()}`, () => setKind("outfit"), "pg-tab");
   tabs.append(poseTab, outfitTab);
   const filters = element("div", "pg-filters");
+  const gallery = element("select", "pg-select");
+  gallery.setAttribute("aria-label", "Pose gallery");
+  gallery.add(new Option("All pose galleries", ""));
+  for (const group of data.galleries || []) gallery.add(new Option(group.label, group.id));
+  gallery.value = nodeViews.get(node)?.gallery.value ?? data.pose.find((entry) => entry.id === widget(node, "pose")?.value)?.gallery ?? "";
+  const tagFilters = element("div", "pg-tag-filters");
+  const selectedTags = new Map();
   const search = element("input", "pg-search");
   search.type = "search";
   search.placeholder = "Search by pose, clothing, or ID…";
@@ -146,7 +169,7 @@ async function openGallery(node, initialKind) {
   category.setAttribute("aria-label", "Reference category");
   const angle = element("select", "pg-select");
   angle.setAttribute("aria-label", "Camera angle");
-  filters.append(search, category, angle);
+  filters.append(gallery, search, category, angle);
   const layout = element("div", "pg-layout");
   const results = element("section", "pg-results");
   const resultCount = element("p", "pg-count");
@@ -167,11 +190,68 @@ async function openGallery(node, initialKind) {
   }, "pg-button pg-quiet");
   const use = button("Use reference", () => {
     if (selectedId === NONE) return;
+    if (kind === "pose") {
+      node.properties ||= {};
+      node.properties.pose_gallery = gallery.value;
+    }
     updateSelection(node, kind, selectedId);
     dialog.close();
   }, "pg-button pg-primary");
   footer.append(clear, element("span", "pg-footer-hint", "Images and descriptions stay local."), use);
-  dialog.append(tabs, filters, layout, footer);
+  dialog.append(tabs, filters, tagFilters, layout, footer);
+
+  function inGallery(entry) {
+    return kind !== "pose" || !gallery.value || entry.gallery === gallery.value;
+  }
+
+  function tagsByRow(entry) {
+    const rows = new Map(Object.entries(entry.tag_groups || {}).filter(([, tags]) => Array.isArray(tags)));
+    const assigned = new Set([...rows.values()].flat());
+    const flat = (Array.isArray(entry.tags) ? entry.tags : []).filter((tag) => !assigned.has(tag));
+    if (flat.length) rows.set("Tags", [...(rows.get("Tags") || []), ...flat]);
+    return rows;
+  }
+  const poseTags = new Map(data.pose.map((entry) => [entry.id, tagsByRow(entry)]));
+
+  function resetFilters() {
+    const entries = data[kind].filter(inGallery);
+    category.replaceChildren(new Option("All categories", ""));
+    for (const value of new Set(entries.map((entry) => entry.category))) category.add(new Option(value, value));
+    angle.replaceChildren(new Option("All angles", ""));
+    for (const value of new Set(entries.map((entry) => entry.angle).filter(Boolean))) angle.add(new Option(value, value));
+    selectedTags.clear();
+    tagFilters.replaceChildren();
+    const vocabulary = new Map();
+    if (kind === "pose") {
+      for (const entry of entries) {
+        for (const [row, tags] of poseTags.get(entry.id)) {
+          if (!vocabulary.has(row)) vocabulary.set(row, new Set());
+          for (const tag of tags) vocabulary.get(row).add(tag);
+        }
+      }
+    }
+    for (const [row, tags] of vocabulary) {
+      if (!tags.size) continue;
+      const field = element("fieldset");
+      field.append(element("legend", "", row));
+      for (const tag of tags) {
+        const chip = button(tag, () => {
+          const values = selectedTags.get(row) || new Set();
+          if (values.has(tag)) values.delete(tag); else values.add(tag);
+          if (values.size) selectedTags.set(row, values); else selectedTags.delete(row);
+          chip.setAttribute("aria-pressed", String(values.has(tag)));
+          currentPage = 0;
+          renderResults();
+        }, "pg-tag");
+        chip.setAttribute("aria-pressed", "false");
+        field.append(chip);
+      }
+      tagFilters.append(field);
+    }
+    tagFilters.hidden = !tagFilters.childElementCount;
+    currentPage = 0;
+    renderResults();
+  }
 
   function renderDetail() {
     detail.replaceChildren();
@@ -183,7 +263,8 @@ async function openGallery(node, initialKind) {
       return;
     }
     detail.append(imageElement(kind, entry, true));
-    detail.append(element("span", "pg-eyebrow", `${entry.category} · ${entry.id}`));
+    const galleryLabel = data.galleries?.find((group) => group.id === entry.gallery)?.label;
+    detail.append(element("span", "pg-eyebrow", [galleryLabel, entry.category, entry.catalog_id || entry.id].filter(Boolean).join(" · ")));
     detail.append(element("h3", "", entry.label));
     detail.append(element("p", "pg-prompt-label", "PROMPT TEXT"));
     detail.append(element("p", "pg-description", entry.prompt));
@@ -197,11 +278,20 @@ async function openGallery(node, initialKind) {
   function renderResults() {
     const terms = search.value.toLocaleLowerCase().trim().split(/\s+/).filter(Boolean);
     const matches = data[kind].filter((entry) => {
+      if (!inGallery(entry)) return false;
       if (category.value && category.value !== entry.category) return false;
       if (kind === "pose" && angle.value && angle.value !== entry.angle) return false;
-      const text = `${entry.id} ${entry.label} ${entry.prompt} ${entry.source_label || ""}`.toLocaleLowerCase();
+      for (const [row, tags] of selectedTags) {
+        if (!poseTags.get(entry.id)?.get(row)?.some((value) => tags.has(value))) return false;
+      }
+      const tags = Array.isArray(entry.tags) ? entry.tags.join(" ") : "";
+      const text = `${entry.catalog_id || entry.id} ${entry.label} ${entry.prompt} ${entry.source_label || ""} ${tags}`.toLocaleLowerCase();
       return terms.every((term) => text.includes(term));
     });
+    if (selectedId !== NONE && !matches.some((entry) => entry.id === selectedId)) {
+      selectedId = NONE;
+      renderDetail();
+    }
     const pages = Math.max(1, Math.ceil(matches.length / PAGE_SIZE));
     currentPage = Math.min(Math.max(0, currentPage), pages - 1);
     resultCount.textContent = `${matches.length.toLocaleString()} ${matches.length === 1 ? "reference" : "references"}`;
@@ -244,15 +334,13 @@ async function openGallery(node, initialKind) {
     outfitTab.classList.toggle("pg-active", kind === "outfit");
     poseTab.setAttribute("aria-pressed", String(kind === "pose"));
     outfitTab.setAttribute("aria-pressed", String(kind === "outfit"));
-    category.replaceChildren(new Option("All categories", ""));
-    for (const value of [...new Set(data[kind].map((entry) => entry.category))]) category.add(new Option(value, value));
-    angle.replaceChildren(new Option("All angles", ""));
-    for (const value of [...new Set(data[kind].map((entry) => entry.angle).filter(Boolean))]) angle.add(new Option(value, value));
+    gallery.hidden = kind !== "pose";
     angle.hidden = kind !== "pose";
-    renderResults();
+    resetFilters();
     renderDetail();
   }
 
+  gallery.addEventListener("change", resetFilters);
   for (const filter of [search, category, angle]) {
     filter.addEventListener(filter === search ? "input" : "change", () => {
       currentPage = 0;
@@ -300,9 +388,21 @@ app.registerExtension({
     node.addWidget("button", "Browse outfits", null, () => openGallery(node, "outfit"), { serialize: false });
     node.addWidget("button", "Preview positive prompt", null, () => previewPrompt(node), { serialize: false });
     if (typeof node.addDOMWidget === "function") {
-      const root = element("div", "pg-node-preview");
-      node.addDOMWidget("reference_preview", "pose_preview", root, { serialize: false, getMinHeight: () => 180, getMaxHeight: () => 180 });
-      nodeViews.set(node, { root, serial: 0 });
+      const panel = element("div", "pg-node-panel"), root = element("div", "pg-node-preview");
+      const label = element("label", "pg-gallery-label", "Pose gallery");
+      const gallery = element("select");
+      label.append(gallery);
+      panel.append(label, root);
+      node.addDOMWidget("reference_preview", "pose_preview", panel, { serialize: false, getMinHeight: () => 210, getMaxHeight: () => 210 });
+      nodeViews.set(node, { root, gallery, serial: 0 });
+      gallery.addEventListener("change", () => {
+        node.properties ||= {};
+        node.properties.pose_gallery = gallery.value;
+        const current = widget(node, "pose")?.value;
+        if (gallery.value && current && current !== NONE && gallery.value !== nodeViews.get(node).currentGallery) updateSelection(node, "pose", NONE);
+        else refreshNode(node);
+        node.setDirtyCanvas?.(true, true);
+      });
     }
     for (const kind of ["pose", "outfit"]) {
       const input = widget(node, kind);

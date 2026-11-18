@@ -1,0 +1,13 @@
+Image 1 is a drawing-style reference only. Image 2 is the sole reference for the subject's pose, body proportions, camera perspective, and framing.
+
+Redraw the main person in Image 2 as a smooth, featureless, hairless figure-drawing mannequin in the drawing style of Image 1. Preserve the visible pose precisely: limb positions, joint bends, hand gestures, head tilt and turn, torso rotation, body proportions, foreshortening, and overlaps. Preserve the original camera angle, crop, and the figure's position and scale within the frame. Do not mirror, straighten, re-pose, or exaggerate the figure. Do not copy the pose, proportions, camera angle, or framing of Image 1.
+
+Use a blank oval head with only a vertical centre guide and a curved horizontal eye-level guide, following the head's orientation. Use smooth simplified body volumes, rounded joint markers at visible shoulders, elbows, wrists, hips, knees, and ankles, and simple segmented hands and feet. Add sparse curved construction lines around the torso and limbs to describe their volume. Preserve the source hand gestures even when an object held in the hand is removed. Do not invent visible joints on the hidden side of the figure or draw through overlapping body parts.
+
+Line work: clean, dark, even outer contours; thinner, lighter grey interior construction lines. White body fill. No shading, gradients, colour, texture, hatching, or cast shadows.
+
+Background: completely flat white. Remove the original environment, furniture, bedding, clothing details, hair, accessories, held objects, and other people. Render the subject as a neutral construction mannequin with simplified anatomy, no facial features, no nipples, and no genital detail.
+
+Where clothing, bedding, or a removable object obscures part of the person in Image 2, infer only the minimum plausible mannequin geometry needed to connect the visible body parts. Keep visible joints and contact positions unchanged. Hidden anatomy is an approximation; do not change the visible pose to accommodate it. Preserve natural self-occlusion. Do not extend the image crop or add body parts outside the original frame. Do not reconstruct anything from Image 1.
+
+Return one finished mannequin drawing only. No labels, text, border, watermark, comparison panel, or additional figures.

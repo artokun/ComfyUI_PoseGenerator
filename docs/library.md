@@ -47,6 +47,23 @@ An explicit `POSE_GENERATOR_ASSETS` takes precedence. Otherwise the node uses
 `assets/gallery-webp` when its completed catalog is present, then `assets/gallery`.
 An empty library still lets you compose text with no references selected.
 
+With the standard asset location, the node's **Pose gallery** dropdown includes
+named Pose Studio folders and other catalogs directly under `assets/`. Studio
+retry folders are omitted. The original PNG and optimized WebP libraries share
+one entry. An explicitly configured external library can be browsed independently.
+
+Choose a gallery on the node to narrow its pose IDs, or switch galleries inside
+**Browse poses**. Tag filters use the rows saved with each drawing. Selecting
+two tags in one row matches either one. Selections in different rows must all
+match. Legacy catalogs can still use their category and camera angle filters.
+
+## Generate your own mannequin references
+
+The optional [SpicyAPI batch helper](pose-generation.md) converts your source
+photos into mannequin line art using a separate style reference. It supports
+one-image pilots, exact-price caps, resumable tasks, and a catalog for review.
+This is an explicit paid development tool; the ComfyUI node never calls it.
+
 ## Optional WebP optimization with Tinify
 
 For a collection you have permission to upload and transform, the source checkout

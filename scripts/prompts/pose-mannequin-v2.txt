@@ -1,0 +1,9 @@
+Edit Image 1, the source photograph. Replace its main person with ONE neutral figure-drawing mannequin, keeping that person's pose and framing. Image 2 supplies linework and construction-guide style ONLY; none of its figure or composition belongs in the output.
+
+Lock the composition to Image 1: same head position, head tilt and turn, shoulder and hip angles, torso bend, visible joint positions, hand gestures, limb overlaps, body proportions, foreshortening, and camera perspective. Keep the person's location and scale within the frame. A close-up remains a close-up; a reclining person remains reclining; a seated person remains seated. Keep all cropped body parts cropped. Do not zoom out, complete a partial figure into a full body, or replace the source pose with a standing pose.
+
+Redraw the source person as smooth, simplified, opaque white body volumes. Use a hairless oval head with only a centre guide and an eye-level guide; round markers at visible joints; simplified hands and feet; sparse curved construction lines. Preserve finger bends and hand orientation when removing held objects. Infer only minimal geometry beneath clothing or objects, keeping visible joints fixed. Preserve self-occlusion: hidden limbs stay behind the parts covering them.
+
+Use clean dark outer outlines and thin light-grey construction lines. Every filled area is flat pure white. No shading, shadows, gradients, pencil texture, hatching, or colour. No hair, facial features, clothing, shoes, accessories, props, nipples, or genital detail. Remove the photographic background entirely and replace it with flat white.
+
+Output exactly one drawing of the person from Image 1. Do not reproduce, overlay, insert, or blend in the mannequin from Image 2. No second figure, extra head, duplicate limbs, inset, comparison panel, text, or border. Pose and crop fidelity to Image 1 take priority over matching Image 2.

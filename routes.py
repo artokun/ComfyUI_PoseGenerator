@@ -2,7 +2,7 @@
 
 from aiohttp import web
 
-from .library import catalog, image_path, selected
+from .library import gallery_index, image_path, selected
 from .prompts import render_prompt
 
 IMAGE_TYPES = {".png": "image/png", ".jpg": "image/jpeg", ".jpeg": "image/jpeg", ".webp": "image/webp"}
@@ -10,11 +10,11 @@ IMAGE_TYPES = {".png": "image/png", ".jpg": "image/jpeg", ".jpeg": "image/jpeg",
 
 async def get_catalog(request):
     try:
-        data = catalog()
-        payload = {}
+        galleries, data = gallery_index()
+        payload = {"galleries": galleries}
         for kind, entries in data.items():
             payload[kind] = [
-                {key: value for key, value in entry.items() if key not in ("image", "thumbnail")}
+                {key: value for key, value in entry.items() if key not in ("image", "thumbnail", "_root")}
                 for entry in entries.values()
             ]
         return web.json_response(payload)
@@ -31,7 +31,7 @@ async def get_image(request):
         if entry is None:
             raise web.HTTPNotFound()
         field = "image" if request.query.get("full") == "1" else "thumbnail"
-        path = image_path(entry[field])
+        path = image_path(entry[field], entry["_root"])
         if not path.is_file():
             raise web.HTTPNotFound()
         return web.FileResponse(path, headers={"X-Content-Type-Options": "nosniff", "Content-Type": IMAGE_TYPES[path.suffix.lower()]})

@@ -10,10 +10,20 @@ from .library import NONE, catalog_stamp, choices, image_path, selected
 from .prompts import DEFAULT_TEMPLATE, render_prompt
 
 
-def load_reference(entry):
+def reference_path(entry, depth=False):
+    path = image_path(entry["image"], entry.get("_root"))
+    if depth and path.is_file():
+        digest = hashlib.sha256(path.read_bytes()).hexdigest()
+        path = image_path(f"depth/{digest}.png", entry.get("_root"))
+        if not path.is_file():
+            raise ValueError("Generate a depth map for this pose in Pose Studio or select Drawing.")
+    return path
+
+
+def load_reference(entry, depth=False):
     if entry is None:
         return torch.zeros((1, 1, 1, 3), dtype=torch.float32)
-    path = image_path(entry["image"])
+    path = reference_path(entry, depth)
     if not path.is_file():
         raise ValueError(f"Missing reference image: {entry['id']}. Reinstall the gallery assets.")
     with Image.open(path) as source:
@@ -45,6 +55,7 @@ class PoseOutfitReference:
         }, "optional": {
             "pose_override": ("STRING", {"default": "", "multiline": True, "dynamicPrompts": False}),
             "outfit_override": ("STRING", {"default": "", "multiline": True, "dynamicPrompts": False}),
+            "pose_image_mode": (["Drawing", "Saved depth"], {"default": "Drawing"}),
         }}
 
     @classmethod
@@ -59,16 +70,19 @@ class PoseOutfitReference:
 
     @classmethod
     def IS_CHANGED(cls, pose, outfit, **kwargs):
-        digest = hashlib.sha256(repr(catalog_stamp()).encode())
+        digest = hashlib.sha256()
         for kind, identity in (("pose", pose), ("outfit", outfit)):
             entry = selected(kind, identity)
             if entry is not None:
-                with image_path(entry["image"]).open("rb") as handle:
+                root = entry["_root"]
+                digest.update(repr((identity, catalog_stamp(root))).encode())
+                path = reference_path(entry, kind == "pose" and kwargs.get("pose_image_mode") == "Saved depth")
+                with path.open("rb") as handle:
                     for chunk in iter(lambda: handle.read(1024 * 1024), b""):
                         digest.update(chunk)
         return digest.hexdigest()
 
-    def generate(self, pose, outfit, subject, prompt_template, extra, pose_override="", outfit_override=""):
+    def generate(self, pose, outfit, subject, prompt_template, extra, pose_override="", outfit_override="", pose_image_mode="Drawing"):
         pose_entry = selected("pose", pose)
         outfit_entry = selected("outfit", outfit)
         pose_text = pose_override.strip() or (pose_entry["prompt"] if pose_entry else "")
@@ -80,4 +94,4 @@ class PoseOutfitReference:
             "angle": pose_entry.get("angle", "") if pose_entry else "",
         }
         prompt = render_prompt(prompt_template, values)
-        return (load_reference(pose_entry), load_reference(outfit_entry), prompt, pose_text, outfit_text)
+        return (load_reference(pose_entry, pose_image_mode == "Saved depth"), load_reference(outfit_entry), prompt, pose_text, outfit_text)

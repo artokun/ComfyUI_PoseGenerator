@@ -1,0 +1,170 @@
+<!doctype html>
+<html lang="en">
+<head>
+  <meta charset="utf-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1">
+  <meta name="color-scheme" content="dark">
+  <title>Pose Studio</title>
+  <link rel="stylesheet" href="/static/studio.css">
+  <script src="/static/studio.js" defer></script>
+</head>
+<body>
+  <header class="topbar">
+    <a class="brand" href="/" aria-label="Pose Studio home"><span class="brand-mark">P<span>·</span></span><span>Pose Studio<small>REFERENCE WORKSHOP</small></span></a>
+    <div class="connection"><span class="dot" id="connection-dot"></span><span id="connection-label">Connecting</span><span class="local-badge">LOCAL</span></div>
+  </header>
+  <div class="layout">
+    <aside class="controls">
+      <div class="section-heading"><span class="eyebrow">WORKSPACE</span><button id="new-run" class="text-button" type="button">New run +</button></div>
+      <label for="history">Saved runs</label>
+      <select id="history"><option value="">New run</option></select>
+
+      <section class="control-section">
+        <h2><span class="step">01</span> Source images</h2>
+        <button class="dropzone" id="folder-button" type="button">
+          <svg viewBox="0 0 32 32" aria-hidden="true"><path d="M4 10V7h9l3 3h12v17H4zM4 13h24M16 17v7m-3-3 3 3 3-3"/></svg>
+          <strong id="folder-title">Choose an image folder</strong>
+          <span id="folder-subtitle">PNG, JPEG, WebP · up to 500 images</span>
+        </button>
+        <input type="file" id="folder-input" webkitdirectory multiple hidden>
+        <button id="staged-button" type="button" class="text-button preset" hidden>Use staged v2 folder</button>
+        <p class="help">Folder selection copies images locally. Selected images are sent to SpicyAPI when generation starts.</p>
+        <progress id="upload-progress" max="1" value="0" hidden aria-label="Folder upload progress"></progress>
+      </section>
+
+      <section class="control-section">
+        <h2><span class="step">02</span> Drawing style</h2>
+        <div class="style-picker"><button id="style-button" type="button" class="secondary">Upload style image</button><button id="clear-style" class="text-button" type="button" hidden>Use reference</button></div>
+        <input type="file" id="style-input" accept="image/png,image/jpeg,image/webp" hidden>
+        <div id="style-preview" hidden><img id="style-image" alt="Selected drawing style"><span id="style-name"></span></div>
+        <label for="style-uri">Or use a SpicyAPI reference</label>
+        <input id="style-uri" type="text" spellcheck="false" placeholder="spicy://f/fil_…">
+        <p class="help">Upload a style image if the existing reference has expired.</p>
+      </section>
+
+      <section class="control-section">
+        <h2><span class="step">03</span> Prompt &amp; output</h2>
+        <label for="profile">Prompt preset</label><select id="profile"></select>
+        <label for="prompt">Edit the prompt <span id="prompt-count" class="label-end"></span></label>
+        <textarea id="prompt" rows="8" maxlength="5000" spellcheck="false"></textarea>
+        <div class="two-fields">
+          <div><label for="image-order">Image order</label><select id="image-order"><option value="source-first">1 source · 2 style</option><option value="style-first">1 style · 2 source</option></select></div>
+          <div><label for="resolution">Resolution</label><select id="resolution"><option>2k</option><option>1.5k</option><option>1k</option></select></div>
+        </div>
+        <p class="help">PNG output. Aspect ratio follows the source. Match image numbers in the prompt to the order above.</p>
+      </section>
+
+      <section class="control-section">
+        <h2><span class="step">04</span> Run &amp; budget</h2>
+        <label for="run-name">Run name</label><input id="run-name" placeholder="Pose study">
+        <div class="two-fields">
+          <div><label for="per-image">Cap per image · USD</label><input id="per-image" type="number" min="0.001" step="0.001" value="0.051"></div>
+          <div><label for="total-cap">Total cap · USD</label><input id="total-cap" type="number" min="0.001" step="0.001" value="1.50"></div>
+        </div>
+        <div class="budget"><span>Selected-image ceiling</span><strong id="ceiling">$0.000</strong></div>
+        <p class="help" id="budget-note">Quotes are checked against both caps before each submission.</p>
+        <button id="generate" class="primary" type="button" disabled>Generate selected images <span>↗</span></button>
+        <p class="help">Every new run gets its own output folder. Saved runs resume with their original prompt and settings.</p>
+      </section>
+      <div class="model-label">SEEDREAM 5.5 EDIT <span>SpicyAPI</span></div>
+    </aside>
+
+    <main>
+      <div class="workspace-heading"><div><span class="eyebrow">PHOTO → DRAWING REFERENCE</span><h1 id="workspace-title">Build your pose library.</h1><p id="workspace-subtitle">Choose a folder, refine the prompt, and watch each reference take shape.</p></div></div>
+      <div id="notice" role="alert" hidden></div>
+      <div id="run-panel" hidden>
+        <div class="run-top"><div><span id="run-state" class="status-pill"></span><span id="run-progress-label"></span></div><div class="run-actions"><button id="reuse" class="secondary" type="button">Use settings for new run</button><button id="pause" class="secondary" type="button">Pause after current</button><button id="resume" class="primary compact" type="button" hidden>Resume run</button></div></div>
+        <progress id="run-progress" value="0" max="1" aria-label="Generation progress"></progress>
+        <div class="run-metrics"><span>Settled <strong id="settled">$0.000</strong></span><span>Reserved ceiling <strong id="reserved">$0.000</strong></span><span>Total cap <strong id="run-cap">$0.000</strong></span></div>
+        <p id="run-message" class="help"></p>
+        <p id="queue-status" class="help" role="status" hidden></p>
+        <p class="destination"><span>OUTPUT FOLDER</span><code id="destination"></code></p>
+        <div class="folder-actions" id="folder-actions" hidden>
+          <button id="rename-folder" class="secondary" type="button">Rename folder</button>
+          <button id="add-images" class="secondary" type="button">Add images</button>
+          <button id="edit-tags" class="secondary" type="button">Edit global tags</button>
+        </div>
+        <section id="curation" class="curation" hidden>
+          <div class="curation-heading"><h2>Folder metadata</h2><button id="restore" class="text-button" type="button" hidden>Undo delete</button></div>
+          <label for="caption-prompt">Caption prompt</label>
+          <textarea id="caption-prompt" rows="5" maxlength="5000" spellcheck="true"></textarea>
+          <div class="caption-actions">
+            <button id="save-caption" class="text-button" type="button">Save prompt</button>
+            <button id="default-caption" class="text-button" type="button">Use default</button>
+            <span id="caption-state" class="muted" role="status"></span>
+          </div>
+          <div class="curation-actions">
+            <label for="metadata-provider">Vision model</label>
+            <select id="metadata-provider"><option value="xai">Grok 4.7 · xAI</option><option value="spicy">Nemotron VL · SpicyAPI</option></select>
+            <button id="metadata-one" class="secondary" type="button">Test one</button>
+            <button id="metadata-all" class="secondary" type="button">Tag remaining</button>
+            <button id="resume-captions" class="secondary" type="button" hidden>Resume captions</button>
+          </div>
+          <p class="help">Each drawing uses one paid vision request, billed separately from image generation.</p>
+          <p id="metadata-status" class="help" role="status"></p>
+          <div class="curation-actions">
+            <button id="depth-one" class="secondary" type="button">Test one depth map</button>
+            <button id="depth-all" class="secondary" type="button">Generate remaining depth maps</button>
+          </div>
+          <p id="depth-status" class="help" role="status"></p>
+        </section>
+      </div>
+      <div class="gallery-toolbar"><div><h2 id="gallery-title">Your canvas is ready</h2><span id="gallery-count" class="muted"></span></div><div id="selection-tools" hidden><button id="select-all" type="button" class="text-button">Select all</button><button id="select-none" type="button" class="text-button">Clear</button></div></div>
+      <p id="regeneration-note" class="help" hidden></p>
+      <div id="grid-gallery-picker" hidden><label for="grid-gallery">Pose gallery</label><select id="grid-gallery"></select></div>
+      <div id="tag-filters" aria-label="Filter by tag"></div>
+      <div id="empty-state">
+        <div class="empty-drawing" aria-hidden="true"><svg viewBox="0 0 200 260"><ellipse cx="104" cy="40" rx="22" ry="29"/><path d="M103 12v56m-20-31 42 4M91 69l-21 15 10 61 42-1 19-62-25-14M72 86l-26 47 13 8 24-38m53-17 27 48-14 8-20-40M80 145l-11 44-8 46 17 4 21-83m22-12 14 43 14 46-16 6-28-83M61 235l-12 14 29-2v-8m56 0 2 11 28-1-15-16"/><circle cx="72" cy="86" r="9"/><circle cx="136" cy="86" r="9"/><circle cx="54" cy="136" r="8"/><circle cx="157" cy="136" r="8"/><circle cx="77" cy="186" r="9"/><circle cx="132" cy="186" r="9"/><path class="guide" d="M83 108q21 14 48 1M79 144q24-12 43 0M100 76v67"/></svg></div>
+        <h3>A folder in. A reference library out.</h3><p>Your source images appear here. Select one for a test or queue the whole folder.</p><span class="empty-footnote">Exact pose · clean linework · white background</span>
+      </div>
+      <div id="gallery" class="gallery"></div>
+    </main>
+  </div>
+  <dialog id="comparison">
+    <div class="dialog-header"><div><span class="eyebrow">POSE CHECK</span><h2 id="compare-title"></h2></div><button id="close-comparison" class="secondary" type="button">Close</button></div>
+    <div class="comparison-caption"><p id="compare-hint"></p><div class="comparison-actions"><button id="compare-caption" type="button" class="secondary" hidden>Caption</button><button id="compare-delete" type="button" class="text-button card-delete" hidden>Delete</button><button id="compare-regenerate" type="button" class="secondary" hidden>Regenerate</button><a id="download-depth" download="depth.png" hidden>Depth PNG</a><a id="download" download="pose.png">Download PNG ↗</a></div></div>
+    <div class="comparison-layout"><div>
+    <div class="comparison-view">
+      <img id="compare-source" alt="Source photograph">
+      <div id="compare-surface" class="comparison-stage" hidden><img id="compare-output" alt="Generated mannequin drawing with an original-photo reveal"></div>
+    </div>
+    <label id="compare-controls" for="compare-reveal" hidden><span>Original reveal</span><input id="compare-reveal" type="range" min="0" max="100" value="0" step="1"><span>0–100%</span></label>
+    </div>
+    <form id="drawing-editor" hidden>
+      <label for="drawing-label">Image caption</label>
+      <textarea id="drawing-label" rows="3" maxlength="150"></textarea>
+      <div id="drawing-tags"></div>
+      <div class="drawing-edit-actions">
+        <button id="save-drawing" class="primary compact" type="submit" disabled>Save changes</button>
+        <button id="reset-drawing" class="text-button" type="button" hidden>Reload saved values</button>
+      </div>
+      <p id="drawing-status" class="help" role="status"></p>
+    </form>
+    </div>
+  </dialog>
+  <dialog id="folder-editor">
+    <form id="rename-form"><h2>Rename folder</h2>
+      <label for="folder-label">Folder name</label><input id="folder-label" maxlength="100" required>
+      <button type="submit" class="primary compact">Save name</button>
+      <button type="button" class="secondary" data-close="folder-editor">Cancel</button>
+      <p class="help" role="alert"></p>
+    </form>
+  </dialog>
+  <dialog id="addition">
+    <h2>Add images</h2><label for="add-kind">Image type</label>
+    <select id="add-kind"><option value="drawing">Finished mannequin PNGs</option><option value="photo">Source photos to generate</option></select>
+    <label for="add-files">Images</label><input id="add-files" type="file" accept="image/png" multiple>
+    <button id="add-submit" type="button" class="primary compact">Import drawings</button>
+    <button type="button" class="secondary" data-close="addition">Close</button>
+    <p class="help" role="status"></p>
+  </dialog>
+  <dialog id="tag-editor">
+    <h2>Global tags</h2><p class="help">Each row is a filter shared by all folders. Click a tag to remove it.</p>
+    <div id="tag-rows"></div>
+    <button id="add-tag-row" type="button" class="secondary">Add row</button>
+    <button id="save-tags" type="button" class="primary compact">Save global tags</button>
+    <button type="button" class="secondary" data-close="tag-editor">Cancel</button>
+    <p class="help" role="status"></p>
+  </dialog>
+</body>
+</html>
