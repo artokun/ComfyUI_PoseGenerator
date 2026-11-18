@@ -15,7 +15,7 @@ def test_images_and_prompt_match_selected_references(local_library):
     node = PoseOutfitReference()
     pose, outfit, prompt, pose_text, outfit_text = node.generate(
         "pose-a", "outfit-a", "a traveler", DEFAULT_TEMPLATE, "soft lighting"
-    )
+    )[:5]
     assert pose.shape == outfit.shape == (1, 8, 12, 3)
     assert pose.dtype == torch.float32
     assert pose[0, 0, 0].tolist() == [1, 0, 0]
@@ -28,7 +28,8 @@ def test_images_and_prompt_match_selected_references(local_library):
 def test_optional_selections_and_overrides(local_library):
     output = PoseOutfitReference().generate("None", "None", "a traveler", DEFAULT_TEMPLATE, "")
     assert output[0].shape == output[1].shape == (1, 1, 1, 3)
-    assert output[2:] == ("a traveler", "", "")
+    assert output[2:5] == ("a traveler", "", "")
+    assert output[5:] == (None, None, None, 0, 0)
     output = PoseOutfitReference().generate("pose-a", "outfit-a", "a traveler", DEFAULT_TEMPLATE, "", "running", "wearing boots")
     assert output[2] == "a traveler, running, wearing boots"
 
@@ -229,7 +230,56 @@ def test_folder_gallery_can_carry_outfits(tmp_path, monkeypatch):
     (mine / "catalog.json").write_text(json.dumps({"schema_version": 1, "pose": [], "outfit": [row]}))
     assert "My Outfits" not in [g["label"] for g in library.gallery_index()[0]]  # no poses: not a pose gallery
     outfit_id = next(key for key in choices("outfit") if key != "None")
-    _, outfit, prompt, _, outfit_text = PoseOutfitReference().generate("None", outfit_id, "a", DEFAULT_TEMPLATE, "")
+    _, outfit, prompt, _, outfit_text = PoseOutfitReference().generate("None", outfit_id, "a", DEFAULT_TEMPLATE, "")[:5]
     assert outfit[0, 0, 0].tolist() == [0, 1, 0]
     assert outfit_text == "wearing a green coat"
     library._read_catalog.cache_clear()
+
+
+H3 = "<Picture {n}>"
+
+
+def test_subject_first_numbers_pictures_and_writes_an_edit_instruction(local_library):
+    photo = torch.rand(2, 600, 400, 3)
+    output = PoseOutfitReference().generate("pose-a", "outfit-a", "a traveler", DEFAULT_TEMPLATE, "soft lighting",
+                                            picture_tag=H3, megapixels=1.0, subject_image=photo)
+    assert output[2] == (
+        "Edit <Picture 1>: show a traveler from <Picture 1>, keeping their face, hair and body, "
+        "in the exact pose of the mannequin drawing in <Picture 2> (copy only the pose, not its look): standing, front view, "
+        "wearing the outfit shown in <Picture 3> (only the clothes, not its background): a blue jacket, soft lighting"
+    )
+    picture_1, picture_2, picture_3, width, height = output[5:]
+    assert picture_1.shape == (1, height, width, 3) and width % 32 == height % 32 == 0
+    assert abs(width * height - 1_000_000) < 80_000 and abs(width / height - 400 / 600) < 0.05
+    assert picture_2[0, 0, 0].tolist() == [1, 0, 0] and picture_3[0, 0, 0].tolist() == [0, 1, 0]
+
+
+def test_pose_first_edits_the_drawing_and_skips_missing_pictures(local_library):
+    photo = torch.rand(1, 64, 64, 3)
+    node = PoseOutfitReference()
+    output = node.generate("pose-a", "None", "a traveler", DEFAULT_TEMPLATE, "", picture_tag="image {n}",
+                           edit_target="Pose", reference_text="Image only", subject_image=photo)
+    assert output[2] == ("Edit image 1: turn the mannequin drawing into a photo of a traveler from image 2, "
+                         "keeping their face, hair and body, keeping the exact pose, framing and camera angle of the mannequin drawing in image 1")
+    assert output[5][0, 0, 0].tolist() == [1, 0, 0] and output[6] is photo[:1] or torch.equal(output[6], photo[:1])
+    assert output[7] is None
+    # No subject photo: the outfit is the only picture, so it is picture 1 and nothing is "edited".
+    output = node.generate("None", "outfit-a", "a traveler", DEFAULT_TEMPLATE, "", picture_tag=H3)
+    assert output[2] == "a traveler, wearing the outfit shown in <Picture 1> (only the clothes, not its background): a blue jacket"
+    assert output[6] is None and output[7] is None
+
+
+def test_empty_picture_tag_keeps_the_plain_prompt_and_bad_tags_are_rejected(local_library):
+    photo = torch.rand(1, 64, 64, 3)
+    output = PoseOutfitReference().generate("pose-a", "outfit-a", "a traveler", DEFAULT_TEMPLATE, "", subject_image=photo)
+    assert output[2] == "a traveler, standing, front view, wearing a blue jacket"
+    assert output[5] is not None  # pictures are still handed out in order
+    message = PoseOutfitReference.VALIDATE_INPUTS("None", "None", DEFAULT_TEMPLATE, "Picture")
+    assert "{n}" in message
+
+
+def test_new_widgets_and_outputs_are_appended_for_saved_workflows():
+    optional = list(PoseOutfitReference.INPUT_TYPES()["optional"])
+    assert optional[:3] == ["pose_override", "outfit_override", "pose_image_mode"]
+    assert optional[3:] == ["picture_tag", "edit_target", "megapixels", "reference_text", "subject_image"]
+    assert PoseOutfitReference.RETURN_NAMES[:5] == ("pose_image", "outfit_image", "positive_prompt", "pose_text", "outfit_text")
