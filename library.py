@@ -118,9 +118,13 @@ def _gallery_index(sources):
     for key, label, stamp in sources:
         root = Path(stamp[0]).parent
         local = _read_catalog(stamp)
-        galleries.append({"id": key, "label": label})
+        # The list feeds the Pose gallery picker: skip a missing original catalog and
+        # galleries that only carry outfits.
+        if (stamp[1] if key == "main" else local["pose"]):
+            galleries.append({"id": key, "label": label})
         stable_ids = _studio_pose_ids(root) if key.startswith("studio.") else {}
-        for kind in (("pose", "outfit") if key == "main" else ("pose",)):
+        # Studio runs are pose sets; the original gallery and folder galleries may also carry outfits.
+        for kind in (("pose",) if key.startswith("studio.") else ("pose", "outfit")):
             for local_id, entry in local[kind].items():
                 identity = local_id
                 if key != "main":

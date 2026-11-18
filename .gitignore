@@ -11,6 +11,10 @@ __pycache__/
 # Generated pose galleries (Pose Studio runs, batch outputs under any name) stay local.
 /assets/*/
 !/assets/registry/
+# Galleries made with Pose Studio from our own photos; these ship (see scripts/bundle_gallery.py).
+!/assets/Instagram Poses/
+!/assets/OF poses/
+!/assets/Outfits/
 /test-results/
 /.playwright-mcp/
 .env

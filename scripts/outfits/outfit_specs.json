@@ -1,0 +1,3984 @@
+[
+ {
+  "id": "preppy_O001",
+  "label": "Sage cropped cardigan, cream lace cami, plaid pleated mini skirt, ruffle socks, platform loafers",
+  "prompt": "wearing a sage-green cropped knit cardigan over a cream lace camisole, a sage and cream plaid pleated mini skirt, white ruffled ankle socks and cream platform loafers",
+  "category": "Preppy",
+  "tags": [
+   "ankle socks",
+   "autumn",
+   "camisole",
+   "cardigan",
+   "cream",
+   "knit",
+   "lace",
+   "loafers",
+   "plaid",
+   "sage green",
+   "skirt",
+   "spring",
+   "white"
+  ],
+  "tag_groups": {
+   "Top": [
+    "cardigan",
+    "camisole"
+   ],
+   "Bottom": [
+    "skirt"
+   ],
+   "Legs": [
+    "ankle socks"
+   ],
+   "Feet": [
+    "loafers"
+   ],
+   "Colors": [
+    "sage green",
+    "cream",
+    "white"
+   ],
+   "Patterns & fabrics": [
+    "plaid",
+    "lace",
+    "knit"
+   ],
+   "Season": [
+    "spring",
+    "autumn"
+   ]
+  }
+ },
+ {
+  "id": "casual_O001",
+  "label": "Oversized grey hoodie, light-wash straight jeans, white sneakers",
+  "prompt": "wearing an oversized heather-grey hoodie, light-wash straight-leg jeans and white low-top sneakers",
+  "category": "Casual",
+  "tags": [
+   "autumn",
+   "denim",
+   "fleece",
+   "grey",
+   "hoodie",
+   "jeans",
+   "light blue",
+   "sneakers",
+   "spring",
+   "white"
+  ],
+  "tag_groups": {
+   "Top": [
+    "hoodie"
+   ],
+   "Bottom": [
+    "jeans"
+   ],
+   "Feet": [
+    "sneakers"
+   ],
+   "Colors": [
+    "grey",
+    "light blue",
+    "white"
+   ],
+   "Patterns & fabrics": [
+    "denim",
+    "fleece"
+   ],
+   "Season": [
+    "autumn",
+    "spring"
+   ]
+  }
+ },
+ {
+  "id": "casual_O002",
+  "label": "Striped boat-neck tee, cuffed cropped jeans, canvas slip-ons, tote",
+  "prompt": "wearing a navy and white striped boat-neck tee, cuffed cropped jeans, white canvas slip-on shoes and a beige canvas tote bag",
+  "category": "Casual",
+  "tags": [
+   "bag",
+   "beige",
+   "blue",
+   "canvas",
+   "denim",
+   "jeans",
+   "navy",
+   "slip-ons",
+   "spring",
+   "stripes",
+   "summer",
+   "t-shirt",
+   "white"
+  ],
+  "tag_groups": {
+   "Top": [
+    "t-shirt"
+   ],
+   "Bottom": [
+    "jeans"
+   ],
+   "Feet": [
+    "slip-ons"
+   ],
+   "Accessories": [
+    "bag"
+   ],
+   "Colors": [
+    "navy",
+    "white",
+    "blue",
+    "beige"
+   ],
+   "Patterns & fabrics": [
+    "stripes",
+    "denim",
+    "canvas"
+   ],
+   "Season": [
+    "spring",
+    "summer"
+   ]
+  }
+ },
+ {
+  "id": "casual_O003",
+  "label": "Rust ribbed tank, olive cargo pants, chunky sandals",
+  "prompt": "wearing a rust ribbed tank top, olive green cargo pants and black chunky strap sandals",
+  "category": "Casual",
+  "tags": [
+   "black",
+   "cargo pants",
+   "cotton",
+   "olive green",
+   "ribbed knit",
+   "rust",
+   "sandals",
+   "summer",
+   "tank top"
+  ],
+  "tag_groups": {
+   "Top": [
+    "tank top"
+   ],
+   "Bottom": [
+    "cargo pants"
+   ],
+   "Feet": [
+    "sandals"
+   ],
+   "Colors": [
+    "rust",
+    "olive green",
+    "black"
+   ],
+   "Patterns & fabrics": [
+    "ribbed knit",
+    "cotton"
+   ],
+   "Season": [
+    "summer"
+   ]
+  }
+ },
+ {
+  "id": "casual_O004",
+  "label": "Cream cable-knit sweater, dark jeans, tan ankle boots, plaid scarf",
+  "prompt": "wearing a cream cable-knit crewneck sweater, dark indigo skinny jeans, tan suede ankle boots and a red plaid scarf",
+  "category": "Casual",
+  "tags": [
+   "ankle boots",
+   "autumn",
+   "cable knit",
+   "cream",
+   "denim",
+   "indigo",
+   "jeans",
+   "plaid",
+   "red",
+   "scarf",
+   "suede",
+   "sweater",
+   "tan",
+   "winter"
+  ],
+  "tag_groups": {
+   "Top": [
+    "sweater"
+   ],
+   "Bottom": [
+    "jeans"
+   ],
+   "Feet": [
+    "ankle boots"
+   ],
+   "Accessories": [
+    "scarf"
+   ],
+   "Colors": [
+    "cream",
+    "indigo",
+    "tan",
+    "red"
+   ],
+   "Patterns & fabrics": [
+    "cable knit",
+    "denim",
+    "suede",
+    "plaid"
+   ],
+   "Season": [
+    "autumn",
+    "winter"
+   ]
+  }
+ },
+ {
+  "id": "casual_O005",
+  "label": "Denim shirt dress with belt, white sneakers",
+  "prompt": "wearing a mid-blue denim button-front shirt dress with a tan leather belt and white sneakers",
+  "category": "Casual",
+  "tags": [
+   "belt",
+   "blue",
+   "denim",
+   "leather",
+   "shirt dress",
+   "sneakers",
+   "spring",
+   "summer",
+   "tan",
+   "white"
+  ],
+  "tag_groups": {
+   "Full body": [
+    "shirt dress"
+   ],
+   "Feet": [
+    "sneakers"
+   ],
+   "Accessories": [
+    "belt"
+   ],
+   "Colors": [
+    "blue",
+    "tan",
+    "white"
+   ],
+   "Patterns & fabrics": [
+    "denim",
+    "leather"
+   ],
+   "Season": [
+    "spring",
+    "summer"
+   ]
+  }
+ },
+ {
+  "id": "preppy_O002",
+  "label": "Navy blazer, white shirt, pleated tennis skirt, knee socks, loafers",
+  "prompt": "wearing a navy single-breasted blazer over a white collared shirt, a white pleated tennis skirt, navy knee-high socks and black penny loafers",
+  "category": "Preppy",
+  "tags": [
+   "autumn",
+   "black",
+   "blazer",
+   "knee-high socks",
+   "loafers",
+   "navy",
+   "pleated",
+   "shirt",
+   "skirt",
+   "spring",
+   "white"
+  ],
+  "tag_groups": {
+   "Outerwear": [
+    "blazer"
+   ],
+   "Top": [
+    "shirt"
+   ],
+   "Bottom": [
+    "skirt"
+   ],
+   "Legs": [
+    "knee-high socks"
+   ],
+   "Feet": [
+    "loafers"
+   ],
+   "Colors": [
+    "navy",
+    "white",
+    "black"
+   ],
+   "Patterns & fabrics": [
+    "pleated"
+   ],
+   "Season": [
+    "spring",
+    "autumn"
+   ]
+  }
+ },
+ {
+  "id": "preppy_O003",
+  "label": "Cable-knit sweater vest, oxford shirt, plaid kilt skirt, tights, Mary Janes",
+  "prompt": "wearing a cream cable-knit sweater vest over a light-blue oxford shirt, a red and green plaid kilt skirt, black opaque tights and black Mary Jane shoes",
+  "category": "Preppy",
+  "tags": [
+   "autumn",
+   "black",
+   "cable knit",
+   "cream",
+   "green",
+   "light blue",
+   "mary janes",
+   "plaid",
+   "red",
+   "shirt",
+   "skirt",
+   "sweater vest",
+   "tights",
+   "winter"
+  ],
+  "tag_groups": {
+   "Top": [
+    "sweater vest",
+    "shirt"
+   ],
+   "Bottom": [
+    "skirt"
+   ],
+   "Legs": [
+    "tights"
+   ],
+   "Feet": [
+    "mary janes"
+   ],
+   "Colors": [
+    "cream",
+    "light blue",
+    "red",
+    "green",
+    "black"
+   ],
+   "Patterns & fabrics": [
+    "cable knit",
+    "plaid"
+   ],
+   "Season": [
+    "autumn",
+    "winter"
+   ]
+  }
+ },
+ {
+  "id": "preppy_O004",
+  "label": "Striped rugby shirt, khaki chino shorts, boat shoes",
+  "prompt": "wearing a green and white striped rugby shirt, khaki chino shorts and brown leather boat shoes",
+  "category": "Preppy",
+  "tags": [
+   "boat shoes",
+   "brown",
+   "cotton",
+   "green",
+   "khaki",
+   "rugby shirt",
+   "shorts",
+   "spring",
+   "stripes",
+   "summer",
+   "white"
+  ],
+  "tag_groups": {
+   "Top": [
+    "rugby shirt"
+   ],
+   "Bottom": [
+    "shorts"
+   ],
+   "Feet": [
+    "boat shoes"
+   ],
+   "Colors": [
+    "green",
+    "white",
+    "khaki",
+    "brown"
+   ],
+   "Patterns & fabrics": [
+    "stripes",
+    "cotton"
+   ],
+   "Season": [
+    "summer",
+    "spring"
+   ]
+  }
+ },
+ {
+  "id": "preppy_O005",
+  "label": "Camel duffle coat, grey turtleneck, houndstooth mini skirt, tights, riding boots",
+  "prompt": "wearing a camel duffle coat with toggles, a grey turtleneck, a black and white houndstooth mini skirt, black tights and brown knee-high riding boots",
+  "category": "Preppy",
+  "tags": [
+   "autumn",
+   "black",
+   "brown",
+   "camel",
+   "coat",
+   "grey",
+   "houndstooth",
+   "riding boots",
+   "skirt",
+   "tights",
+   "turtleneck",
+   "white",
+   "winter",
+   "wool"
+  ],
+  "tag_groups": {
+   "Outerwear": [
+    "coat"
+   ],
+   "Top": [
+    "turtleneck"
+   ],
+   "Bottom": [
+    "skirt"
+   ],
+   "Legs": [
+    "tights"
+   ],
+   "Feet": [
+    "riding boots"
+   ],
+   "Colors": [
+    "camel",
+    "grey",
+    "black",
+    "white",
+    "brown"
+   ],
+   "Patterns & fabrics": [
+    "houndstooth",
+    "wool"
+   ],
+   "Season": [
+    "winter",
+    "autumn"
+   ]
+  }
+ },
+ {
+  "id": "preppy_O006",
+  "label": "Pastel cardigan, collared blouse, A-line skirt, ankle socks, ballet flats, headband",
+  "prompt": "wearing a powder-pink cardigan over a white Peter Pan collar blouse, a navy A-line skirt, white ankle socks, navy ballet flats and a navy padded headband",
+  "category": "Preppy",
+  "tags": [
+   "ankle socks",
+   "ballet flats",
+   "blouse",
+   "cardigan",
+   "headband",
+   "knit",
+   "navy",
+   "pink",
+   "skirt",
+   "spring",
+   "white"
+  ],
+  "tag_groups": {
+   "Head": [
+    "headband"
+   ],
+   "Top": [
+    "cardigan",
+    "blouse"
+   ],
+   "Bottom": [
+    "skirt"
+   ],
+   "Legs": [
+    "ankle socks"
+   ],
+   "Feet": [
+    "ballet flats"
+   ],
+   "Colors": [
+    "pink",
+    "white",
+    "navy"
+   ],
+   "Patterns & fabrics": [
+    "knit"
+   ],
+   "Season": [
+    "spring"
+   ]
+  }
+ },
+ {
+  "id": "streetwear_O001",
+  "label": "Black puffer jacket, graphic tee, baggy cargo pants, chunky sneakers, beanie",
+  "prompt": "wearing a cropped black puffer jacket over a white graphic tee, baggy grey cargo pants, chunky white-and-grey sneakers and a black beanie",
+  "category": "Streetwear",
+  "tags": [
+   "autumn",
+   "beanie",
+   "black",
+   "cargo pants",
+   "cotton",
+   "grey",
+   "nylon",
+   "puffer jacket",
+   "sneakers",
+   "t-shirt",
+   "white",
+   "winter"
+  ],
+  "tag_groups": {
+   "Head": [
+    "beanie"
+   ],
+   "Outerwear": [
+    "puffer jacket"
+   ],
+   "Top": [
+    "t-shirt"
+   ],
+   "Bottom": [
+    "cargo pants"
+   ],
+   "Feet": [
+    "sneakers"
+   ],
+   "Colors": [
+    "black",
+    "white",
+    "grey"
+   ],
+   "Patterns & fabrics": [
+    "nylon",
+    "cotton"
+   ],
+   "Season": [
+    "winter",
+    "autumn"
+   ]
+  }
+ },
+ {
+  "id": "streetwear_O002",
+  "label": "Oversized varsity jacket, crop top, wide-leg jeans, high-top sneakers",
+  "prompt": "wearing an oversized burgundy and cream varsity jacket, a black crop top, baggy wide-leg light-wash jeans and white high-top sneakers",
+  "category": "Streetwear",
+  "tags": [
+   "autumn",
+   "black",
+   "burgundy",
+   "cream",
+   "crop top",
+   "denim",
+   "high-top sneakers",
+   "jeans",
+   "light blue",
+   "spring",
+   "varsity jacket",
+   "white",
+   "wool"
+  ],
+  "tag_groups": {
+   "Outerwear": [
+    "varsity jacket"
+   ],
+   "Top": [
+    "crop top"
+   ],
+   "Bottom": [
+    "jeans"
+   ],
+   "Feet": [
+    "high-top sneakers"
+   ],
+   "Colors": [
+    "burgundy",
+    "cream",
+    "black",
+    "light blue",
+    "white"
+   ],
+   "Patterns & fabrics": [
+    "denim",
+    "wool"
+   ],
+   "Season": [
+    "autumn",
+    "spring"
+   ]
+  }
+ },
+ {
+  "id": "streetwear_O003",
+  "label": "Tie-dye hoodie, bike shorts, crew socks, dad sneakers, bucket hat",
+  "prompt": "wearing a pastel tie-dye hoodie, black bike shorts, white crew socks, chunky dad sneakers and a black bucket hat",
+  "category": "Streetwear",
+  "tags": [
+   "bike shorts",
+   "black",
+   "bucket hat",
+   "crew socks",
+   "hoodie",
+   "jersey",
+   "pastel",
+   "sneakers",
+   "spring",
+   "summer",
+   "tie-dye",
+   "white"
+  ],
+  "tag_groups": {
+   "Head": [
+    "bucket hat"
+   ],
+   "Top": [
+    "hoodie"
+   ],
+   "Bottom": [
+    "bike shorts"
+   ],
+   "Legs": [
+    "crew socks"
+   ],
+   "Feet": [
+    "sneakers"
+   ],
+   "Colors": [
+    "pastel",
+    "black",
+    "white"
+   ],
+   "Patterns & fabrics": [
+    "tie-dye",
+    "jersey"
+   ],
+   "Season": [
+    "summer",
+    "spring"
+   ]
+  }
+ },
+ {
+  "id": "streetwear_O004",
+  "label": "Camo jacket, black hoodie, parachute pants, combat boots",
+  "prompt": "wearing an oversized green camo jacket over a black hoodie, black nylon parachute pants and black lace-up combat boots",
+  "category": "Streetwear",
+  "tags": [
+   "autumn",
+   "black",
+   "camouflage",
+   "combat boots",
+   "green",
+   "hoodie",
+   "jacket",
+   "nylon",
+   "parachute pants"
+  ],
+  "tag_groups": {
+   "Outerwear": [
+    "jacket"
+   ],
+   "Top": [
+    "hoodie"
+   ],
+   "Bottom": [
+    "parachute pants"
+   ],
+   "Feet": [
+    "combat boots"
+   ],
+   "Colors": [
+    "green",
+    "black"
+   ],
+   "Patterns & fabrics": [
+    "camouflage",
+    "nylon"
+   ],
+   "Season": [
+    "autumn"
+   ]
+  }
+ },
+ {
+  "id": "streetwear_O005",
+  "label": "Track jacket, sports bra top, track pants, slide sandals, crossbody bag",
+  "prompt": "wearing a red and white track jacket, a black sports bra top, matching red track pants with side stripes, black slide sandals and a small black crossbody bag",
+  "category": "Streetwear",
+  "tags": [
+   "bag",
+   "black",
+   "polyester",
+   "red",
+   "slides",
+   "sports bra",
+   "spring",
+   "stripes",
+   "summer",
+   "track jacket",
+   "track pants",
+   "white"
+  ],
+  "tag_groups": {
+   "Outerwear": [
+    "track jacket"
+   ],
+   "Top": [
+    "sports bra"
+   ],
+   "Bottom": [
+    "track pants"
+   ],
+   "Feet": [
+    "slides"
+   ],
+   "Accessories": [
+    "bag"
+   ],
+   "Colors": [
+    "red",
+    "white",
+    "black"
+   ],
+   "Patterns & fabrics": [
+    "stripes",
+    "polyester"
+   ],
+   "Season": [
+    "spring",
+    "summer"
+   ]
+  }
+ },
+ {
+  "id": "formal_O001",
+  "label": "Black satin column gown, strappy heels, clutch",
+  "prompt": "wearing a floor-length black satin column gown with thin straps, silver strappy heels and a small silver clutch",
+  "category": "Formal",
+  "tags": [
+   "autumn",
+   "black",
+   "clutch",
+   "gown",
+   "heels",
+   "satin",
+   "silver",
+   "winter"
+  ],
+  "tag_groups": {
+   "Full body": [
+    "gown"
+   ],
+   "Feet": [
+    "heels"
+   ],
+   "Accessories": [
+    "clutch"
+   ],
+   "Colors": [
+    "black",
+    "silver"
+   ],
+   "Patterns & fabrics": [
+    "satin"
+   ],
+   "Season": [
+    "winter",
+    "autumn"
+   ]
+  }
+ },
+ {
+  "id": "formal_O002",
+  "label": "Emerald velvet wrap dress, sheer tights, pointed pumps",
+  "prompt": "wearing an emerald green velvet wrap midi dress, sheer black tights and black pointed-toe pumps",
+  "category": "Formal",
+  "tags": [
+   "black",
+   "dress",
+   "emerald green",
+   "pumps",
+   "tights",
+   "velvet",
+   "winter"
+  ],
+  "tag_groups": {
+   "Full body": [
+    "dress"
+   ],
+   "Legs": [
+    "tights"
+   ],
+   "Feet": [
+    "pumps"
+   ],
+   "Colors": [
+    "emerald green",
+    "black"
+   ],
+   "Patterns & fabrics": [
+    "velvet"
+   ],
+   "Season": [
+    "winter"
+   ]
+  }
+ },
+ {
+  "id": "formal_O003",
+  "label": "Ivory tuxedo jumpsuit, gold belt, nude heels",
+  "prompt": "wearing an ivory tailored tuxedo jumpsuit with satin lapels, a slim gold belt and nude pointed heels",
+  "category": "Formal",
+  "tags": [
+   "belt",
+   "crepe",
+   "gold",
+   "heels",
+   "ivory",
+   "jumpsuit",
+   "nude",
+   "satin",
+   "spring",
+   "summer"
+  ],
+  "tag_groups": {
+   "Full body": [
+    "jumpsuit"
+   ],
+   "Feet": [
+    "heels"
+   ],
+   "Accessories": [
+    "belt"
+   ],
+   "Colors": [
+    "ivory",
+    "gold",
+    "nude"
+   ],
+   "Patterns & fabrics": [
+    "satin",
+    "crepe"
+   ],
+   "Season": [
+    "spring",
+    "summer"
+   ]
+  }
+ },
+ {
+  "id": "formal_O004",
+  "label": "Dusty-blue chiffon gown with cape sleeves, silver sandals",
+  "prompt": "wearing a floor-length dusty-blue chiffon gown with flowing cape sleeves and silver heeled sandals",
+  "category": "Formal",
+  "tags": [
+   "chiffon",
+   "dusty blue",
+   "gown",
+   "heeled sandals",
+   "silver",
+   "spring",
+   "summer"
+  ],
+  "tag_groups": {
+   "Full body": [
+    "gown"
+   ],
+   "Feet": [
+    "heeled sandals"
+   ],
+   "Colors": [
+    "dusty blue",
+    "silver"
+   ],
+   "Patterns & fabrics": [
+    "chiffon"
+   ],
+   "Season": [
+    "spring",
+    "summer"
+   ]
+  }
+ },
+ {
+  "id": "formal_O005",
+  "label": "Red one-shoulder cocktail dress, black heels, statement earrings",
+  "prompt": "wearing a red one-shoulder knee-length cocktail dress, black stiletto heels and gold statement earrings",
+  "category": "Formal",
+  "tags": [
+   "autumn",
+   "black",
+   "cocktail dress",
+   "crepe",
+   "gold",
+   "heels",
+   "jewelry",
+   "red",
+   "winter"
+  ],
+  "tag_groups": {
+   "Full body": [
+    "cocktail dress"
+   ],
+   "Feet": [
+    "heels"
+   ],
+   "Accessories": [
+    "jewelry"
+   ],
+   "Colors": [
+    "red",
+    "black",
+    "gold"
+   ],
+   "Patterns & fabrics": [
+    "crepe"
+   ],
+   "Season": [
+    "winter",
+    "autumn"
+   ]
+  }
+ },
+ {
+  "id": "business_O001",
+  "label": "Charcoal pantsuit, white blouse, black loafers, leather tote",
+  "prompt": "wearing a charcoal grey tailored pantsuit with a single-breasted blazer, a white silk blouse, black leather loafers and a black structured leather tote",
+  "category": "Business",
+  "tags": [
+   "autumn",
+   "bag",
+   "black",
+   "blazer",
+   "blouse",
+   "charcoal",
+   "leather",
+   "loafers",
+   "silk",
+   "spring",
+   "trousers",
+   "white",
+   "winter",
+   "wool"
+  ],
+  "tag_groups": {
+   "Outerwear": [
+    "blazer"
+   ],
+   "Top": [
+    "blouse"
+   ],
+   "Bottom": [
+    "trousers"
+   ],
+   "Feet": [
+    "loafers"
+   ],
+   "Accessories": [
+    "bag"
+   ],
+   "Colors": [
+    "charcoal",
+    "white",
+    "black"
+   ],
+   "Patterns & fabrics": [
+    "wool",
+    "silk",
+    "leather"
+   ],
+   "Season": [
+    "autumn",
+    "winter",
+    "spring"
+   ]
+  }
+ },
+ {
+  "id": "business_O002",
+  "label": "Camel trench coat, black turtleneck, pencil skirt, tights, block heels",
+  "prompt": "wearing a camel belted trench coat, a black fine-knit turtleneck, a black pencil skirt, sheer black tights and black block-heel pumps",
+  "category": "Business",
+  "tags": [
+   "autumn",
+   "black",
+   "block heels",
+   "camel",
+   "gabardine",
+   "knit",
+   "pencil skirt",
+   "spring",
+   "tights",
+   "trench coat",
+   "turtleneck"
+  ],
+  "tag_groups": {
+   "Outerwear": [
+    "trench coat"
+   ],
+   "Top": [
+    "turtleneck"
+   ],
+   "Bottom": [
+    "pencil skirt"
+   ],
+   "Legs": [
+    "tights"
+   ],
+   "Feet": [
+    "block heels"
+   ],
+   "Colors": [
+    "camel",
+    "black"
+   ],
+   "Patterns & fabrics": [
+    "gabardine",
+    "knit"
+   ],
+   "Season": [
+    "autumn",
+    "spring"
+   ]
+  }
+ },
+ {
+  "id": "business_O003",
+  "label": "Cream knit vest, wide-leg trousers, pointed flats",
+  "prompt": "wearing a cream V-neck knit vest, high-waisted taupe wide-leg trousers and cream pointed-toe flats",
+  "category": "Business",
+  "tags": [
+   "autumn",
+   "cream",
+   "flats",
+   "knit",
+   "knit vest",
+   "spring",
+   "taupe",
+   "trousers",
+   "wool"
+  ],
+  "tag_groups": {
+   "Top": [
+    "knit vest"
+   ],
+   "Bottom": [
+    "trousers"
+   ],
+   "Feet": [
+    "flats"
+   ],
+   "Colors": [
+    "cream",
+    "taupe"
+   ],
+   "Patterns & fabrics": [
+    "knit",
+    "wool"
+   ],
+   "Season": [
+    "spring",
+    "autumn"
+   ]
+  }
+ },
+ {
+  "id": "business_O004",
+  "label": "Navy sheath dress, cropped cardigan, nude pumps, belt",
+  "prompt": "wearing a navy sheath dress with a thin brown belt, a cropped white cardigan and nude pumps",
+  "category": "Business",
+  "tags": [
+   "belt",
+   "brown",
+   "cardigan",
+   "crepe",
+   "knit",
+   "navy",
+   "nude",
+   "pumps",
+   "sheath dress",
+   "spring",
+   "summer",
+   "white"
+  ],
+  "tag_groups": {
+   "Top": [
+    "cardigan"
+   ],
+   "Full body": [
+    "sheath dress"
+   ],
+   "Feet": [
+    "pumps"
+   ],
+   "Accessories": [
+    "belt"
+   ],
+   "Colors": [
+    "navy",
+    "white",
+    "brown",
+    "nude"
+   ],
+   "Patterns & fabrics": [
+    "crepe",
+    "knit"
+   ],
+   "Season": [
+    "spring",
+    "summer"
+   ]
+  }
+ },
+ {
+  "id": "business_O005",
+  "label": "Pinstripe blazer, silk shell top, straight trousers, ankle boots",
+  "prompt": "wearing a navy pinstripe blazer, an ivory silk shell top, matching navy pinstripe straight trousers and black heeled ankle boots",
+  "category": "Business",
+  "tags": [
+   "ankle boots",
+   "autumn",
+   "black",
+   "blazer",
+   "ivory",
+   "navy",
+   "pinstripe",
+   "shell top",
+   "silk",
+   "trousers",
+   "winter"
+  ],
+  "tag_groups": {
+   "Outerwear": [
+    "blazer"
+   ],
+   "Top": [
+    "shell top"
+   ],
+   "Bottom": [
+    "trousers"
+   ],
+   "Feet": [
+    "ankle boots"
+   ],
+   "Colors": [
+    "navy",
+    "ivory",
+    "black"
+   ],
+   "Patterns & fabrics": [
+    "pinstripe",
+    "silk"
+   ],
+   "Season": [
+    "autumn",
+    "winter"
+   ]
+  }
+ },
+ {
+  "id": "party_O001",
+  "label": "Silver sequin mini dress, clear heels",
+  "prompt": "wearing a silver sequin long-sleeve mini dress and clear strappy heels",
+  "category": "Party",
+  "tags": [
+   "heels",
+   "mini dress",
+   "sequins",
+   "silver",
+   "winter"
+  ],
+  "tag_groups": {
+   "Full body": [
+    "mini dress"
+   ],
+   "Feet": [
+    "heels"
+   ],
+   "Colors": [
+    "silver"
+   ],
+   "Patterns & fabrics": [
+    "sequins"
+   ],
+   "Season": [
+    "winter"
+   ]
+  }
+ },
+ {
+  "id": "party_O002",
+  "label": "Hot-pink satin corset top, black leather mini skirt, fishnets, platform heels",
+  "prompt": "wearing a hot-pink satin corset top, a black faux-leather mini skirt, black fishnet tights and black platform heels",
+  "category": "Party",
+  "tags": [
+   "black",
+   "corset",
+   "fishnet",
+   "fishnets",
+   "hot pink",
+   "leather",
+   "mini skirt",
+   "platform heels",
+   "satin",
+   "spring",
+   "summer"
+  ],
+  "tag_groups": {
+   "Top": [
+    "corset"
+   ],
+   "Bottom": [
+    "mini skirt"
+   ],
+   "Legs": [
+    "fishnets"
+   ],
+   "Feet": [
+    "platform heels"
+   ],
+   "Colors": [
+    "hot pink",
+    "black"
+   ],
+   "Patterns & fabrics": [
+    "satin",
+    "leather",
+    "fishnet"
+   ],
+   "Season": [
+    "summer",
+    "spring"
+   ]
+  }
+ },
+ {
+  "id": "party_O003",
+  "label": "Black slip dress, faux-fur jacket, strappy sandals",
+  "prompt": "wearing a black satin slip dress under a cropped white faux-fur jacket and black strappy heeled sandals",
+  "category": "Party",
+  "tags": [
+   "autumn",
+   "black",
+   "faux fur",
+   "faux fur jacket",
+   "heeled sandals",
+   "satin",
+   "slip dress",
+   "white",
+   "winter"
+  ],
+  "tag_groups": {
+   "Outerwear": [
+    "faux fur jacket"
+   ],
+   "Full body": [
+    "slip dress"
+   ],
+   "Feet": [
+    "heeled sandals"
+   ],
+   "Colors": [
+    "black",
+    "white"
+   ],
+   "Patterns & fabrics": [
+    "satin",
+    "faux fur"
+   ],
+   "Season": [
+    "winter",
+    "autumn"
+   ]
+  }
+ },
+ {
+  "id": "party_O004",
+  "label": "Metallic gold halter top, black wide-leg trousers, gold heels",
+  "prompt": "wearing a metallic gold halter top, black high-waisted wide-leg trousers and gold strappy heels",
+  "category": "Party",
+  "tags": [
+   "black",
+   "crepe",
+   "gold",
+   "halter top",
+   "heels",
+   "metallic",
+   "summer",
+   "trousers",
+   "winter"
+  ],
+  "tag_groups": {
+   "Top": [
+    "halter top"
+   ],
+   "Bottom": [
+    "trousers"
+   ],
+   "Feet": [
+    "heels"
+   ],
+   "Colors": [
+    "gold",
+    "black"
+   ],
+   "Patterns & fabrics": [
+    "metallic",
+    "crepe"
+   ],
+   "Season": [
+    "summer",
+    "winter"
+   ]
+  }
+ },
+ {
+  "id": "party_O005",
+  "label": "Lilac feather-trim mini dress, sheer tights, kitten heels",
+  "prompt": "wearing a lilac mini dress with feather trim at the hem, sheer nude tights and lilac kitten heels",
+  "category": "Party",
+  "tags": [
+   "feathers",
+   "kitten heels",
+   "lilac",
+   "mini dress",
+   "nude",
+   "satin",
+   "spring",
+   "tights"
+  ],
+  "tag_groups": {
+   "Full body": [
+    "mini dress"
+   ],
+   "Legs": [
+    "tights"
+   ],
+   "Feet": [
+    "kitten heels"
+   ],
+   "Colors": [
+    "lilac",
+    "nude"
+   ],
+   "Patterns & fabrics": [
+    "feathers",
+    "satin"
+   ],
+   "Season": [
+    "spring"
+   ]
+  }
+ },
+ {
+  "id": "sporty_O001",
+  "label": "Lavender sports bra, matching leggings, running sneakers",
+  "prompt": "wearing a lavender sports bra, matching high-waisted lavender leggings and white running sneakers",
+  "category": "Sporty",
+  "tags": [
+   "lavender",
+   "leggings",
+   "running shoes",
+   "spandex",
+   "sports bra",
+   "spring",
+   "summer",
+   "white"
+  ],
+  "tag_groups": {
+   "Top": [
+    "sports bra"
+   ],
+   "Bottom": [
+    "leggings"
+   ],
+   "Feet": [
+    "running shoes"
+   ],
+   "Colors": [
+    "lavender",
+    "white"
+   ],
+   "Patterns & fabrics": [
+    "spandex"
+   ],
+   "Season": [
+    "spring",
+    "summer"
+   ]
+  }
+ },
+ {
+  "id": "sporty_O002",
+  "label": "Tennis polo, pleated tennis skirt, ankle socks, court sneakers, visor",
+  "prompt": "wearing a white sleeveless tennis polo, a navy pleated tennis skirt, white ankle socks, white court sneakers and a white sun visor",
+  "category": "Sporty",
+  "tags": [
+   "ankle socks",
+   "navy",
+   "pique",
+   "pleated",
+   "polo",
+   "skirt",
+   "sneakers",
+   "summer",
+   "visor",
+   "white"
+  ],
+  "tag_groups": {
+   "Head": [
+    "visor"
+   ],
+   "Top": [
+    "polo"
+   ],
+   "Bottom": [
+    "skirt"
+   ],
+   "Legs": [
+    "ankle socks"
+   ],
+   "Feet": [
+    "sneakers"
+   ],
+   "Colors": [
+    "white",
+    "navy"
+   ],
+   "Patterns & fabrics": [
+    "pleated",
+    "pique"
+   ],
+   "Season": [
+    "summer"
+   ]
+  }
+ },
+ {
+  "id": "sporty_O003",
+  "label": "Windbreaker, running shorts, crew socks, trail shoes",
+  "prompt": "wearing a teal and orange color-block windbreaker, black running shorts, grey crew socks and grey trail running shoes",
+  "category": "Sporty",
+  "tags": [
+   "autumn",
+   "black",
+   "color block",
+   "crew socks",
+   "grey",
+   "nylon",
+   "orange",
+   "shorts",
+   "spring",
+   "teal",
+   "trail shoes",
+   "windbreaker"
+  ],
+  "tag_groups": {
+   "Outerwear": [
+    "windbreaker"
+   ],
+   "Bottom": [
+    "shorts"
+   ],
+   "Legs": [
+    "crew socks"
+   ],
+   "Feet": [
+    "trail shoes"
+   ],
+   "Colors": [
+    "teal",
+    "orange",
+    "black",
+    "grey"
+   ],
+   "Patterns & fabrics": [
+    "nylon",
+    "color block"
+   ],
+   "Season": [
+    "spring",
+    "autumn"
+   ]
+  }
+ },
+ {
+  "id": "sporty_O004",
+  "label": "Ribbed seamless set, zip hoodie, sneakers, cap",
+  "prompt": "wearing a sage ribbed seamless crop top and matching bike shorts, an open grey zip-up hoodie, white sneakers and a white baseball cap",
+  "category": "Sporty",
+  "tags": [
+   "bike shorts",
+   "cap",
+   "crop top",
+   "grey",
+   "jersey",
+   "ribbed knit",
+   "sage green",
+   "sneakers",
+   "spring",
+   "summer",
+   "white",
+   "zip hoodie"
+  ],
+  "tag_groups": {
+   "Head": [
+    "cap"
+   ],
+   "Outerwear": [
+    "zip hoodie"
+   ],
+   "Top": [
+    "crop top"
+   ],
+   "Bottom": [
+    "bike shorts"
+   ],
+   "Feet": [
+    "sneakers"
+   ],
+   "Colors": [
+    "sage green",
+    "grey",
+    "white"
+   ],
+   "Patterns & fabrics": [
+    "ribbed knit",
+    "jersey"
+   ],
+   "Season": [
+    "summer",
+    "spring"
+   ]
+  }
+ },
+ {
+  "id": "sporty_O005",
+  "label": "Ski jacket, thermal leggings, snow boots, beanie, gloves",
+  "prompt": "wearing a white insulated ski jacket, black thermal leggings, grey snow boots, a pink knit beanie and pink gloves",
+  "category": "Sporty",
+  "tags": [
+   "beanie",
+   "black",
+   "gloves",
+   "grey",
+   "knit",
+   "leggings",
+   "nylon",
+   "pink",
+   "ski jacket",
+   "snow boots",
+   "white",
+   "winter"
+  ],
+  "tag_groups": {
+   "Head": [
+    "beanie"
+   ],
+   "Outerwear": [
+    "ski jacket"
+   ],
+   "Bottom": [
+    "leggings"
+   ],
+   "Feet": [
+    "snow boots"
+   ],
+   "Accessories": [
+    "gloves"
+   ],
+   "Colors": [
+    "white",
+    "black",
+    "grey",
+    "pink"
+   ],
+   "Patterns & fabrics": [
+    "nylon",
+    "knit"
+   ],
+   "Season": [
+    "winter"
+   ]
+  }
+ },
+ {
+  "id": "loungewear_O001",
+  "label": "Grey knit lounge set, fuzzy slippers",
+  "prompt": "wearing a soft heather-grey knit lounge set with a long-sleeve top and wide-leg pants, and cream fuzzy slippers",
+  "category": "Loungewear",
+  "tags": [
+   "autumn",
+   "cream",
+   "grey",
+   "knit",
+   "knit top",
+   "lounge pants",
+   "slippers",
+   "winter"
+  ],
+  "tag_groups": {
+   "Top": [
+    "knit top"
+   ],
+   "Bottom": [
+    "lounge pants"
+   ],
+   "Feet": [
+    "slippers"
+   ],
+   "Colors": [
+    "grey",
+    "cream"
+   ],
+   "Patterns & fabrics": [
+    "knit"
+   ],
+   "Season": [
+    "winter",
+    "autumn"
+   ]
+  }
+ },
+ {
+  "id": "loungewear_O002",
+  "label": "Satin pajama shirt and shorts, slide slippers",
+  "prompt": "wearing a champagne satin button-up pajama shirt with matching shorts and white slide slippers",
+  "category": "Loungewear",
+  "tags": [
+   "champagne",
+   "pajama shirt",
+   "satin",
+   "shorts",
+   "slippers",
+   "summer",
+   "white"
+  ],
+  "tag_groups": {
+   "Top": [
+    "pajama shirt"
+   ],
+   "Bottom": [
+    "shorts"
+   ],
+   "Feet": [
+    "slippers"
+   ],
+   "Colors": [
+    "champagne",
+    "white"
+   ],
+   "Patterns & fabrics": [
+    "satin"
+   ],
+   "Season": [
+    "summer"
+   ]
+  }
+ },
+ {
+  "id": "loungewear_O003",
+  "label": "Oversized sweatshirt, joggers, wool socks",
+  "prompt": "wearing an oversized sage sweatshirt, cream joggers and grey wool socks",
+  "category": "Loungewear",
+  "tags": [
+   "autumn",
+   "cream",
+   "fleece",
+   "grey",
+   "joggers",
+   "sage green",
+   "sweatshirt",
+   "winter",
+   "wool",
+   "wool socks"
+  ],
+  "tag_groups": {
+   "Top": [
+    "sweatshirt"
+   ],
+   "Bottom": [
+    "joggers"
+   ],
+   "Legs": [
+    "wool socks"
+   ],
+   "Colors": [
+    "sage green",
+    "cream",
+    "grey"
+   ],
+   "Patterns & fabrics": [
+    "fleece",
+    "wool"
+   ],
+   "Season": [
+    "winter",
+    "autumn"
+   ]
+  }
+ },
+ {
+  "id": "loungewear_O004",
+  "label": "Waffle-knit robe over tank and shorts, slippers",
+  "prompt": "wearing a white waffle-knit robe tied over a pale-pink tank top and shorts, and white terry slippers",
+  "category": "Loungewear",
+  "tags": [
+   "pale pink",
+   "robe",
+   "shorts",
+   "slippers",
+   "spring",
+   "summer",
+   "tank top",
+   "terry",
+   "waffle knit",
+   "white"
+  ],
+  "tag_groups": {
+   "Outerwear": [
+    "robe"
+   ],
+   "Top": [
+    "tank top"
+   ],
+   "Bottom": [
+    "shorts"
+   ],
+   "Feet": [
+    "slippers"
+   ],
+   "Colors": [
+    "white",
+    "pale pink"
+   ],
+   "Patterns & fabrics": [
+    "waffle knit",
+    "terry"
+   ],
+   "Season": [
+    "spring",
+    "summer"
+   ]
+  }
+ },
+ {
+  "id": "loungewear_O005",
+  "label": "Plaid flannel pajama set, knit cardigan, socks",
+  "prompt": "wearing a red plaid flannel pajama set, a long oatmeal knit cardigan and cream knit socks",
+  "category": "Loungewear",
+  "tags": [
+   "cardigan",
+   "cream",
+   "flannel",
+   "knit",
+   "knit socks",
+   "oatmeal",
+   "pajama pants",
+   "pajama shirt",
+   "plaid",
+   "red",
+   "winter"
+  ],
+  "tag_groups": {
+   "Top": [
+    "pajama shirt",
+    "cardigan"
+   ],
+   "Bottom": [
+    "pajama pants"
+   ],
+   "Legs": [
+    "knit socks"
+   ],
+   "Colors": [
+    "red",
+    "oatmeal",
+    "cream"
+   ],
+   "Patterns & fabrics": [
+    "plaid",
+    "flannel",
+    "knit"
+   ],
+   "Season": [
+    "winter"
+   ]
+  }
+ },
+ {
+  "id": "boho_O001",
+  "label": "Tiered white maxi dress, suede fringe bag, flat sandals",
+  "prompt": "wearing a white tiered cotton maxi dress with lace trim, flat tan leather sandals and a tan suede fringe bag",
+  "category": "Boho",
+  "tags": [
+   "bag",
+   "cotton",
+   "lace",
+   "maxi dress",
+   "sandals",
+   "suede",
+   "summer",
+   "tan",
+   "white"
+  ],
+  "tag_groups": {
+   "Full body": [
+    "maxi dress"
+   ],
+   "Feet": [
+    "sandals"
+   ],
+   "Accessories": [
+    "bag"
+   ],
+   "Colors": [
+    "white",
+    "tan"
+   ],
+   "Patterns & fabrics": [
+    "cotton",
+    "lace",
+    "suede"
+   ],
+   "Season": [
+    "summer"
+   ]
+  }
+ },
+ {
+  "id": "boho_O002",
+  "label": "Embroidered peasant blouse, flared jeans, wedge sandals, wide-brim hat",
+  "prompt": "wearing a white embroidered peasant blouse, light-wash flared jeans, cork wedge sandals and a wide-brim straw hat",
+  "category": "Boho",
+  "tags": [
+   "blouse",
+   "denim",
+   "embroidery",
+   "jeans",
+   "light blue",
+   "spring",
+   "straw",
+   "summer",
+   "sun hat",
+   "tan",
+   "wedge sandals",
+   "white"
+  ],
+  "tag_groups": {
+   "Head": [
+    "sun hat"
+   ],
+   "Top": [
+    "blouse"
+   ],
+   "Bottom": [
+    "jeans"
+   ],
+   "Feet": [
+    "wedge sandals"
+   ],
+   "Colors": [
+    "white",
+    "light blue",
+    "tan"
+   ],
+   "Patterns & fabrics": [
+    "embroidery",
+    "denim",
+    "straw"
+   ],
+   "Season": [
+    "summer",
+    "spring"
+   ]
+  }
+ },
+ {
+  "id": "boho_O003",
+  "label": "Paisley wrap skirt, crochet top, ankle boots",
+  "prompt": "wearing a cream crochet top, a rust paisley wrap midi skirt and brown suede ankle boots",
+  "category": "Boho",
+  "tags": [
+   "ankle boots",
+   "autumn",
+   "brown",
+   "cream",
+   "crochet",
+   "crochet top",
+   "paisley",
+   "rust",
+   "spring",
+   "suede",
+   "wrap skirt"
+  ],
+  "tag_groups": {
+   "Top": [
+    "crochet top"
+   ],
+   "Bottom": [
+    "wrap skirt"
+   ],
+   "Feet": [
+    "ankle boots"
+   ],
+   "Colors": [
+    "cream",
+    "rust",
+    "brown"
+   ],
+   "Patterns & fabrics": [
+    "crochet",
+    "paisley",
+    "suede"
+   ],
+   "Season": [
+    "autumn",
+    "spring"
+   ]
+  }
+ },
+ {
+  "id": "boho_O004",
+  "label": "Suede fringe jacket, floral mini dress, cowboy boots",
+  "prompt": "wearing a tan suede fringe jacket over a mustard floral mini dress and brown cowboy boots",
+  "category": "Boho",
+  "tags": [
+   "autumn",
+   "brown",
+   "cowboy boots",
+   "floral",
+   "fringe jacket",
+   "mini dress",
+   "mustard",
+   "spring",
+   "suede",
+   "tan"
+  ],
+  "tag_groups": {
+   "Outerwear": [
+    "fringe jacket"
+   ],
+   "Full body": [
+    "mini dress"
+   ],
+   "Feet": [
+    "cowboy boots"
+   ],
+   "Colors": [
+    "tan",
+    "mustard",
+    "brown"
+   ],
+   "Patterns & fabrics": [
+    "suede",
+    "floral"
+   ],
+   "Season": [
+    "autumn",
+    "spring"
+   ]
+  }
+ },
+ {
+  "id": "boho_O005",
+  "label": "Linen co-ord set, beaded necklace, leather slides",
+  "prompt": "wearing an olive linen button-front shirt with matching wide-leg pants, a wooden beaded necklace and brown leather slides",
+  "category": "Boho",
+  "tags": [
+   "brown",
+   "jewelry",
+   "linen",
+   "olive green",
+   "shirt",
+   "slides",
+   "summer",
+   "wide-leg pants"
+  ],
+  "tag_groups": {
+   "Top": [
+    "shirt"
+   ],
+   "Bottom": [
+    "wide-leg pants"
+   ],
+   "Feet": [
+    "slides"
+   ],
+   "Accessories": [
+    "jewelry"
+   ],
+   "Colors": [
+    "olive green",
+    "brown"
+   ],
+   "Patterns & fabrics": [
+    "linen"
+   ],
+   "Season": [
+    "summer"
+   ]
+  }
+ },
+ {
+  "id": "y2k_O001",
+  "label": "Baby-blue velour tracksuit, platform sneakers",
+  "prompt": "wearing a baby-blue velour zip tracksuit jacket with matching low-rise pants and white platform sneakers",
+  "category": "Y2K",
+  "tags": [
+   "autumn",
+   "baby blue",
+   "platform sneakers",
+   "spring",
+   "track jacket",
+   "track pants",
+   "velour",
+   "white"
+  ],
+  "tag_groups": {
+   "Outerwear": [
+    "track jacket"
+   ],
+   "Bottom": [
+    "track pants"
+   ],
+   "Feet": [
+    "platform sneakers"
+   ],
+   "Colors": [
+    "baby blue",
+    "white"
+   ],
+   "Patterns & fabrics": [
+    "velour"
+   ],
+   "Season": [
+    "autumn",
+    "spring"
+   ]
+  }
+ },
+ {
+  "id": "y2k_O002",
+  "label": "Butterfly halter top, low-rise denim mini skirt, platform flip-flops",
+  "prompt": "wearing a pink butterfly-print halter top, a low-rise light denim mini skirt and white platform flip-flops",
+  "category": "Y2K",
+  "tags": [
+   "butterfly print",
+   "denim",
+   "halter top",
+   "light blue",
+   "mini skirt",
+   "pink",
+   "platform flip-flops",
+   "summer",
+   "white"
+  ],
+  "tag_groups": {
+   "Top": [
+    "halter top"
+   ],
+   "Bottom": [
+    "mini skirt"
+   ],
+   "Feet": [
+    "platform flip-flops"
+   ],
+   "Colors": [
+    "pink",
+    "light blue",
+    "white"
+   ],
+   "Patterns & fabrics": [
+    "butterfly print",
+    "denim"
+   ],
+   "Season": [
+    "summer"
+   ]
+  }
+ },
+ {
+  "id": "y2k_O003",
+  "label": "Metallic puffer vest, baby tee, cargo mini skirt, chunky boots",
+  "prompt": "wearing a silver metallic puffer vest over a white baby tee, a khaki cargo mini skirt and black chunky platform boots",
+  "category": "Y2K",
+  "tags": [
+   "autumn",
+   "baby tee",
+   "black",
+   "cotton",
+   "khaki",
+   "metallic",
+   "mini skirt",
+   "platform boots",
+   "puffer vest",
+   "silver",
+   "white",
+   "winter"
+  ],
+  "tag_groups": {
+   "Outerwear": [
+    "puffer vest"
+   ],
+   "Top": [
+    "baby tee"
+   ],
+   "Bottom": [
+    "mini skirt"
+   ],
+   "Feet": [
+    "platform boots"
+   ],
+   "Colors": [
+    "silver",
+    "white",
+    "khaki",
+    "black"
+   ],
+   "Patterns & fabrics": [
+    "metallic",
+    "cotton"
+   ],
+   "Season": [
+    "autumn",
+    "winter"
+   ]
+  }
+ },
+ {
+  "id": "y2k_O004",
+  "label": "Pink slip dress over white tee, mini shoulder bag, kitten heels",
+  "prompt": "wearing a pink satin slip dress layered over a white fitted tee, a small baguette shoulder bag and white kitten heels",
+  "category": "Y2K",
+  "tags": [
+   "bag",
+   "kitten heels",
+   "pink",
+   "satin",
+   "slip dress",
+   "spring",
+   "summer",
+   "t-shirt",
+   "white"
+  ],
+  "tag_groups": {
+   "Top": [
+    "t-shirt"
+   ],
+   "Full body": [
+    "slip dress"
+   ],
+   "Feet": [
+    "kitten heels"
+   ],
+   "Accessories": [
+    "bag"
+   ],
+   "Colors": [
+    "pink",
+    "white"
+   ],
+   "Patterns & fabrics": [
+    "satin"
+   ],
+   "Season": [
+    "spring",
+    "summer"
+   ]
+  }
+ },
+ {
+  "id": "y2k_O005",
+  "label": "Lime crop cardigan, flared low-rise pants, platform sandals, tinted glasses",
+  "prompt": "wearing a lime-green cropped cardigan, cream flared low-rise pants, white platform sandals and pink tinted sunglasses",
+  "category": "Y2K",
+  "tags": [
+   "cardigan",
+   "cream",
+   "flared pants",
+   "knit",
+   "lime green",
+   "pink",
+   "platform sandals",
+   "spring",
+   "summer",
+   "sunglasses",
+   "white"
+  ],
+  "tag_groups": {
+   "Top": [
+    "cardigan"
+   ],
+   "Bottom": [
+    "flared pants"
+   ],
+   "Feet": [
+    "platform sandals"
+   ],
+   "Accessories": [
+    "sunglasses"
+   ],
+   "Colors": [
+    "lime green",
+    "cream",
+    "white",
+    "pink"
+   ],
+   "Patterns & fabrics": [
+    "knit"
+   ],
+   "Season": [
+    "spring",
+    "summer"
+   ]
+  }
+ },
+ {
+  "id": "gothic_O001",
+  "label": "Black lace corset dress, fishnets, platform boots, choker",
+  "prompt": "wearing a black lace corset mini dress, black fishnet tights, black platform lace-up boots and a black velvet choker",
+  "category": "Gothic",
+  "tags": [
+   "autumn",
+   "black",
+   "corset dress",
+   "fishnet",
+   "fishnets",
+   "jewelry",
+   "lace",
+   "platform boots",
+   "velvet",
+   "winter"
+  ],
+  "tag_groups": {
+   "Full body": [
+    "corset dress"
+   ],
+   "Legs": [
+    "fishnets"
+   ],
+   "Feet": [
+    "platform boots"
+   ],
+   "Accessories": [
+    "jewelry"
+   ],
+   "Colors": [
+    "black"
+   ],
+   "Patterns & fabrics": [
+    "lace",
+    "fishnet",
+    "velvet"
+   ],
+   "Season": [
+    "autumn",
+    "winter"
+   ]
+  }
+ },
+ {
+  "id": "gothic_O002",
+  "label": "Velvet coat, ruffle blouse, plaid skirt, knee-high socks, Mary Janes",
+  "prompt": "wearing a long black velvet coat, a black ruffle-collar blouse, a red and black plaid mini skirt, black knee-high socks and black platform Mary Janes",
+  "category": "Gothic",
+  "tags": [
+   "autumn",
+   "black",
+   "blouse",
+   "coat",
+   "knee-high socks",
+   "mary janes",
+   "plaid",
+   "red",
+   "ruffles",
+   "skirt",
+   "velvet",
+   "winter"
+  ],
+  "tag_groups": {
+   "Outerwear": [
+    "coat"
+   ],
+   "Top": [
+    "blouse"
+   ],
+   "Bottom": [
+    "skirt"
+   ],
+   "Legs": [
+    "knee-high socks"
+   ],
+   "Feet": [
+    "mary janes"
+   ],
+   "Colors": [
+    "black",
+    "red"
+   ],
+   "Patterns & fabrics": [
+    "velvet",
+    "plaid",
+    "ruffles"
+   ],
+   "Season": [
+    "winter",
+    "autumn"
+   ]
+  }
+ },
+ {
+  "id": "gothic_O003",
+  "label": "Mesh long-sleeve top, leather pants, buckle boots",
+  "prompt": "wearing a sheer black mesh long-sleeve top over a black bralette, black faux-leather pants and black buckle-strap boots",
+  "category": "Gothic",
+  "tags": [
+   "autumn",
+   "black",
+   "bralette",
+   "buckle boots",
+   "leather",
+   "leather pants",
+   "mesh",
+   "mesh top"
+  ],
+  "tag_groups": {
+   "Top": [
+    "mesh top"
+   ],
+   "Bottom": [
+    "leather pants"
+   ],
+   "Underwear": [
+    "bralette"
+   ],
+   "Feet": [
+    "buckle boots"
+   ],
+   "Colors": [
+    "black"
+   ],
+   "Patterns & fabrics": [
+    "mesh",
+    "leather"
+   ],
+   "Season": [
+    "autumn"
+   ]
+  }
+ },
+ {
+  "id": "gothic_O004",
+  "label": "Burgundy velvet slip dress, lace gloves, pointed boots",
+  "prompt": "wearing a burgundy velvet slip dress, black lace gloves and black pointed-toe heeled boots",
+  "category": "Gothic",
+  "tags": [
+   "autumn",
+   "black",
+   "burgundy",
+   "gloves",
+   "heeled boots",
+   "lace",
+   "slip dress",
+   "velvet",
+   "winter"
+  ],
+  "tag_groups": {
+   "Full body": [
+    "slip dress"
+   ],
+   "Feet": [
+    "heeled boots"
+   ],
+   "Accessories": [
+    "gloves"
+   ],
+   "Colors": [
+    "burgundy",
+    "black"
+   ],
+   "Patterns & fabrics": [
+    "velvet",
+    "lace"
+   ],
+   "Season": [
+    "autumn",
+    "winter"
+   ]
+  }
+ },
+ {
+  "id": "gothic_O005",
+  "label": "Black hoodie dress, striped thigh-highs, creepers",
+  "prompt": "wearing a black oversized hoodie dress, black and white striped thigh-high socks and black platform creepers",
+  "category": "Gothic",
+  "tags": [
+   "autumn",
+   "black",
+   "creepers",
+   "hoodie dress",
+   "jersey",
+   "stripes",
+   "thigh-highs",
+   "white",
+   "winter"
+  ],
+  "tag_groups": {
+   "Full body": [
+    "hoodie dress"
+   ],
+   "Legs": [
+    "thigh-highs"
+   ],
+   "Feet": [
+    "creepers"
+   ],
+   "Colors": [
+    "black",
+    "white"
+   ],
+   "Patterns & fabrics": [
+    "stripes",
+    "jersey"
+   ],
+   "Season": [
+    "autumn",
+    "winter"
+   ]
+  }
+ },
+ {
+  "id": "cottagecore_O001",
+  "label": "Floral puff-sleeve midi dress, straw basket, Mary Janes",
+  "prompt": "wearing a pale-yellow floral midi dress with puff sleeves, cream ankle socks, brown Mary Jane shoes and a woven straw basket bag",
+  "category": "Cottagecore",
+  "tags": [
+   "ankle socks",
+   "bag",
+   "brown",
+   "cream",
+   "floral",
+   "mary janes",
+   "midi dress",
+   "pale yellow",
+   "spring",
+   "straw",
+   "summer"
+  ],
+  "tag_groups": {
+   "Full body": [
+    "midi dress"
+   ],
+   "Legs": [
+    "ankle socks"
+   ],
+   "Feet": [
+    "mary janes"
+   ],
+   "Accessories": [
+    "bag"
+   ],
+   "Colors": [
+    "pale yellow",
+    "cream",
+    "brown"
+   ],
+   "Patterns & fabrics": [
+    "floral",
+    "straw"
+   ],
+   "Season": [
+    "spring",
+    "summer"
+   ]
+  }
+ },
+ {
+  "id": "cottagecore_O002",
+  "label": "Gingham pinafore over white blouse, lace socks, loafers",
+  "prompt": "wearing a sage gingham pinafore dress over a white puff-sleeve blouse, white lace-trim socks and brown loafers",
+  "category": "Cottagecore",
+  "tags": [
+   "ankle socks",
+   "blouse",
+   "brown",
+   "gingham",
+   "lace",
+   "loafers",
+   "pinafore dress",
+   "sage green",
+   "spring",
+   "white"
+  ],
+  "tag_groups": {
+   "Top": [
+    "blouse"
+   ],
+   "Full body": [
+    "pinafore dress"
+   ],
+   "Legs": [
+    "ankle socks"
+   ],
+   "Feet": [
+    "loafers"
+   ],
+   "Colors": [
+    "sage green",
+    "white",
+    "brown"
+   ],
+   "Patterns & fabrics": [
+    "gingham",
+    "lace"
+   ],
+   "Season": [
+    "spring"
+   ]
+  }
+ },
+ {
+  "id": "cottagecore_O003",
+  "label": "Knit shawl, corset bodice, long tiered skirt, lace-up boots",
+  "prompt": "wearing a cream knit shawl over a brown corset-laced bodice and white blouse, a long tiered oatmeal skirt and brown lace-up boots",
+  "category": "Cottagecore",
+  "tags": [
+   "autumn",
+   "blouse",
+   "brown",
+   "corset",
+   "cream",
+   "knit",
+   "lace-up boots",
+   "linen",
+   "maxi skirt",
+   "oatmeal",
+   "shawl",
+   "white"
+  ],
+  "tag_groups": {
+   "Outerwear": [
+    "shawl"
+   ],
+   "Top": [
+    "corset",
+    "blouse"
+   ],
+   "Bottom": [
+    "maxi skirt"
+   ],
+   "Feet": [
+    "lace-up boots"
+   ],
+   "Colors": [
+    "cream",
+    "brown",
+    "white",
+    "oatmeal"
+   ],
+   "Patterns & fabrics": [
+    "knit",
+    "linen"
+   ],
+   "Season": [
+    "autumn"
+   ]
+  }
+ },
+ {
+  "id": "cottagecore_O004",
+  "label": "Embroidered cardigan, prairie skirt, ballet flats, bonnet",
+  "prompt": "wearing a cream cardigan with embroidered flowers, a dusty-pink prairie midi skirt, pink ballet flats and a cream cotton bonnet",
+  "category": "Cottagecore",
+  "tags": [
+   "ballet flats",
+   "bonnet",
+   "cardigan",
+   "cotton",
+   "cream",
+   "dusty pink",
+   "embroidery",
+   "midi skirt",
+   "spring"
+  ],
+  "tag_groups": {
+   "Head": [
+    "bonnet"
+   ],
+   "Top": [
+    "cardigan"
+   ],
+   "Bottom": [
+    "midi skirt"
+   ],
+   "Feet": [
+    "ballet flats"
+   ],
+   "Colors": [
+    "cream",
+    "dusty pink"
+   ],
+   "Patterns & fabrics": [
+    "embroidery",
+    "cotton"
+   ],
+   "Season": [
+    "spring"
+   ]
+  }
+ },
+ {
+  "id": "cottagecore_O005",
+  "label": "Lavender smocked sundress, straw hat, espadrilles",
+  "prompt": "wearing a lavender smocked-bodice sundress, a wide straw sun hat and cream espadrilles",
+  "category": "Cottagecore",
+  "tags": [
+   "cotton",
+   "cream",
+   "espadrilles",
+   "lavender",
+   "smocked",
+   "straw",
+   "summer",
+   "sun hat",
+   "sundress"
+  ],
+  "tag_groups": {
+   "Head": [
+    "sun hat"
+   ],
+   "Full body": [
+    "sundress"
+   ],
+   "Feet": [
+    "espadrilles"
+   ],
+   "Colors": [
+    "lavender",
+    "cream"
+   ],
+   "Patterns & fabrics": [
+    "smocked",
+    "straw",
+    "cotton"
+   ],
+   "Season": [
+    "summer"
+   ]
+  }
+ },
+ {
+  "id": "party_O006",
+  "label": "Black ruched strapless bodysuit, sheer tights, high-top sneakers",
+  "prompt": "wearing a black strapless ruched bodysuit with a high-cut leg, sheer black pantyhose and black canvas high-top sneakers with white soles and laces",
+  "category": "Party",
+  "tags": [
+   "all season",
+   "black",
+   "bodysuit",
+   "canvas",
+   "high-top sneakers",
+   "pantyhose",
+   "ruched",
+   "sheer",
+   "white"
+  ],
+  "tag_groups": {
+   "Full body": [
+    "bodysuit"
+   ],
+   "Legs": [
+    "pantyhose"
+   ],
+   "Feet": [
+    "high-top sneakers"
+   ],
+   "Colors": [
+    "black",
+    "white"
+   ],
+   "Patterns & fabrics": [
+    "ruched",
+    "sheer",
+    "canvas"
+   ],
+   "Season": [
+    "all season"
+   ]
+  }
+ },
+ {
+  "id": "lingerie_O001",
+  "label": "White ribbed tank and briefs",
+  "prompt": "wearing a fitted white cotton scoop-neck tank top and matching white cotton bikini briefs, with bare empty space below: no shoes and no socks",
+  "category": "Lingerie",
+  "tags": [
+   "all season",
+   "briefs",
+   "cotton",
+   "tank top",
+   "white"
+  ],
+  "tag_groups": {
+   "Top": [
+    "tank top"
+   ],
+   "Underwear": [
+    "briefs"
+   ],
+   "Colors": [
+    "white"
+   ],
+   "Patterns & fabrics": [
+    "cotton"
+   ],
+   "Season": [
+    "all season"
+   ]
+  }
+ },
+ {
+  "id": "business_O006",
+  "label": "Navy pinstripe pantsuit",
+  "prompt": "wearing a tailored navy pinstripe single-button blazer with flap pockets and matching navy pinstripe straight-leg trousers",
+  "category": "Business",
+  "tags": [
+   "all season",
+   "blazer",
+   "navy",
+   "pinstripe",
+   "trousers",
+   "wool"
+  ],
+  "tag_groups": {
+   "Outerwear": [
+    "blazer"
+   ],
+   "Bottom": [
+    "trousers"
+   ],
+   "Colors": [
+    "navy"
+   ],
+   "Patterns & fabrics": [
+    "pinstripe",
+    "wool"
+   ],
+   "Season": [
+    "all season"
+   ]
+  }
+ },
+ {
+  "id": "lingerie_O002",
+  "label": "Black baby tee and lace thong",
+  "prompt": "wearing a plain black cropped baby tee with short sleeves and a black lace thong with thin side straps and small silver rings, with bare empty space below: no shoes and no socks",
+  "category": "Lingerie",
+  "tags": [
+   "all season",
+   "baby tee",
+   "black",
+   "cotton",
+   "lace",
+   "silver",
+   "thong"
+  ],
+  "tag_groups": {
+   "Top": [
+    "baby tee"
+   ],
+   "Underwear": [
+    "thong"
+   ],
+   "Colors": [
+    "black",
+    "silver"
+   ],
+   "Patterns & fabrics": [
+    "lace",
+    "cotton"
+   ],
+   "Season": [
+    "all season"
+   ]
+  }
+ },
+ {
+  "id": "casual_O006",
+  "label": "Pink striped oversized shirt, lace bralette, black denim shorts, cream thigh-highs",
+  "prompt": "wearing an open oversized pink-and-white striped button-up shirt over a cream lace longline bralette, black denim shorts and cream ribbed thigh-high socks",
+  "category": "Casual",
+  "tags": [
+   "black",
+   "bralette",
+   "button-up shirt",
+   "cream",
+   "denim",
+   "denim shorts",
+   "lace",
+   "pink",
+   "ribbed",
+   "spring",
+   "striped",
+   "summer",
+   "thigh-high socks",
+   "white"
+  ],
+  "tag_groups": {
+   "Outerwear": [
+    "button-up shirt"
+   ],
+   "Top": [
+    "bralette"
+   ],
+   "Bottom": [
+    "denim shorts"
+   ],
+   "Legs": [
+    "thigh-high socks"
+   ],
+   "Colors": [
+    "pink",
+    "white",
+    "cream",
+    "black"
+   ],
+   "Patterns & fabrics": [
+    "striped",
+    "lace",
+    "denim",
+    "ribbed"
+   ],
+   "Season": [
+    "spring",
+    "summer"
+   ]
+  }
+ },
+ {
+  "id": "gothic_O006",
+  "label": "Hooded tattered cloak, chain harness, leather boots",
+  "prompt": "wearing a long black hooded cloak with tattered, shredded hems over a fitted black dress, wrapped in thin antique-brass chains, with black leather leggings and black lace-up knee-high leather boots",
+  "category": "Gothic",
+  "tags": [
+   "autumn",
+   "black",
+   "brass",
+   "chains",
+   "cloak",
+   "dress",
+   "hood",
+   "knee-high boots",
+   "leather",
+   "leather leggings",
+   "tattered",
+   "winter"
+  ],
+  "tag_groups": {
+   "Head": [
+    "hood"
+   ],
+   "Outerwear": [
+    "cloak"
+   ],
+   "Full body": [
+    "dress"
+   ],
+   "Bottom": [
+    "leather leggings"
+   ],
+   "Feet": [
+    "knee-high boots"
+   ],
+   "Accessories": [
+    "chains"
+   ],
+   "Colors": [
+    "black",
+    "brass"
+   ],
+   "Patterns & fabrics": [
+    "tattered",
+    "leather"
+   ],
+   "Season": [
+    "autumn",
+    "winter"
+   ]
+  }
+ },
+ {
+  "id": "swimwear_O001",
+  "label": "Chocolate brown string bikini",
+  "prompt": "wearing a chocolate-brown triangle string bikini with a halter tie top and side-tie bottoms, with bare empty space below: no shoes and no socks",
+  "category": "Swimwear",
+  "tags": [
+   "bikini bottoms",
+   "bikini top",
+   "brown",
+   "lycra",
+   "summer"
+  ],
+  "tag_groups": {
+   "Top": [
+    "bikini top"
+   ],
+   "Bottom": [
+    "bikini bottoms"
+   ],
+   "Colors": [
+    "brown"
+   ],
+   "Patterns & fabrics": [
+    "lycra"
+   ],
+   "Season": [
+    "summer"
+   ]
+  }
+ },
+ {
+  "id": "preppy_O007",
+  "label": "Pink cropped cardigan, white crop tank, grey pleated mini skirt, white over-knee socks",
+  "prompt": "wearing a cropped pink button-front cardigan over a white ribbed crop tank, a charcoal-grey pleated mini skirt and white over-the-knee socks",
+  "category": "Preppy",
+  "tags": [
+   "autumn",
+   "cardigan",
+   "crop tank",
+   "grey",
+   "knit",
+   "over-knee socks",
+   "pink",
+   "pleated",
+   "pleated mini skirt",
+   "ribbed",
+   "spring",
+   "white"
+  ],
+  "tag_groups": {
+   "Outerwear": [
+    "cardigan"
+   ],
+   "Top": [
+    "crop tank"
+   ],
+   "Bottom": [
+    "pleated mini skirt"
+   ],
+   "Legs": [
+    "over-knee socks"
+   ],
+   "Colors": [
+    "pink",
+    "white",
+    "grey"
+   ],
+   "Patterns & fabrics": [
+    "knit",
+    "ribbed",
+    "pleated"
+   ],
+   "Season": [
+    "spring",
+    "autumn"
+   ]
+  }
+ },
+ {
+  "id": "loungewear_O006",
+  "label": "Oatmeal scoop-neck long-sleeve and sweat shorts",
+  "prompt": "wearing a fitted oatmeal-beige long-sleeve scoop-neck tee and matching oatmeal cotton sweat shorts, with bare empty space below: no shoes and no socks",
+  "category": "Loungewear",
+  "tags": [
+   "all season",
+   "beige",
+   "cotton",
+   "jersey",
+   "long-sleeve tee",
+   "sweat shorts"
+  ],
+  "tag_groups": {
+   "Top": [
+    "long-sleeve tee"
+   ],
+   "Bottom": [
+    "sweat shorts"
+   ],
+   "Colors": [
+    "beige"
+   ],
+   "Patterns & fabrics": [
+    "cotton",
+    "jersey"
+   ],
+   "Season": [
+    "all season"
+   ]
+  }
+ },
+ {
+  "id": "swimwear_O002",
+  "label": "Burgundy string bikini with white sarong",
+  "prompt": "wearing a burgundy triangle string bikini with a sheer white gauze sarong tied at the hip",
+  "category": "Swimwear",
+  "tags": [
+   "bikini bottoms",
+   "bikini top",
+   "burgundy",
+   "gauze",
+   "lycra",
+   "sarong",
+   "sheer",
+   "summer",
+   "white"
+  ],
+  "tag_groups": {
+   "Top": [
+    "bikini top"
+   ],
+   "Bottom": [
+    "bikini bottoms",
+    "sarong"
+   ],
+   "Colors": [
+    "burgundy",
+    "white"
+   ],
+   "Patterns & fabrics": [
+    "lycra",
+    "gauze",
+    "sheer"
+   ],
+   "Season": [
+    "summer"
+   ]
+  }
+ },
+ {
+  "id": "instagram_O001",
+  "label": "Coquette pink bow cardigan, white lace mini skirt, ballet flats",
+  "prompt": "wearing a baby-pink cropped knit cardigan with tiny satin bows down the front, a white eyelet lace mini skirt, white lace-trim ankle socks and pale pink satin ballet flats with ribbon ties",
+  "category": "Instagram",
+  "tags": [
+   "ankle socks",
+   "ballet flats",
+   "bows",
+   "cardigan",
+   "coquette",
+   "eyelet",
+   "knit",
+   "lace",
+   "mini skirt",
+   "pink",
+   "satin",
+   "spring",
+   "white"
+  ],
+  "tag_groups": {
+   "Top": [
+    "cardigan"
+   ],
+   "Bottom": [
+    "mini skirt"
+   ],
+   "Legs": [
+    "ankle socks"
+   ],
+   "Feet": [
+    "ballet flats"
+   ],
+   "Accessories": [
+    "bows"
+   ],
+   "Colors": [
+    "pink",
+    "white"
+   ],
+   "Patterns & fabrics": [
+    "knit",
+    "eyelet",
+    "lace",
+    "satin"
+   ],
+   "Season": [
+    "spring"
+   ]
+  }
+ },
+ {
+  "id": "instagram_O002",
+  "label": "Balletcore wrap top, tulle skirt, satin flats",
+  "prompt": "wearing a soft blush wrap ballet top with long sleeves, a layered ivory tulle midi skirt, sheer white ankle socks and blush satin ballet flats",
+  "category": "Instagram",
+  "tags": [
+   "ankle socks",
+   "autumn",
+   "ballet flats",
+   "balletcore",
+   "blush",
+   "ivory",
+   "jersey",
+   "satin",
+   "spring",
+   "tulle",
+   "tulle skirt",
+   "wrap top"
+  ],
+  "tag_groups": {
+   "Top": [
+    "wrap top"
+   ],
+   "Bottom": [
+    "tulle skirt"
+   ],
+   "Legs": [
+    "ankle socks"
+   ],
+   "Feet": [
+    "ballet flats"
+   ],
+   "Colors": [
+    "blush",
+    "ivory"
+   ],
+   "Patterns & fabrics": [
+    "tulle",
+    "satin",
+    "jersey"
+   ],
+   "Season": [
+    "spring",
+    "autumn"
+   ]
+  }
+ },
+ {
+  "id": "instagram_O003",
+  "label": "Strawberry print milkmaid dress, Mary Janes",
+  "prompt": "wearing a cream milkmaid mini dress with puff sleeves and a small red strawberry print, white frilly ankle socks and red patent Mary Jane shoes",
+  "category": "Instagram",
+  "tags": [
+   "ankle socks",
+   "cotton",
+   "cream",
+   "cute",
+   "mary janes",
+   "milkmaid dress",
+   "patent",
+   "red",
+   "strawberry print",
+   "summer",
+   "white"
+  ],
+  "tag_groups": {
+   "Full body": [
+    "milkmaid dress"
+   ],
+   "Legs": [
+    "ankle socks"
+   ],
+   "Feet": [
+    "mary janes"
+   ],
+   "Colors": [
+    "cream",
+    "red",
+    "white"
+   ],
+   "Patterns & fabrics": [
+    "strawberry print",
+    "cotton",
+    "patent"
+   ],
+   "Season": [
+    "summer"
+   ]
+  }
+ },
+ {
+  "id": "instagram_O004",
+  "label": "Tennis skirt set, cable knit vest, white sneakers",
+  "prompt": "wearing a white pleated tennis mini skirt, a fitted white polo top under a cream cable-knit sweater vest with a navy stripe trim, white crew socks and clean white leather sneakers",
+  "category": "Instagram",
+  "tags": [
+   "cable knit",
+   "cream",
+   "crew socks",
+   "navy",
+   "pleated",
+   "polo top",
+   "sneakers",
+   "spring",
+   "summer",
+   "sweater vest",
+   "tennis skirt",
+   "tenniscore",
+   "white"
+  ],
+  "tag_groups": {
+   "Top": [
+    "polo top",
+    "sweater vest"
+   ],
+   "Bottom": [
+    "tennis skirt"
+   ],
+   "Legs": [
+    "crew socks"
+   ],
+   "Feet": [
+    "sneakers"
+   ],
+   "Colors": [
+    "white",
+    "cream",
+    "navy"
+   ],
+   "Patterns & fabrics": [
+    "pleated",
+    "cable knit"
+   ],
+   "Season": [
+    "spring",
+    "summer"
+   ]
+  }
+ },
+ {
+  "id": "instagram_O005",
+  "label": "Clean girl beige set, gold hoops, slides",
+  "prompt": "wearing a matching oatmeal ribbed knit tank and wide-leg knit pants, small gold hoop earrings floating at ear height, and tan leather slide sandals",
+  "category": "Instagram",
+  "tags": [
+   "clean girl",
+   "gold",
+   "hoop earrings",
+   "knit",
+   "knit tank",
+   "oatmeal",
+   "ribbed",
+   "slides",
+   "summer",
+   "tan",
+   "wide-leg pants"
+  ],
+  "tag_groups": {
+   "Top": [
+    "knit tank"
+   ],
+   "Bottom": [
+    "wide-leg pants"
+   ],
+   "Feet": [
+    "slides"
+   ],
+   "Accessories": [
+    "hoop earrings"
+   ],
+   "Colors": [
+    "oatmeal",
+    "gold",
+    "tan"
+   ],
+   "Patterns & fabrics": [
+    "ribbed",
+    "knit"
+   ],
+   "Season": [
+    "summer"
+   ]
+  }
+ },
+ {
+  "id": "instagram_O006",
+  "label": "Parisian striped top, red midi skirt, ballet flats",
+  "prompt": "wearing a navy-and-white Breton striped boat-neck top, a red satin bias-cut midi skirt, a small black quilted shoulder bag and black ballet flats",
+  "category": "Instagram",
+  "tags": [
+   "autumn",
+   "ballet flats",
+   "black",
+   "breton top",
+   "midi skirt",
+   "navy",
+   "parisian",
+   "quilted",
+   "red",
+   "satin",
+   "shoulder bag",
+   "spring",
+   "striped",
+   "white"
+  ],
+  "tag_groups": {
+   "Top": [
+    "breton top"
+   ],
+   "Bottom": [
+    "midi skirt"
+   ],
+   "Feet": [
+    "ballet flats"
+   ],
+   "Accessories": [
+    "shoulder bag"
+   ],
+   "Colors": [
+    "navy",
+    "white",
+    "red",
+    "black"
+   ],
+   "Patterns & fabrics": [
+    "striped",
+    "satin",
+    "quilted"
+   ],
+   "Season": [
+    "spring",
+    "autumn"
+   ]
+  }
+ },
+ {
+  "id": "instagram_O007",
+  "label": "Brunch gingham sundress, straw bag, sandals",
+  "prompt": "wearing a baby-blue gingham sundress with a sweetheart neckline and tie straps, a woven straw basket bag and white strappy flat sandals",
+  "category": "Instagram",
+  "tags": [
+   "baby blue",
+   "brunch",
+   "gingham",
+   "sandals",
+   "straw",
+   "straw bag",
+   "summer",
+   "sundress",
+   "white"
+  ],
+  "tag_groups": {
+   "Full body": [
+    "sundress"
+   ],
+   "Feet": [
+    "sandals"
+   ],
+   "Accessories": [
+    "straw bag"
+   ],
+   "Colors": [
+    "baby blue",
+    "white"
+   ],
+   "Patterns & fabrics": [
+    "gingham",
+    "straw"
+   ],
+   "Season": [
+    "summer"
+   ]
+  }
+ },
+ {
+  "id": "instagram_O008",
+  "label": "Coastal linen set, crochet bag, espadrilles",
+  "prompt": "wearing a white linen button-up shirt tied at the waist, matching white linen wide-leg trousers, a cream crochet tote and natural-jute espadrille flats",
+  "category": "Instagram",
+  "tags": [
+   "coastal",
+   "cream",
+   "crochet",
+   "crochet bag",
+   "espadrilles",
+   "jute",
+   "linen",
+   "linen shirt",
+   "linen trousers",
+   "summer",
+   "white"
+  ],
+  "tag_groups": {
+   "Top": [
+    "linen shirt"
+   ],
+   "Bottom": [
+    "linen trousers"
+   ],
+   "Feet": [
+    "espadrilles"
+   ],
+   "Accessories": [
+    "crochet bag"
+   ],
+   "Colors": [
+    "white",
+    "cream"
+   ],
+   "Patterns & fabrics": [
+    "linen",
+    "crochet",
+    "jute"
+   ],
+   "Season": [
+    "summer"
+   ]
+  }
+ },
+ {
+  "id": "instagram_O009",
+  "label": "Cherry red knit set, hair bow, loafers",
+  "prompt": "wearing a cherry-red fitted knit polo top, a matching cherry-red knit mini skirt, a black velvet hair bow floating at head height, white ankle socks and black penny loafers",
+  "category": "Instagram",
+  "tags": [
+   "ankle socks",
+   "autumn",
+   "black",
+   "cute",
+   "hair bow",
+   "knit",
+   "knit polo",
+   "loafers",
+   "mini skirt",
+   "red",
+   "velvet",
+   "white"
+  ],
+  "tag_groups": {
+   "Head": [
+    "hair bow"
+   ],
+   "Top": [
+    "knit polo"
+   ],
+   "Bottom": [
+    "mini skirt"
+   ],
+   "Legs": [
+    "ankle socks"
+   ],
+   "Feet": [
+    "loafers"
+   ],
+   "Colors": [
+    "red",
+    "black",
+    "white"
+   ],
+   "Patterns & fabrics": [
+    "knit",
+    "velvet"
+   ],
+   "Season": [
+    "autumn"
+   ]
+  }
+ },
+ {
+  "id": "instagram_O010",
+  "label": "Fluffy cream cardigan, plaid mini, knee socks, platform loafers",
+  "prompt": "wearing an oversized fluffy cream mohair cardigan over a white lace-collar blouse, a brown-and-cream plaid pleated mini skirt, cream knee-high socks and chunky brown platform loafers",
+  "category": "Instagram",
+  "tags": [
+   "autumn",
+   "blouse",
+   "brown",
+   "cardigan",
+   "cream",
+   "knee socks",
+   "lace",
+   "mohair",
+   "plaid",
+   "platform loafers",
+   "pleated mini skirt",
+   "soft girl",
+   "white",
+   "winter"
+  ],
+  "tag_groups": {
+   "Outerwear": [
+    "cardigan"
+   ],
+   "Top": [
+    "blouse"
+   ],
+   "Bottom": [
+    "pleated mini skirt"
+   ],
+   "Legs": [
+    "knee socks"
+   ],
+   "Feet": [
+    "platform loafers"
+   ],
+   "Colors": [
+    "cream",
+    "brown",
+    "white"
+   ],
+   "Patterns & fabrics": [
+    "mohair",
+    "plaid",
+    "lace"
+   ],
+   "Season": [
+    "autumn",
+    "winter"
+   ]
+  }
+ },
+ {
+  "id": "instagram_O011",
+  "label": "Butter yellow slip dress, cardigan, kitten heels",
+  "prompt": "wearing a butter-yellow satin slip midi dress with a white cropped cardigan draped over the shoulders and white slingback kitten heels",
+  "category": "Instagram",
+  "tags": [
+   "butter yellow",
+   "cardigan",
+   "date night",
+   "kitten heels",
+   "knit",
+   "satin",
+   "slip dress",
+   "spring",
+   "summer",
+   "white"
+  ],
+  "tag_groups": {
+   "Outerwear": [
+    "cardigan"
+   ],
+   "Full body": [
+    "slip dress"
+   ],
+   "Feet": [
+    "kitten heels"
+   ],
+   "Colors": [
+    "butter yellow",
+    "white"
+   ],
+   "Patterns & fabrics": [
+    "satin",
+    "knit"
+   ],
+   "Season": [
+    "spring",
+    "summer"
+   ]
+  }
+ },
+ {
+  "id": "instagram_O012",
+  "label": "Denim mini, baby tee, cowboy boots",
+  "prompt": "wearing a white fitted baby tee with a tiny embroidered pink heart, a light-wash denim mini skirt with a raw hem, a woven tan belt and white western cowboy boots",
+  "category": "Instagram",
+  "tags": [
+   "baby tee",
+   "belt",
+   "cowboy boots",
+   "denim",
+   "denim mini skirt",
+   "embroidered",
+   "festival",
+   "light blue",
+   "pink",
+   "summer",
+   "tan",
+   "white"
+  ],
+  "tag_groups": {
+   "Top": [
+    "baby tee"
+   ],
+   "Bottom": [
+    "denim mini skirt"
+   ],
+   "Feet": [
+    "cowboy boots"
+   ],
+   "Accessories": [
+    "belt"
+   ],
+   "Colors": [
+    "white",
+    "pink",
+    "light blue",
+    "tan"
+   ],
+   "Patterns & fabrics": [
+    "denim",
+    "embroidered"
+   ],
+   "Season": [
+    "summer"
+   ]
+  }
+ },
+ {
+  "id": "instagram_O013",
+  "label": "Lavender puffer, leggings, fuzzy boots",
+  "prompt": "wearing a cropped glossy lavender puffer jacket over a white ribbed turtleneck, black high-waisted leggings and cream shearling-lined suede ankle boots",
+  "category": "Instagram",
+  "tags": [
+   "black",
+   "cozy",
+   "cream",
+   "lavender",
+   "leggings",
+   "puffer jacket",
+   "quilted",
+   "ribbed",
+   "shearling boots",
+   "suede",
+   "turtleneck",
+   "white",
+   "winter"
+  ],
+  "tag_groups": {
+   "Outerwear": [
+    "puffer jacket"
+   ],
+   "Top": [
+    "turtleneck"
+   ],
+   "Bottom": [
+    "leggings"
+   ],
+   "Feet": [
+    "shearling boots"
+   ],
+   "Colors": [
+    "lavender",
+    "white",
+    "black",
+    "cream"
+   ],
+   "Patterns & fabrics": [
+    "quilted",
+    "ribbed",
+    "suede"
+   ],
+   "Season": [
+    "winter"
+   ]
+  }
+ },
+ {
+  "id": "instagram_O014",
+  "label": "Pink pilates set, zip jacket, sneakers",
+  "prompt": "wearing a dusty-pink seamless sports bra and matching flared yoga pants, a cropped pink zip-up jacket worn open, white ankle socks and white chunky sneakers",
+  "category": "Instagram",
+  "tags": [
+   "all season",
+   "ankle socks",
+   "chunky sneakers",
+   "flared leggings",
+   "jersey",
+   "pilates princess",
+   "pink",
+   "seamless",
+   "sports bra",
+   "white",
+   "zip jacket"
+  ],
+  "tag_groups": {
+   "Outerwear": [
+    "zip jacket"
+   ],
+   "Top": [
+    "sports bra"
+   ],
+   "Bottom": [
+    "flared leggings"
+   ],
+   "Legs": [
+    "ankle socks"
+   ],
+   "Feet": [
+    "chunky sneakers"
+   ],
+   "Colors": [
+    "pink",
+    "white"
+   ],
+   "Patterns & fabrics": [
+    "seamless",
+    "jersey"
+   ],
+   "Season": [
+    "all season"
+   ]
+  }
+ },
+ {
+  "id": "instagram_O015",
+  "label": "Floral corset top, white jeans, mules",
+  "prompt": "wearing a lace-up corset top in a pastel rose floral print, white high-waisted straight jeans and nude pointed mules",
+  "category": "Instagram",
+  "tags": [
+   "brunch",
+   "corset top",
+   "denim",
+   "floral",
+   "jeans",
+   "mules",
+   "nude",
+   "pastel pink",
+   "spring",
+   "summer",
+   "white"
+  ],
+  "tag_groups": {
+   "Top": [
+    "corset top"
+   ],
+   "Bottom": [
+    "jeans"
+   ],
+   "Feet": [
+    "mules"
+   ],
+   "Colors": [
+    "pastel pink",
+    "white",
+    "nude"
+   ],
+   "Patterns & fabrics": [
+    "floral",
+    "denim"
+   ],
+   "Season": [
+    "spring",
+    "summer"
+   ]
+  }
+ },
+ {
+  "id": "instagram_O016",
+  "label": "Sage knit dress, chunky boots",
+  "prompt": "wearing a sage-green ribbed knit long-sleeve midi dress, a cream knit beret floating at head height and chunky black lug-sole ankle boots",
+  "category": "Instagram",
+  "tags": [
+   "ankle boots",
+   "autumn",
+   "beret",
+   "black",
+   "cozy",
+   "cream",
+   "knit",
+   "knit dress",
+   "ribbed",
+   "sage",
+   "winter"
+  ],
+  "tag_groups": {
+   "Head": [
+    "beret"
+   ],
+   "Full body": [
+    "knit dress"
+   ],
+   "Feet": [
+    "ankle boots"
+   ],
+   "Colors": [
+    "sage",
+    "cream",
+    "black"
+   ],
+   "Patterns & fabrics": [
+    "ribbed",
+    "knit"
+   ],
+   "Season": [
+    "autumn",
+    "winter"
+   ]
+  }
+ },
+ {
+  "id": "instagram_O017",
+  "label": "Polka dot halter dress, red heels",
+  "prompt": "wearing a black halter-neck midi dress with small white polka dots and a full swing skirt, and red patent slingback pumps",
+  "category": "Instagram",
+  "tags": [
+   "black",
+   "date night",
+   "halter dress",
+   "patent",
+   "polka dot",
+   "pumps",
+   "red",
+   "summer",
+   "white"
+  ],
+  "tag_groups": {
+   "Full body": [
+    "halter dress"
+   ],
+   "Feet": [
+    "pumps"
+   ],
+   "Colors": [
+    "black",
+    "white",
+    "red"
+   ],
+   "Patterns & fabrics": [
+    "polka dot",
+    "patent"
+   ],
+   "Season": [
+    "summer"
+   ]
+  }
+ },
+ {
+  "id": "instagram_O018",
+  "label": "Cozy cloud fleece, plaid pajama pants, slippers",
+  "prompt": "wearing an oversized cream sherpa half-zip fleece, pink-and-white plaid flannel pajama pants and fluffy white slippers",
+  "category": "Instagram",
+  "tags": [
+   "cozy",
+   "cream",
+   "flannel",
+   "half-zip fleece",
+   "pajama pants",
+   "pink",
+   "plaid",
+   "sherpa",
+   "slippers",
+   "white",
+   "winter"
+  ],
+  "tag_groups": {
+   "Top": [
+    "half-zip fleece"
+   ],
+   "Bottom": [
+    "pajama pants"
+   ],
+   "Feet": [
+    "slippers"
+   ],
+   "Colors": [
+    "cream",
+    "pink",
+    "white"
+   ],
+   "Patterns & fabrics": [
+    "sherpa",
+    "plaid",
+    "flannel"
+   ],
+   "Season": [
+    "winter"
+   ]
+  }
+ },
+ {
+  "id": "instagram_O019",
+  "label": "Leather blazer, bodysuit, mini skirt, knee boots",
+  "prompt": "wearing an oversized chocolate-brown leather blazer over a black square-neck bodysuit, a camel suede mini skirt and brown knee-high heeled boots",
+  "category": "Instagram",
+  "tags": [
+   "autumn",
+   "black",
+   "bodysuit",
+   "brown",
+   "camel",
+   "it girl",
+   "knee-high boots",
+   "leather",
+   "leather blazer",
+   "mini skirt",
+   "suede"
+  ],
+  "tag_groups": {
+   "Outerwear": [
+    "leather blazer"
+   ],
+   "Full body": [
+    "bodysuit"
+   ],
+   "Bottom": [
+    "mini skirt"
+   ],
+   "Feet": [
+    "knee-high boots"
+   ],
+   "Colors": [
+    "brown",
+    "black",
+    "camel"
+   ],
+   "Patterns & fabrics": [
+    "leather",
+    "suede"
+   ],
+   "Season": [
+    "autumn"
+   ]
+  }
+ },
+ {
+  "id": "instagram_O020",
+  "label": "Ruffled bikini, sheer cover-up shirt, sandals",
+  "prompt": "wearing a pastel-yellow ruffle-trim bikini, an open sheer white button-up beach shirt over it and tan braided flat sandals",
+  "category": "Instagram",
+  "tags": [
+   "beach shirt",
+   "bikini bottoms",
+   "bikini top",
+   "pastel yellow",
+   "ruffled",
+   "sandals",
+   "sheer",
+   "summer",
+   "tan",
+   "vacation",
+   "white"
+  ],
+  "tag_groups": {
+   "Outerwear": [
+    "beach shirt"
+   ],
+   "Top": [
+    "bikini top"
+   ],
+   "Bottom": [
+    "bikini bottoms"
+   ],
+   "Feet": [
+    "sandals"
+   ],
+   "Colors": [
+    "pastel yellow",
+    "white",
+    "tan"
+   ],
+   "Patterns & fabrics": [
+    "ruffled",
+    "sheer"
+   ],
+   "Season": [
+    "summer"
+   ]
+  }
+ }
+]

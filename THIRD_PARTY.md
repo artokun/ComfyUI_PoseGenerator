@@ -83,3 +83,7 @@ or material removed, **I will gladly take it down**. Please contact
 [open an issue](https://github.com/artokun/ComfyUI_PoseGenerator/issues).
 Credit and gratitude are not substitutes for permission, and silence will not be
 treated as consent.
+
+## Bundled galleries
+
+`assets/Instagram Poses/` and `assets/OF poses/` are not derived from the original galleries' images. They are mannequin drawings generated with Pose Studio from photos the publisher owns or is licensed to use, and they are distributed by the publisher.
