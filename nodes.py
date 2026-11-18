@@ -106,8 +106,8 @@ class PoseOutfitReference:
             # New widgets go last: saved workflows store widget values by position.
             "picture_tag": ("STRING", {"default": DEFAULT_PICTURE_TAG, "multiline": False,
                             "tooltip": "How the prompt names a picture; {n} is its number. MiniMax H3: <Picture {n}>. Qwen Edit, Kontext, Seedream: image {n}. Empty: plain text prompt with no picture references."}),
-            "edit_target": (list(EDIT_TARGETS), {"default": EDIT_TARGETS[0],
-                            "tooltip": "Which picture is picture_1, the one the model edits. Subject keeps the photo's scene; Pose keeps the drawing's pose and framing."}),
+            "edit_target": (list(EDIT_TARGETS), {"default": "Pose",
+                            "tooltip": "Which picture is picture_1, the one the model edits. Pose keeps the drawing's pose and framing; Subject keeps the photo's scene."}),
             "megapixels": ("FLOAT", {"default": 4.0, "min": 0.0, "max": 32.0, "step": 0.5,
                            "tooltip": "Resize picture_1 to about this area (sides are multiples of 32). 0 leaves it as it is."}),
             "reference_text": (list(REFERENCE_TEXT), {"default": REFERENCE_TEXT[0],

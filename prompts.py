@@ -6,7 +6,7 @@ from string import Formatter
 FIELDS = {"edit", "subject", "pose", "outfit", "extra", "pose_name", "outfit_name", "angle"}
 DEFAULT_TEMPLATE = "{edit} {subject}, {pose}, {outfit}, {extra}"
 DEFAULT_PICTURE_TAG = "<Picture {n}>"
-EDIT_TARGETS = ("Subject", "Pose")
+EDIT_TARGETS = ("Pose", "Subject")
 REFERENCE_TEXT = ("Image and description", "Image only")
 
 

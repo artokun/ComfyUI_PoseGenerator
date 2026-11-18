@@ -10,7 +10,7 @@
     "prompt_template": "{edit} {subject}, {pose}, {outfit}, {extra}",
     "extra": "photorealistic, natural light",
     "pose_override": "", "outfit_override": "", "pose_image_mode": "Drawing",
-    "picture_tag": "<Picture {n}>", "edit_target": "Subject", "megapixels": 4.0,
+    "picture_tag": "<Picture {n}>", "edit_target": "Pose", "megapixels": 4.0,
     "reference_text": "Image and description",
     "subject_image": ["4", 0]}},
   "6": {"class_type": "MiniMaxH3ImageConditioning", "inputs": {

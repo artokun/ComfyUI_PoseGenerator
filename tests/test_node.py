@@ -285,3 +285,8 @@ def test_new_widgets_and_outputs_are_appended_for_saved_workflows():
     assert optional[:3] == ["pose_override", "outfit_override", "pose_image_mode"]
     assert optional[3:] == ["picture_tag", "edit_target", "megapixels", "reference_text", "subject_image"]
     assert PoseOutfitReference.RETURN_NAMES[:5] == ("pose_image", "outfit_image", "positive_prompt", "pose_text", "outfit_text")
+
+
+def test_new_nodes_edit_the_pose_by_default():
+    assert PoseOutfitReference.INPUT_TYPES()["optional"]["edit_target"] == (["Pose", "Subject"], PoseOutfitReference.INPUT_TYPES()["optional"]["edit_target"][1])
+    assert PoseOutfitReference.INPUT_TYPES()["optional"]["edit_target"][1]["default"] == "Pose"
