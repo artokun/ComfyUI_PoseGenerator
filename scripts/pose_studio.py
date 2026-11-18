@@ -16,11 +16,12 @@ import webbrowser
 from aiohttp import web
 
 try:
-    from . import generate_pose_references as generation, pose_metadata, pose_depth
+    from . import generate_pose_references as generation, pose_metadata, pose_depth, outfit_studio
 except ImportError:
     import generate_pose_references as generation
     import pose_metadata
     import pose_depth
+    import outfit_studio
 
 ROOT = generation.ROOT
 UI = Path(__file__).with_name("pose_studio_web")
@@ -1237,7 +1238,7 @@ async def media(request):
 
 async def static(request):
     filename = request.match_info.get("filename", "index.html")
-    if filename not in ("index.html", "studio.css", "studio.js"):
+    if filename not in ("index.html", "studio.css", "studio.js", "outfits.js"):
         raise web.HTTPNotFound()
     return web.FileResponse(UI / filename)
 
@@ -1261,6 +1262,7 @@ def create_app(root=ROOT, client_factory=None):
     app.router.add_post("/api/runs/{id}/{action}", run_action)
     app.router.add_get("/media/{kind:source|style}/{id}", media)
     app.router.add_get("/media/{kind:result}/{id}/{index}", media)
+    outfit_studio.register(app, root)
 
     async def shutdown(application):
         studio = application[STUDIO]

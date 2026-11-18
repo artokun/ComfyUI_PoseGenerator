@@ -73,9 +73,9 @@ class PoseOutfitReference:
     CATEGORY = "image/reference"
     FUNCTION = "generate"
     # New outputs are appended: saved workflows link outputs by position.
-    RETURN_TYPES = ("IMAGE", "IMAGE", "STRING", "STRING", "STRING", "IMAGE", "IMAGE", "IMAGE", "INT", "INT")
+    RETURN_TYPES = ("IMAGE", "IMAGE", "STRING", "STRING", "STRING", "IMAGE", "IMAGE", "IMAGE", "INT", "INT", "IMAGE")
     RETURN_NAMES = ("pose_image", "outfit_image", "positive_prompt", "pose_text", "outfit_text",
-                    "picture_1", "picture_2", "picture_3", "width", "height")
+                    "picture_1", "picture_2", "picture_3", "width", "height", "picture_4")
     OUTPUT_TOOLTIPS = (
         "The pose drawing or depth map. None gives an empty 1×1 image.",
         "The outfit image. None gives an empty 1×1 image.",
@@ -85,10 +85,11 @@ class PoseOutfitReference:
         "The second picture, or nothing if there is none. Wire it straight into the model.",
         "The third picture, or nothing if there is none. Wire it straight into the model.",
         "Width of picture_1 (0 without pictures).", "Height of picture_1 (0 without pictures).",
+        "The fourth picture (a location picture when subject, pose and outfit are all present), or nothing.",
     )
     DESCRIPTION = ("Choose pose and outfit references, optionally connect a photo of the subject, and compose a prompt with "
                    "{edit}, {subject}, {pose}, {outfit}, {location}, and {extra}. picture_1..3 are the subject, pose and outfit that exist, "
-                   "numbered the way the prompt refers to them.")
+                   "numbered the way the prompt refers to them. A location_image, when connected, is the last picture and sets the scene.")
     SEARCH_ALIASES = ["pose generator", "outfit picker", "reference gallery"]
 
     @classmethod
@@ -113,8 +114,9 @@ class PoseOutfitReference:
             "reference_text": (list(REFERENCE_TEXT), {"default": REFERENCE_TEXT[0],
                                "tooltip": "With picture references on, also add the pose and outfit descriptions, or point at the pictures only."}),
             "location": (list(LOCATIONS), {"default": LOCATIONS[0],
-                         "tooltip": "Where the scene comes from when the pose is the edited picture. From the subject photo: the photo's place and lighting (needs a photo that shows a place; the pose match is a little looser). Plain studio: white background, tightest pose match. Custom: describe it in extra."}),
+                         "tooltip": "Where the scene comes from. A connected location_image takes over from the subject photo. From the subject photo: the photo's place and lighting (needs a photo that shows a place; the pose match is a little looser). Plain studio: white background, tightest pose match. Custom: describe it in extra."}),
             "subject_image": ("IMAGE", {"tooltip": "Optional photo of the subject. The prompt then refers to this person by picture number."}),
+            "location_image": ("IMAGE", {"tooltip": "Optional picture of a place. It becomes the last picture and the prompt sets the scene there (its setting, background and lighting). Ignored when location is Plain studio; with Custom the picture is passed on and you describe the scene in extra."}),
         }}
 
     @classmethod
@@ -145,16 +147,19 @@ class PoseOutfitReference:
 
     def generate(self, pose, outfit, subject, prompt_template, extra, pose_override="", outfit_override="",
                  pose_image_mode="Drawing", picture_tag="", edit_target="Subject", megapixels=0.0,
-                 reference_text="Image and description", location="Custom", subject_image=None):
+                 reference_text="Image and description", location="Custom", subject_image=None, location_image=None):
         pose_entry = selected("pose", pose)
         outfit_entry = selected("outfit", outfit)
         depth = pose_image_mode == "Saved depth"
         pose_text = pose_override.strip() or (pose_entry["prompt"] if pose_entry else "")
         outfit_text = outfit_override.strip() or (outfit_entry["prompt"] if outfit_entry else "")
         pose_image, outfit_image = load_reference(pose_entry, depth), load_reference(outfit_entry)
+        use_location = location_image is not None and location != "Plain studio"
         available = {"subject": subject_image[:1] if subject_image is not None else None,
-                     "pose": pose_image if pose_entry else None, "outfit": outfit_image if outfit_entry else None}
-        order = picture_order(available["subject"] is not None, pose_entry is not None, outfit_entry is not None, edit_target)
+                     "pose": pose_image if pose_entry else None, "outfit": outfit_image if outfit_entry else None,
+                     "location": location_image[:1] if use_location else None}
+        order = picture_order(available["subject"] is not None, pose_entry is not None, outfit_entry is not None,
+                              edit_target, use_location)
         values = compose_values(
             subject, pose_text, outfit_text, extra, order=order, picture_tag=picture_tag, depth=depth,
             describe=reference_text != "Image only", location=location,
@@ -163,9 +168,9 @@ class PoseOutfitReference:
             angle=pose_entry.get("angle", "") if pose_entry else "",
         )
         prompt = render_prompt(with_picture_fields(prompt_template, values), values)
-        pictures = [available[kind] for kind in order] + [None] * (3 - len(order))
+        pictures = [available[kind] for kind in order] + [None] * (4 - len(order))
         width = height = 0
         if pictures[0] is not None:
             pictures[0] = fit_megapixels(pictures[0], megapixels)
             height, width = pictures[0].shape[1], pictures[0].shape[2]
-        return (pose_image, outfit_image, prompt, pose_text, outfit_text, *pictures, width, height)
+        return (pose_image, outfit_image, prompt, pose_text, outfit_text, *pictures[:3], width, height, pictures[3])

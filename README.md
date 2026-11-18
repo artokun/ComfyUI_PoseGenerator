@@ -84,7 +84,7 @@ catalog contained 1,439 poses and 1,407 outfits; these are not included download
 | `positive_prompt` | `STRING` | Composed text for your positive prompt |
 | `pose_text` | `STRING` | Pose description on its own |
 | `outfit_text` | `STRING` | Outfit description on its own |
-| `picture_1`, `picture_2`, `picture_3` | `IMAGE` | The subject photo, pose and outfit that exist, in prompt order |
+| `picture_1` … `picture_4` | `IMAGE` | The subject photo, pose, outfit and location picture that exist, in prompt order |
 | `width`, `height` | `INT` | Size of `picture_1` (0 without pictures) |
 
 Choose **None** or **Clear selection** to omit a reference from the prompt.
@@ -103,8 +103,8 @@ An omitted image output is a black 1×1 placeholder; leave it unconnected.
 Connect a photo to the optional **subject_image** input to put that person in the
 chosen pose and outfit with an image-edit model such as MiniMax H3 Image.
 
-1. Wire `picture_1`, `picture_2`, `picture_3` to the model's image 1, 2, 3, in that
-   order, and `positive_prompt` to its prompt. Wire them straight into the model:
+1. Wire `picture_1`, `picture_2`, `picture_3`, `picture_4` to the model's image 1, 2, 3, 4,
+   in that order, and `positive_prompt` to its prompt. Wire them straight into the model:
    a missing reference leaves its output empty.
 2. Wire `width` and `height` to the model's size inputs.
 
@@ -115,7 +115,8 @@ picture numbers yourself.
 | --- | --- |
 | `picture_tag` | How the prompt names a picture. `<Picture {n}>` for MiniMax H3, `image {n}` for Qwen Edit, Kontext or Seedream. Empty gives a plain text prompt. |
 | `edit_target` | Which picture is `picture_1`, the one the model edits. **Pose** keeps the drawing's pose, framing and camera angle. **Subject** keeps the photo's scene and is looser on the pose. |
-| `location` | With the pose as the edited picture: **From the subject photo** takes the photo's place and lighting, **Plain studio** gives a white background and the tightest pose match, **Custom** leaves it to `extra`. |
+| `location_image` | Optional picture of a place. The result is set there (setting, background and lighting, not the people in it). It is the last numbered picture. |
+| `location` | A connected `location_image` takes over from the subject photo. Otherwise, with the pose as the edited picture: **From the subject photo** takes the photo's place and lighting, **Plain studio** gives a white background and the tightest pose match, **Custom** leaves it to `extra`. |
 | `megapixels` | Resizes `picture_1` to about this area. 0 leaves it as it is. |
 | `reference_text` | Adds the pose and outfit descriptions alongside the pictures, or points at the pictures only. |
 
