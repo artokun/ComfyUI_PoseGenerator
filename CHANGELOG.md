@@ -1,5 +1,9 @@
 # Changelog
 
+## Unreleased
+
+- Three more outfits in the Instagram category (`instagram_O021`–`instagram_O023`): a black blazer and pinstripe corset look, a black cami with a grey bow mini skirt, and a white faux-fur jacket look. They were assembled from flat-lay collages with gpt-image-2, with all brand names and logos removed. 94 outfits in total.
+
 ## 0.1.5
 
 - **`location` and the edit opener now work with any prompt template.** A template without `{location}` or `{edit}`, which includes every workflow saved before 0.1.4, ignored the location setting and left out the "Edit <Picture 1>:" opener. The node now adds both itself when the template leaves them out: the opener at the start and the location before `{extra}`. To leave the location out, set `location` to **Custom**.
