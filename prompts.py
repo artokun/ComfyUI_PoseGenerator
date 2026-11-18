@@ -18,10 +18,11 @@ def validate_picture_tag(tag):
     return tag
 
 
-def picture_order(has_subject, has_pose, has_outfit, edit_target="Subject"):
-    """The pictures that exist, in the order a model numbers them. The edit target comes first."""
-    order = ["pose", "subject", "outfit"] if edit_target == "Pose" else ["subject", "pose", "outfit"]
-    present = {"subject": has_subject, "pose": has_pose, "outfit": has_outfit}
+def picture_order(has_subject, has_pose, has_outfit, edit_target="Subject", has_location=False):
+    """The pictures that exist, in the order a model numbers them. The edit target comes first
+    and a location picture last."""
+    order = ["pose", "subject", "outfit", "location"] if edit_target == "Pose" else ["subject", "pose", "outfit", "location"]
+    present = {"subject": has_subject, "pose": has_pose, "outfit": has_outfit, "location": has_location}
     return [kind for kind in order if present[kind]]
 
 
@@ -55,7 +56,11 @@ def compose_values(subject, pose_text, outfit_text, extra, *, order=(), picture_
     elif "subject" in tags and not outfit_text.strip():
         # Nothing chosen to wear: without this a pose edit keeps the bare mannequin body.
         values["outfit"] = f"wearing the same clothes as in {tags['subject']}"
-    if location == "From the subject photo" and "subject" in tags and order[0] != "subject":
+    if "location" in tags and location != "Plain studio":
+        # A connected location picture sets the scene, whichever picture is edited.
+        if location != "Custom":
+            values["location"] = f"in the place shown in {tags['location']} (its setting, background and lighting only, not any people in it)"
+    elif location == "From the subject photo" and "subject" in tags and order[0] != "subject":
         # Picture 1 sets the scene unless told otherwise; when the photo is picture 1 it already does.
         values["location"] = f"in the same location, background and lighting as {tags['subject']}"
     elif location == "Plain studio":

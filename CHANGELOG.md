@@ -2,6 +2,7 @@
 
 ## Unreleased
 
+- **Location picture.** Connect a picture of a place to the new optional `location_image` input and the result is set there: its setting, background and lighting, not any people in it. It is the last numbered picture and comes out on the new `picture_4` output (or an earlier one when the subject, pose or outfit is missing). It takes over from "From the subject photo"; **Plain studio** ignores it, and with **Custom** the picture is passed on and you describe the scene in `extra`. Tested on MiniMax H3 Image.
 - Pose Studio gets an **Outfits** page (`/outfits`) that makes outfit references in queued runs, the way the Poses page makes drawings:
   - **Pictures**: choose a folder, pick files, or drop or paste images onto the page.
     - **A person**: posed in an A-pose or I-pose on white, then removed, keeping the clothes as a ghost mannequin. Posing can be skipped.
