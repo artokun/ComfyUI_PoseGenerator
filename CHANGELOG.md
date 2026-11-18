@@ -1,10 +1,14 @@
 # Changelog
 
+## 0.1.2
+
+- **Saved depth** now also reads depth maps stored beside the drawing (`img/depth/<drawing name>`), the layout the original gallery uses. Before, only Pose Studio's `depth/` folder worked, so every original-gallery pose failed in Saved depth mode.
+
 ## 0.1.1
 
 - Choose a pose gallery on the node: named Pose Studio folders and other catalogs under `assets/` appear in a **Pose gallery** dropdown, and **Browse poses** can switch galleries.
 - Filter thumbnails by saved tags as well as category, camera angle, and search.
-- Add a **pose_image_mode** input: output the pose drawing, or a saved depth map for that pose (from Pose Studio's `depth/` folder, or a `depth/` folder beside the drawing as in the original gallery).
+- Add a **pose_image_mode** input: output the pose drawing, or a saved depth map for that pose.
 - Stop listing `torch` as a dependency. ComfyUI already provides it, and installing it from the node pack could replace a working CUDA build.
 
 ## 0.1.0
