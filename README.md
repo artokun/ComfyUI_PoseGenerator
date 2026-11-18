@@ -116,7 +116,7 @@ picture numbers yourself.
 | `picture_tag` | How the prompt names a picture. `<Picture {n}>` for MiniMax H3, `image {n}` for Qwen Edit, Kontext or Seedream. Empty gives a plain text prompt. |
 | `edit_target` | Which picture is `picture_1`, the one the model edits. **Pose** keeps the drawing's pose, framing and camera angle. **Subject** keeps the photo's scene and is looser on the pose. |
 | `location_image` | Optional picture of a place. The result is set there (setting, background and lighting, not the people in it). It is the last numbered picture. |
-| `location` | A connected `location_image` takes over from the subject photo. Otherwise, with the pose as the edited picture: **From the subject photo** takes the photo's place and lighting, **Plain studio** gives a white background and the tightest pose match, **Custom** leaves it to `extra`. |
+| `location` | **From the location image** uses the connected `location_image`; a connected one also takes over from the subject photo without changing this setting. Otherwise, with the pose as the edited picture: **From the subject photo** takes the photo's place and lighting, **Plain studio** gives a white background and the tightest pose match, **Custom** leaves it to `extra`. |
 | `megapixels` | Resizes `picture_1` to about this area. 0 leaves it as it is. |
 | `reference_text` | Adds the pose and outfit descriptions alongside the pictures, or points at the pictures only. |
 
