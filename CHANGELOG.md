@@ -1,5 +1,9 @@
 # Changelog
 
+## 0.1.2
+
+- **Saved depth** now also reads depth maps stored beside the drawing (`img/depth/<drawing name>`), the layout the original gallery uses. Before, only Pose Studio's `depth/` folder worked, so every original-gallery pose failed in Saved depth mode.
+
 ## 0.1.1
 
 - Choose a pose gallery on the node: named Pose Studio folders and other catalogs under `assets/` appear in a **Pose gallery** dropdown, and **Browse poses** can switch galleries.

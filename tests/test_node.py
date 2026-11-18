@@ -164,3 +164,30 @@ def test_named_galleries_resolve_collisions_recaptions_and_depth(local_library, 
     (folder / "catalog.json").write_text(json.dumps({**doc, "pose": [{**row, "id": "new-angle", "prompt": "reaching up"}]}))
     assert library.selected("pose", identity)["prompt"] == "reaching up"
     assert library.gallery_index()[0][1]["label"] == "Renamed"
+
+
+def test_saved_depth_beside_the_drawing_in_the_original_gallery(local_library):
+    # The original gallery stores depth maps as img/depth/<drawing name>, not
+    # Pose Studio's depth/<sha256>.png. Both layouts must work.
+    node = PoseOutfitReference()
+    args = ("pose-a", "outfit-a", "a traveler", DEFAULT_TEMPLATE, "soft lighting")
+    with pytest.raises(ValueError, match="depth map"):
+        node.generate(*args, pose_image_mode="Saved depth")
+    (local_library / "img" / "depth").mkdir()
+    Image.new("RGB", (12, 8), (0, 0, 255)).save(local_library / "img" / "depth" / "pose-a.png")
+    pose = node.generate(*args, pose_image_mode="Saved depth")[0]
+    assert pose[0, 0, 0].tolist() == [0, 0, 1]
+    # Drawing mode still returns the drawing itself.
+    assert node.generate(*args, pose_image_mode="Drawing")[0][0, 0, 0].tolist() == [1, 0, 0]
+
+
+def test_studio_depth_wins_over_a_file_beside_the_drawing(local_library):
+    node = PoseOutfitReference()
+    args = ("pose-a", "outfit-a", "a traveler", DEFAULT_TEMPLATE, "soft lighting")
+    drawing = local_library / "img" / "pose-a.png"
+    digest = hashlib.sha256(drawing.read_bytes()).hexdigest()
+    (local_library / "img" / "depth").mkdir()
+    Image.new("RGB", (12, 8), (0, 0, 255)).save(local_library / "img" / "depth" / "pose-a.png")
+    (local_library / "depth").mkdir()
+    Image.new("RGB", (12, 8), (255, 255, 255)).save(local_library / "depth" / f"{digest}.png")
+    assert torch.all(node.generate(*args, pose_image_mode="Saved depth")[0] == 1)
