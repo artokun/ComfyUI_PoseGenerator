@@ -9,7 +9,7 @@ from PIL import Image, ImageOps
 
 from .library import NONE, catalog_stamp, choices, image_path, selected
 from .prompts import (DEFAULT_PICTURE_TAG, DEFAULT_TEMPLATE, EDIT_TARGETS, LOCATIONS, REFERENCE_TEXT, compose_values,
-                      picture_order, render_prompt, validate_picture_tag)
+                      picture_order, render_prompt, validate_picture_tag, with_picture_fields)
 
 
 def _depth_candidates(entry, digest):
@@ -162,7 +162,7 @@ class PoseOutfitReference:
             outfit_name=outfit_entry["label"] if outfit_entry else "",
             angle=pose_entry.get("angle", "") if pose_entry else "",
         )
-        prompt = render_prompt(prompt_template, values)
+        prompt = render_prompt(with_picture_fields(prompt_template, values), values)
         pictures = [available[kind] for kind in order] + [None] * (3 - len(order))
         width = height = 0
         if pictures[0] is not None:
