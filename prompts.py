@@ -3,11 +3,12 @@
 import re
 from string import Formatter
 
-FIELDS = {"edit", "subject", "pose", "outfit", "extra", "pose_name", "outfit_name", "angle"}
-DEFAULT_TEMPLATE = "{edit} {subject}, {pose}, {outfit}, {extra}"
+FIELDS = {"edit", "subject", "pose", "outfit", "location", "extra", "pose_name", "outfit_name", "angle"}
+DEFAULT_TEMPLATE = "{edit} {subject}, {pose}, {outfit}, {location}, {extra}"
 DEFAULT_PICTURE_TAG = "<Picture {n}>"
 EDIT_TARGETS = ("Pose", "Subject")
 REFERENCE_TEXT = ("Image and description", "Image only")
+LOCATIONS = ("From the subject photo", "Plain studio", "Custom")
 
 
 def validate_picture_tag(tag):
@@ -25,10 +26,10 @@ def picture_order(has_subject, has_pose, has_outfit, edit_target="Subject"):
 
 
 def compose_values(subject, pose_text, outfit_text, extra, *, order=(), picture_tag="", depth=False,
-                   describe=True, pose_name="", outfit_name="", angle=""):
+                   describe=True, location="Custom", pose_name="", outfit_name="", angle=""):
     """Template values. With a picture tag, {subject}, {pose} and {outfit} point at their pictures
     by number and {edit} opens an edit instruction for picture 1."""
-    values = {"edit": "", "subject": subject, "pose": pose_text, "outfit": outfit_text, "extra": extra,
+    values = {"edit": "", "location": "", "subject": subject, "pose": pose_text, "outfit": outfit_text, "extra": extra,
               "pose_name": pose_name, "outfit_name": outfit_name, "angle": angle}
     tag = validate_picture_tag(picture_tag)
     if not tag or not order:
@@ -54,6 +55,11 @@ def compose_values(subject, pose_text, outfit_text, extra, *, order=(), picture_
     elif "subject" in tags and not outfit_text.strip():
         # Nothing chosen to wear: without this a pose edit keeps the bare mannequin body.
         values["outfit"] = f"wearing the same clothes as in {tags['subject']}"
+    if location == "From the subject photo" and "subject" in tags and order[0] != "subject":
+        # Picture 1 sets the scene unless told otherwise; when the photo is picture 1 it already does.
+        values["location"] = f"in the same location, background and lighting as {tags['subject']}"
+    elif location == "Plain studio":
+        values["location"] = "on a plain white studio background"
     if order[0] == "subject":
         values["edit"] = f"Edit {tags['subject']}: show"
     elif order[0] == "pose":

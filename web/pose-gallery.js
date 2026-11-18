@@ -360,7 +360,7 @@ async function previewPrompt(node) {
   dialog.append(output);
   try {
     const body = Object.fromEntries(["pose", "outfit", "subject", "prompt_template", "extra", "pose_override", "outfit_override",
-      "pose_image_mode", "picture_tag", "edit_target", "reference_text"].map((name) => [name, widget(node, name)?.value ?? ""]));
+      "pose_image_mode", "picture_tag", "edit_target", "reference_text", "location"].map((name) => [name, widget(node, name)?.value ?? ""]));
     // Picture numbers depend on whether a subject photo is wired in.
     body.has_subject_image = node.inputs?.some((input) => input.name === "subject_image" && input.link != null) ?? false;
     const response = await api.fetchApi("/pose-generator/preview", {
@@ -394,7 +394,7 @@ app.registerExtension({
     nodeType.prototype.configure = function (info) {
       const values = info?.widgets_values;
       if (Array.isArray(values) && values.length === 12) {
-        info = { ...info, widgets_values: [...values.slice(0, 8), "", "Subject", 0, "Image and description", ...values.slice(8)] };
+        info = { ...info, widgets_values: [...values.slice(0, 8), "", "Subject", 0, "Image and description", "Custom", ...values.slice(8)] };
       }
       return configure.call(this, info);
     };

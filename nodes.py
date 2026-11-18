@@ -8,7 +8,7 @@ import torch
 from PIL import Image, ImageOps
 
 from .library import NONE, catalog_stamp, choices, image_path, selected
-from .prompts import (DEFAULT_PICTURE_TAG, DEFAULT_TEMPLATE, EDIT_TARGETS, REFERENCE_TEXT, compose_values,
+from .prompts import (DEFAULT_PICTURE_TAG, DEFAULT_TEMPLATE, EDIT_TARGETS, LOCATIONS, REFERENCE_TEXT, compose_values,
                       picture_order, render_prompt, validate_picture_tag)
 
 
@@ -87,7 +87,7 @@ class PoseOutfitReference:
         "Width of picture_1 (0 without pictures).", "Height of picture_1 (0 without pictures).",
     )
     DESCRIPTION = ("Choose pose and outfit references, optionally connect a photo of the subject, and compose a prompt with "
-                   "{edit}, {subject}, {pose}, {outfit}, and {extra}. picture_1..3 are the subject, pose and outfit that exist, "
+                   "{edit}, {subject}, {pose}, {outfit}, {location}, and {extra}. picture_1..3 are the subject, pose and outfit that exist, "
                    "numbered the way the prompt refers to them.")
     SEARCH_ALIASES = ["pose generator", "outfit picker", "reference gallery"]
 
@@ -112,6 +112,8 @@ class PoseOutfitReference:
                            "tooltip": "Resize picture_1 to about this area (sides are multiples of 32). 0 leaves it as it is."}),
             "reference_text": (list(REFERENCE_TEXT), {"default": REFERENCE_TEXT[0],
                                "tooltip": "With picture references on, also add the pose and outfit descriptions, or point at the pictures only."}),
+            "location": (list(LOCATIONS), {"default": LOCATIONS[0],
+                         "tooltip": "Where the scene comes from when the pose is the edited picture. From the subject photo: the photo's place and lighting (needs a photo that shows a place; the pose match is a little looser). Plain studio: white background, tightest pose match. Custom: describe it in extra."}),
             "subject_image": ("IMAGE", {"tooltip": "Optional photo of the subject. The prompt then refers to this person by picture number."}),
         }}
 
@@ -143,7 +145,7 @@ class PoseOutfitReference:
 
     def generate(self, pose, outfit, subject, prompt_template, extra, pose_override="", outfit_override="",
                  pose_image_mode="Drawing", picture_tag="", edit_target="Subject", megapixels=0.0,
-                 reference_text="Image and description", subject_image=None):
+                 reference_text="Image and description", location="Custom", subject_image=None):
         pose_entry = selected("pose", pose)
         outfit_entry = selected("outfit", outfit)
         depth = pose_image_mode == "Saved depth"
@@ -155,7 +157,7 @@ class PoseOutfitReference:
         order = picture_order(available["subject"] is not None, pose_entry is not None, outfit_entry is not None, edit_target)
         values = compose_values(
             subject, pose_text, outfit_text, extra, order=order, picture_tag=picture_tag, depth=depth,
-            describe=reference_text != "Image only",
+            describe=reference_text != "Image only", location=location,
             pose_name=pose_entry["label"] if pose_entry else "",
             outfit_name=outfit_entry["label"] if outfit_entry else "",
             angle=pose_entry.get("angle", "") if pose_entry else "",

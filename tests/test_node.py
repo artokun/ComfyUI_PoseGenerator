@@ -283,10 +283,24 @@ def test_empty_picture_tag_keeps_the_plain_prompt_and_bad_tags_are_rejected(loca
 def test_new_widgets_and_outputs_are_appended_for_saved_workflows():
     optional = list(PoseOutfitReference.INPUT_TYPES()["optional"])
     assert optional[:3] == ["pose_override", "outfit_override", "pose_image_mode"]
-    assert optional[3:] == ["picture_tag", "edit_target", "megapixels", "reference_text", "subject_image"]
+    assert optional[3:] == ["picture_tag", "edit_target", "megapixels", "reference_text", "location", "subject_image"]
     assert PoseOutfitReference.RETURN_NAMES[:5] == ("pose_image", "outfit_image", "positive_prompt", "pose_text", "outfit_text")
 
 
 def test_new_nodes_edit_the_pose_by_default():
     assert PoseOutfitReference.INPUT_TYPES()["optional"]["edit_target"] == (["Pose", "Subject"], PoseOutfitReference.INPUT_TYPES()["optional"]["edit_target"][1])
     assert PoseOutfitReference.INPUT_TYPES()["optional"]["edit_target"][1]["default"] == "Pose"
+
+
+def test_location_points_at_the_subject_photo_only_when_the_pose_is_edited(local_library):
+    photo = torch.rand(1, 64, 64, 3)
+    node = PoseOutfitReference()
+    args = ("pose-a", "None", "a traveler", "{location}", "")
+    def prompt(**kwargs):
+        return node.generate(*args, picture_tag=H3, **kwargs)[2]
+    assert prompt(edit_target="Pose", location="From the subject photo", subject_image=photo) == "in the same location, background and lighting as <Picture 2>"
+    assert prompt(edit_target="Subject", location="From the subject photo", subject_image=photo) == ""  # the photo is picture 1
+    assert prompt(edit_target="Pose", location="From the subject photo") == ""  # no photo to point at
+    assert prompt(edit_target="Pose", location="Plain studio", subject_image=photo) == "on a plain white studio background"
+    assert prompt(edit_target="Pose", location="Custom", subject_image=photo) == ""
+    assert node.generate(*args, location="Plain studio", subject_image=photo)[2] == ""  # picture references off

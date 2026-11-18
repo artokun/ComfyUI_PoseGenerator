@@ -52,7 +52,7 @@ async def preview_prompt(request):
             str(body.get("subject", "")), body.get("pose_override", "").strip() or (pose["prompt"] if pose else ""),
             body.get("outfit_override", "").strip() or (outfit["prompt"] if outfit else ""), str(body.get("extra", "")),
             order=order, picture_tag=str(body.get("picture_tag", "")), depth=body.get("pose_image_mode") == "Saved depth",
-            describe=body.get("reference_text") != "Image only",
+            describe=body.get("reference_text") != "Image only", location=str(body.get("location", "Custom")),
             pose_name=pose["label"] if pose else "", outfit_name=outfit["label"] if outfit else "",
             angle=pose.get("angle", "") if pose else "",
         )

@@ -7,11 +7,11 @@
     "pose": "@folder.Instagram%20Poses:full_single_P018_diag",
     "outfit": "@folder.Outfits:instagram_O003",
     "subject": "the woman",
-    "prompt_template": "{edit} {subject}, {pose}, {outfit}, {extra}",
+    "prompt_template": "{edit} {subject}, {pose}, {outfit}, {location}, {extra}",
     "extra": "photorealistic, natural light",
     "pose_override": "", "outfit_override": "", "pose_image_mode": "Drawing",
     "picture_tag": "<Picture {n}>", "edit_target": "Pose", "megapixels": 4.0,
-    "reference_text": "Image and description",
+    "reference_text": "Image and description", "location": "From the subject photo",
     "subject_image": ["4", 0]}},
   "6": {"class_type": "MiniMaxH3ImageConditioning", "inputs": {
     "clip": ["2", 0], "vae": ["3", 0], "prompt": ["5", 2], "width": ["5", 8], "height": ["5", 9],
