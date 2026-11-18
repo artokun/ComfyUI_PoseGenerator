@@ -93,10 +93,15 @@ def gallery_sources():
                 label = _studio_label(file_stamp(manifest))
                 if label:
                     yield "studio." + folder.name, label, stamp
-    for path in sorted(assets.glob("*/catalog.json")):
+    # Your own folders under assets/, then the galleries that ship with the pack (assets/shipped/).
+    # A gallery keeps the same ID in either place; your own folder wins a name clash.
+    shipped = assets / "shipped"
+    seen = set()
+    for path in (*sorted(assets.glob("*/catalog.json")), *([] if shipped.is_symlink() else sorted(shipped.glob("*/catalog.json")))):
         folder = path.parent
-        if folder in (*standard, studio) or folder.is_symlink() or path.is_symlink():
+        if folder in (*standard, studio, shipped) or folder.name in seen or folder.is_symlink() or path.is_symlink():
             continue
+        seen.add(folder.name)
         yield "folder." + quote(folder.name, safe=""), folder.name, file_stamp(path)
 
 

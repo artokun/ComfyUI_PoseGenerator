@@ -5,7 +5,10 @@ Only the mannequin drawings, their saved depth maps and the reviewed catalog
 rows are written. Source photos, comparisons, history, trash and batch receipts
 (which hold local paths) stay behind. Usage:
 
-    python scripts/bundle_gallery.py SOURCE_RUN_DIR "assets/Instagram Poses"
+    python scripts/bundle_gallery.py SOURCE_RUN_DIR
+
+writes assets/shipped/<run name>/, and everything in assets/shipped/ ships with the pack.
+Pass a second path to write somewhere else, for example "assets/My Poses" to keep it local.
 """
 import argparse
 import hashlib
@@ -59,10 +62,18 @@ def bundle(source: Path, dest: Path, quality: int = 90) -> dict:
 def main():
     parser = argparse.ArgumentParser(description=__doc__, formatter_class=argparse.RawDescriptionHelpFormatter)
     parser.add_argument("source", type=Path, help="Pose Studio run folder (has catalog.json and img/)")
-    parser.add_argument("dest", type=Path, help="Output gallery folder, e.g. assets/<Label>")
+    parser.add_argument("dest", type=Path, nargs="?", help="Output gallery folder (default: assets/shipped/<run name>)")
     parser.add_argument("--quality", type=int, default=90)
     args = parser.parse_args()
-    print(json.dumps(bundle(args.source, args.dest, args.quality)))
+    dest = args.dest
+    if dest is None:
+        manifest = args.source / "studio.json"
+        label = json.loads(manifest.read_text(encoding="utf-8")).get("label") if manifest.is_file() else None
+        name = " ".join(str(label or args.source.resolve().name).split())
+        if not name or name.startswith(".") or "/" in name or "\\" in name:
+            parser.error("Name the gallery: pass an output folder such as assets/shipped/My Poses.")
+        dest = Path(__file__).resolve().parents[1] / "assets/shipped" / name
+    print(json.dumps({"dest": str(dest), **bundle(args.source, dest, args.quality)}))
 
 
 if __name__ == "__main__":

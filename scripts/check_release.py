@@ -24,8 +24,18 @@ REQUIRED = {"__init__.py", "nodes.py", "library.py", "prompts.py", "routes.py",
             "docs/notices/anhao-LICENSE.txt"}
 # Galleries made by the publisher (Pose Studio poses from their own photos; generated outfits). Only their
 # drawings, depth maps and catalogs ship; never the original gallery (assets/gallery*).
-BUNDLED_GALLERIES = ("assets/Instagram Poses/", "assets/OF poses/", "assets/Outfits/")
-BUNDLED_SUFFIXES = {".webp", ".json"}
+SHIPPED = "assets/shipped/"
+
+
+def shipped_gallery_file(relative):
+    """A file a shipped gallery may contain: <gallery>/catalog.json, or WebP under img/ or thumbs/.
+    A raw Pose Studio run (PNG sources, batch.json and studio.json with local paths) does not pass."""
+    if not relative.startswith(SHIPPED):
+        return False
+    parts = relative[len(SHIPPED):].split("/")
+    if len(parts) == 2:
+        return parts[1] == "catalog.json"
+    return len(parts) > 2 and parts[1] in ("img", "thumbs") and relative.endswith(".webp")
 
 
 def shipped_paths(root, working_tree=False):
@@ -88,7 +98,10 @@ def stage(root, working_tree=False):
             raise ValueError(f"Missing or non-regular package file: {relative}")
         if source.name.startswith(".env") or relative.startswith(("assets/gallery", ".cache/", ".venv/")):
             raise ValueError(f"Private or third-party material would ship: {relative}")
-        if relative not in REQUIRED and not (relative.startswith(BUNDLED_GALLERIES) and source.suffix in BUNDLED_SUFFIXES):
+        if relative.startswith(SHIPPED) and not shipped_gallery_file(relative):
+            raise ValueError(f"Not a bundled gallery file: {relative}. assets/shipped/ takes galleries made by "
+                             "scripts/bundle_gallery.py or scripts/build_outfit_gallery.py (catalog.json, img/ and thumbs/ WebP).")
+        if relative not in REQUIRED and not shipped_gallery_file(relative):
             raise ValueError(f"Unexpected file would ship: {relative}")
         content = source.read_bytes()
         if source.suffix == ".py":

@@ -86,4 +86,4 @@ treated as consent.
 
 ## Bundled galleries
 
-`assets/Instagram Poses/` and `assets/OF poses/` are not derived from the original galleries' images. They are mannequin drawings generated with Pose Studio from photos the publisher owns or is licensed to use, and they are distributed by the publisher.
+`assets/shipped/Instagram Poses/` and `assets/shipped/OF poses/` are not derived from the original galleries' images. They are mannequin drawings generated with Pose Studio from photos the publisher owns or is licensed to use, and they are distributed by the publisher.
