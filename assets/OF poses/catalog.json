@@ -1,0 +1,648 @@
+{
+ "schema_version": 1,
+ "pose": [
+  {
+   "id": "upper80v2_P029_front",
+   "label": "Sitting with legs spread, one hand on a thigh, vulva and labia exposed",
+   "prompt": "sitting with legs spread, one hand on a thigh, vulva and labia exposed, front view",
+   "category": "Upper body",
+   "angle": "front view",
+   "tags": [
+    "front view",
+    "sitting",
+    "solo"
+   ],
+   "tag_groups": {
+    "Camera position": [
+     "front view"
+    ],
+    "Character stance": [
+     "sitting"
+    ],
+    "Character count": [
+     "solo"
+    ],
+    "Gesture": []
+   },
+   "image": "img/upper80v2_P029_front.webp",
+   "thumbnail": "thumbs/upper80v2_P029_front.webp"
+  },
+  {
+   "id": "full_single_P030_high",
+   "label": "Reclining with legs spread and one hand resting on a thigh. Vulva exposed",
+   "prompt": "reclining with legs spread and one hand resting on a thigh. Vulva exposed, high-angle view",
+   "category": "Full body",
+   "angle": "high-angle view",
+   "tags": [
+    "front view",
+    "high-angle view",
+    "reclining",
+    "solo"
+   ],
+   "tag_groups": {
+    "Camera position": [
+     "front view",
+     "high-angle view"
+    ],
+    "Character stance": [
+     "reclining"
+    ],
+    "Character count": [
+     "solo"
+    ],
+    "Gesture": []
+   },
+   "image": "img/full_single_P030_high.webp",
+   "thumbnail": "thumbs/full_single_P030_high.webp"
+  },
+  {
+   "id": "pose-cfcd8406b6a016ba",
+   "label": "Needs pose review",
+   "prompt": "",
+   "category": "Unreviewed",
+   "angle": "",
+   "tags": [
+    "needs-review"
+   ],
+   "image": "img/pose-cfcd8406b6a016ba.webp",
+   "thumbnail": "thumbs/pose-cfcd8406b6a016ba.webp"
+  },
+  {
+   "id": "upper80v2_P032_low",
+   "label": "Reclining with legs raised and one hand on the inner thigh, vulva exposed",
+   "prompt": "reclining with legs raised and one hand on the inner thigh, vulva exposed, low-angle view",
+   "category": "Upper body",
+   "angle": "low-angle view",
+   "tags": [
+    "front view",
+    "low-angle view",
+    "reclining",
+    "solo"
+   ],
+   "tag_groups": {
+    "Camera position": [
+     "front view",
+     "low-angle view"
+    ],
+    "Character stance": [
+     "reclining"
+    ],
+    "Character count": [
+     "solo"
+    ],
+    "Gesture": []
+   },
+   "image": "img/upper80v2_P032_low.webp",
+   "thumbnail": "thumbs/upper80v2_P032_low.webp"
+  },
+  {
+   "id": "pair60_P034_rear",
+   "label": "Two people, one bent forward while the other spreads the exposed vulva",
+   "prompt": "two people, one bent forward while the other spreads the exposed vulva, rear view",
+   "category": "Two people",
+   "angle": "rear view",
+   "tags": [
+    "rear view",
+    "bending",
+    "pair",
+    "reaching"
+   ],
+   "tag_groups": {
+    "Camera position": [
+     "rear view"
+    ],
+    "Character stance": [
+     "bending"
+    ],
+    "Character count": [
+     "pair"
+    ],
+    "Gesture": [
+     "reaching"
+    ]
+   },
+   "image": "img/pair60_P034_rear.webp",
+   "thumbnail": "thumbs/pair60_P034_rear.webp"
+  },
+  {
+   "id": "full_single_P035_low",
+   "label": "Reclining on one arm with legs raised and one hand gripping the inner thigh, vulva exposed",
+   "prompt": "reclining on one arm with legs raised and one hand gripping the inner thigh, vulva exposed, low-angle view",
+   "category": "Full body",
+   "angle": "low-angle view",
+   "tags": [
+    "three-quarter view",
+    "low-angle view",
+    "reclining",
+    "solo"
+   ],
+   "tag_groups": {
+    "Camera position": [
+     "three-quarter view",
+     "low-angle view"
+    ],
+    "Character stance": [
+     "reclining"
+    ],
+    "Character count": [
+     "solo"
+    ],
+    "Gesture": []
+   },
+   "image": "img/full_single_P035_low.webp",
+   "thumbnail": "thumbs/full_single_P035_low.webp"
+  },
+  {
+   "id": "full_single_P036_side",
+   "label": "Sitting with knees drawn up and hands resting on the inner thigh, vulva exposed",
+   "prompt": "sitting with knees drawn up and hands resting on the inner thigh, vulva exposed, side view",
+   "category": "Full body",
+   "angle": "side view",
+   "tags": [
+    "side view",
+    "sitting",
+    "solo"
+   ],
+   "tag_groups": {
+    "Camera position": [
+     "side view"
+    ],
+    "Character stance": [
+     "sitting"
+    ],
+    "Character count": [
+     "solo"
+    ],
+    "Gesture": []
+   },
+   "image": "img/full_single_P036_side.webp",
+   "thumbnail": "thumbs/full_single_P036_side.webp"
+  },
+  {
+   "id": "full_single_P037_diag",
+   "label": "Sitting with one knee raised, one hand on the thigh, vulva exposed",
+   "prompt": "sitting with one knee raised, one hand on the thigh, vulva exposed, three-quarter view",
+   "category": "Full body",
+   "angle": "three-quarter view",
+   "tags": [
+    "three-quarter view",
+    "sitting",
+    "solo"
+   ],
+   "tag_groups": {
+    "Camera position": [
+     "three-quarter view"
+    ],
+    "Character stance": [
+     "sitting"
+    ],
+    "Character count": [
+     "solo"
+    ],
+    "Gesture": []
+   },
+   "image": "img/full_single_P037_diag.webp",
+   "thumbnail": "thumbs/full_single_P037_diag.webp"
+  },
+  {
+   "id": "upper80v2_P038_rear",
+   "label": "Bending forward with one hand resting on the buttock and vulva exposed",
+   "prompt": "bending forward with one hand resting on the buttock and vulva exposed, rear view",
+   "category": "Upper body",
+   "angle": "rear view",
+   "tags": [
+    "rear view",
+    "low-angle view",
+    "bending",
+    "solo",
+    "reaching"
+   ],
+   "tag_groups": {
+    "Camera position": [
+     "rear view",
+     "low-angle view"
+    ],
+    "Character stance": [
+     "bending"
+    ],
+    "Character count": [
+     "solo"
+    ],
+    "Gesture": [
+     "reaching"
+    ]
+   },
+   "image": "img/upper80v2_P038_rear.webp",
+   "thumbnail": "thumbs/upper80v2_P038_rear.webp"
+  },
+  {
+   "id": "upper80v2_P039_low",
+   "label": "Sitting with legs spread and one hand resting on the thigh, vulva exposed",
+   "prompt": "sitting with legs spread and one hand resting on the thigh, vulva exposed, low-angle view",
+   "category": "Upper body",
+   "angle": "low-angle view",
+   "tags": [
+    "low-angle view",
+    "sitting",
+    "solo"
+   ],
+   "tag_groups": {
+    "Camera position": [
+     "low-angle view"
+    ],
+    "Character stance": [
+     "sitting"
+    ],
+    "Character count": [
+     "solo"
+    ],
+    "Gesture": []
+   },
+   "image": "img/upper80v2_P039_low.webp",
+   "thumbnail": "thumbs/upper80v2_P039_low.webp"
+  },
+  {
+   "id": "pose-03783ed68fc5c1db",
+   "label": "Needs pose review",
+   "prompt": "",
+   "category": "Unreviewed",
+   "angle": "",
+   "tags": [
+    "needs-review"
+   ],
+   "image": "img/pose-03783ed68fc5c1db.webp",
+   "thumbnail": "thumbs/pose-03783ed68fc5c1db.webp"
+  },
+  {
+   "id": "upper80v2_P044_front",
+   "label": "Standing with one hand across the chest and the other arm reaching forward",
+   "prompt": "standing with one hand across the chest and the other arm reaching forward, front view",
+   "category": "Upper body",
+   "angle": "front view",
+   "tags": [
+    "front view",
+    "standing",
+    "solo",
+    "reaching"
+   ],
+   "tag_groups": {
+    "Camera position": [
+     "front view"
+    ],
+    "Character stance": [
+     "standing"
+    ],
+    "Character count": [
+     "solo"
+    ],
+    "Gesture": [
+     "reaching"
+    ]
+   },
+   "image": "img/upper80v2_P044_front.webp",
+   "thumbnail": "thumbs/upper80v2_P044_front.webp"
+  },
+  {
+   "id": "upper80v2_P045_high",
+   "label": "Lying with legs spread and hands covering the breasts, vulva exposed",
+   "prompt": "lying with legs spread and hands covering the breasts, vulva exposed, high-angle view",
+   "category": "Upper body",
+   "angle": "high-angle view",
+   "tags": [
+    "front view",
+    "high-angle view",
+    "lying",
+    "solo"
+   ],
+   "tag_groups": {
+    "Camera position": [
+     "front view",
+     "high-angle view"
+    ],
+    "Character stance": [
+     "lying"
+    ],
+    "Character count": [
+     "solo"
+    ],
+    "Gesture": []
+   },
+   "image": "img/upper80v2_P045_high.webp",
+   "thumbnail": "thumbs/upper80v2_P045_high.webp"
+  },
+  {
+   "id": "upper80v2_P046_front",
+   "label": "Standing upright with both hands covering the breasts",
+   "prompt": "standing upright with both hands covering the breasts, front view",
+   "category": "Upper body",
+   "angle": "front view",
+   "tags": [
+    "front view",
+    "standing",
+    "solo"
+   ],
+   "tag_groups": {
+    "Camera position": [
+     "front view"
+    ],
+    "Character stance": [
+     "standing"
+    ],
+    "Character count": [
+     "solo"
+    ],
+    "Gesture": []
+   },
+   "image": "img/upper80v2_P046_front.webp",
+   "thumbnail": "thumbs/upper80v2_P046_front.webp"
+  },
+  {
+   "id": "upper80v2_P047_diag",
+   "label": "Sitting with one leg raised and a hand over the exposed vulva",
+   "prompt": "sitting with one leg raised and a hand over the exposed vulva, three-quarter view",
+   "category": "Upper body",
+   "angle": "three-quarter view",
+   "tags": [
+    "three-quarter view",
+    "sitting",
+    "solo"
+   ],
+   "tag_groups": {
+    "Camera position": [
+     "three-quarter view"
+    ],
+    "Character stance": [
+     "sitting"
+    ],
+    "Character count": [
+     "solo"
+    ],
+    "Gesture": []
+   },
+   "image": "img/upper80v2_P047_diag.webp",
+   "thumbnail": "thumbs/upper80v2_P047_diag.webp"
+  },
+  {
+   "id": "upper80v2_P048_diag",
+   "label": "Reclining with legs spread and one hand resting on the thigh, vulva exposed",
+   "prompt": "reclining with legs spread and one hand resting on the thigh, vulva exposed, three-quarter view",
+   "category": "Upper body",
+   "angle": "three-quarter view",
+   "tags": [
+    "three-quarter view",
+    "reclining",
+    "solo"
+   ],
+   "tag_groups": {
+    "Camera position": [
+     "three-quarter view"
+    ],
+    "Character stance": [
+     "reclining"
+    ],
+    "Character count": [
+     "solo"
+    ],
+    "Gesture": []
+   },
+   "image": "img/upper80v2_P048_diag.webp",
+   "thumbnail": "thumbs/upper80v2_P048_diag.webp"
+  },
+  {
+   "id": "upper80v2_P050_diag",
+   "label": "Reclining with one hand resting across the pregnant belly and vulva exposed",
+   "prompt": "reclining with one hand resting across the pregnant belly and vulva exposed, three-quarter view",
+   "category": "Upper body",
+   "angle": "three-quarter view",
+   "tags": [
+    "three-quarter view",
+    "reclining",
+    "solo"
+   ],
+   "tag_groups": {
+    "Camera position": [
+     "three-quarter view"
+    ],
+    "Character stance": [
+     "reclining"
+    ],
+    "Character count": [
+     "solo"
+    ],
+    "Gesture": []
+   },
+   "image": "img/upper80v2_P050_diag.webp",
+   "thumbnail": "thumbs/upper80v2_P050_diag.webp"
+  },
+  {
+   "id": "upper80v2_P051_high",
+   "label": "Reclining with one hand resting on a raised thigh, vulva exposed",
+   "prompt": "reclining with one hand resting on a raised thigh, vulva exposed, high-angle view",
+   "category": "Upper body",
+   "angle": "high-angle view",
+   "tags": [
+    "three-quarter view",
+    "high-angle view",
+    "reclining",
+    "solo",
+    "hands on knee"
+   ],
+   "tag_groups": {
+    "Camera position": [
+     "three-quarter view",
+     "high-angle view"
+    ],
+    "Character stance": [
+     "reclining"
+    ],
+    "Character count": [
+     "solo"
+    ],
+    "Gesture": [
+     "hands on knee"
+    ]
+   },
+   "image": "img/upper80v2_P051_high.webp",
+   "thumbnail": "thumbs/upper80v2_P051_high.webp"
+  },
+  {
+   "id": "upper80v2_P052_diag",
+   "label": "Sitting with one hand resting across the raised thigh",
+   "prompt": "sitting with one hand resting across the raised thigh, three-quarter view",
+   "category": "Upper body",
+   "angle": "three-quarter view",
+   "tags": [
+    "three-quarter view",
+    "sitting",
+    "solo"
+   ],
+   "tag_groups": {
+    "Camera position": [
+     "three-quarter view"
+    ],
+    "Character stance": [
+     "sitting"
+    ],
+    "Character count": [
+     "solo"
+    ],
+    "Gesture": []
+   },
+   "image": "img/upper80v2_P052_diag.webp",
+   "thumbnail": "thumbs/upper80v2_P052_diag.webp"
+  },
+  {
+   "id": "upper80v2_P053_rear",
+   "label": "Crouching with legs spread, one hand on the hip and the other raised near the face. Vulva exposed",
+   "prompt": "crouching with legs spread, one hand on the hip and the other raised near the face. Vulva exposed, rear view",
+   "category": "Upper body",
+   "angle": "rear view",
+   "tags": [
+    "three-quarter view",
+    "rear view",
+    "low-angle view",
+    "crouching",
+    "solo",
+    "hands on hips"
+   ],
+   "tag_groups": {
+    "Camera position": [
+     "three-quarter view",
+     "rear view",
+     "low-angle view"
+    ],
+    "Character stance": [
+     "crouching"
+    ],
+    "Character count": [
+     "solo"
+    ],
+    "Gesture": [
+     "hands on hips"
+    ]
+   },
+   "image": "img/upper80v2_P053_rear.webp",
+   "thumbnail": "thumbs/upper80v2_P053_rear.webp"
+  },
+  {
+   "id": "upper80v2_P054_diag",
+   "label": "Bending forward with legs spread and one hand on the hip, vulva exposed",
+   "prompt": "bending forward with legs spread and one hand on the hip, vulva exposed, three-quarter view",
+   "category": "Upper body",
+   "angle": "three-quarter view",
+   "tags": [
+    "three-quarter view",
+    "rear view",
+    "bending",
+    "solo",
+    "hands on hips"
+   ],
+   "tag_groups": {
+    "Camera position": [
+     "three-quarter view",
+     "rear view"
+    ],
+    "Character stance": [
+     "bending"
+    ],
+    "Character count": [
+     "solo"
+    ],
+    "Gesture": [
+     "hands on hips"
+    ]
+   },
+   "image": "img/upper80v2_P054_diag.webp",
+   "thumbnail": "thumbs/upper80v2_P054_diag.webp"
+  },
+  {
+   "id": "upper80v2_P055_diag",
+   "label": "Sitting with one leg raised and a hand resting on the thigh, vulva exposed",
+   "prompt": "sitting with one leg raised and a hand resting on the thigh, vulva exposed, three-quarter view",
+   "category": "Upper body",
+   "angle": "three-quarter view",
+   "tags": [
+    "three-quarter view",
+    "sitting",
+    "reclining",
+    "solo"
+   ],
+   "tag_groups": {
+    "Camera position": [
+     "three-quarter view"
+    ],
+    "Character stance": [
+     "sitting",
+     "reclining"
+    ],
+    "Character count": [
+     "solo"
+    ],
+    "Gesture": []
+   },
+   "image": "img/upper80v2_P055_diag.webp",
+   "thumbnail": "thumbs/upper80v2_P055_diag.webp"
+  },
+  {
+   "id": "upper80v2_P056_diag",
+   "label": "Sitting with one hand resting on the raised thigh, vulva exposed",
+   "prompt": "sitting with one hand resting on the raised thigh, vulva exposed, three-quarter view",
+   "category": "Upper body",
+   "angle": "three-quarter view",
+   "tags": [
+    "three-quarter view",
+    "sitting",
+    "solo",
+    "hands on knee"
+   ],
+   "tag_groups": {
+    "Camera position": [
+     "three-quarter view"
+    ],
+    "Character stance": [
+     "sitting"
+    ],
+    "Character count": [
+     "solo"
+    ],
+    "Gesture": [
+     "hands on knee"
+    ]
+   },
+   "image": "img/upper80v2_P056_diag.webp",
+   "thumbnail": "thumbs/upper80v2_P056_diag.webp"
+  },
+  {
+   "id": "upper80v2_P058_rear",
+   "label": "Bending forward while one hand spreads the labia, vulva exposed",
+   "prompt": "bending forward while one hand spreads the labia, vulva exposed, rear view",
+   "category": "Upper body",
+   "angle": "rear view",
+   "tags": [
+    "three-quarter view",
+    "rear view",
+    "bending",
+    "solo",
+    "reaching"
+   ],
+   "tag_groups": {
+    "Camera position": [
+     "three-quarter view",
+     "rear view"
+    ],
+    "Character stance": [
+     "bending"
+    ],
+    "Character count": [
+     "solo"
+    ],
+    "Gesture": [
+     "reaching"
+    ]
+   },
+   "image": "img/upper80v2_P058_rear.webp",
+   "thumbnail": "thumbs/upper80v2_P058_rear.webp"
+  }
+ ],
+ "outfit": []
+}

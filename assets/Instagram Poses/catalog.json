@@ -1,0 +1,778 @@
+{
+ "schema_version": 1,
+ "pose": [
+  {
+   "id": "upper80v2_P001_low",
+   "label": "Sitting with both arms lowered and head tilted forward, taking a selfie",
+   "prompt": "sitting with both arms lowered and head tilted forward, taking a selfie, low-angle view",
+   "category": "Upper body",
+   "angle": "low-angle view",
+   "tags": [
+    "three-quarter view",
+    "low-angle view",
+    "sitting",
+    "solo",
+    "reaching"
+   ],
+   "tag_groups": {
+    "Camera position": [
+     "three-quarter view",
+     "low-angle view"
+    ],
+    "Character stance": [
+     "sitting"
+    ],
+    "Character count": [
+     "solo"
+    ],
+    "Gesture": [
+     "reaching"
+    ]
+   },
+   "image": "img/upper80v2_P001_low.webp",
+   "thumbnail": "thumbs/upper80v2_P001_low.webp"
+  },
+  {
+   "id": "upper80v2_P002_front",
+   "label": "Raising one hand to rest against the side of the head",
+   "prompt": "raising one hand to rest against the side of the head, front view",
+   "category": "Upper body",
+   "angle": "front view",
+   "tags": [
+    "front view",
+    "solo",
+    "arms raised"
+   ],
+   "tag_groups": {
+    "Camera position": [
+     "front view"
+    ],
+    "Character stance": [],
+    "Character count": [
+     "solo"
+    ],
+    "Gesture": [
+     "arms raised"
+    ]
+   },
+   "image": "img/upper80v2_P002_front.webp",
+   "thumbnail": "thumbs/upper80v2_P002_front.webp"
+  },
+  {
+   "id": "upper80v2_P003_high",
+   "label": "Sitting with knees raised with arms outstretched, taking a selfie",
+   "prompt": "sitting with knees raised with arms outstretched, taking a selfie, high-angle view",
+   "category": "Upper body",
+   "angle": "high-angle view",
+   "tags": [
+    "high-angle view",
+    "sitting",
+    "solo"
+   ],
+   "tag_groups": {
+    "Camera position": [
+     "high-angle view"
+    ],
+    "Character stance": [
+     "sitting"
+    ],
+    "Character count": [
+     "solo"
+    ],
+    "Gesture": []
+   },
+   "image": "img/upper80v2_P003_high.webp",
+   "thumbnail": "thumbs/upper80v2_P003_high.webp"
+  },
+  {
+   "id": "upper80v2_P004_high",
+   "label": "Lying prone with one hand planted and the other arm reaching, taking a selfie",
+   "prompt": "lying prone with one hand planted and the other arm reaching, taking a selfie, high-angle view",
+   "category": "Upper body",
+   "angle": "high-angle view",
+   "tags": [
+    "three-quarter view",
+    "high-angle view",
+    "lying",
+    "solo",
+    "reaching"
+   ],
+   "tag_groups": {
+    "Camera position": [
+     "three-quarter view",
+     "high-angle view"
+    ],
+    "Character stance": [
+     "lying"
+    ],
+    "Character count": [
+     "solo"
+    ],
+    "Gesture": [
+     "reaching"
+    ]
+   },
+   "image": "img/upper80v2_P004_high.webp",
+   "thumbnail": "thumbs/upper80v2_P004_high.webp"
+  },
+  {
+   "id": "upper80v2_P005_low",
+   "label": "Leaning forward with both arms extended in front",
+   "prompt": "leaning forward with both arms extended in front, low-angle view",
+   "category": "Upper body",
+   "angle": "low-angle view",
+   "tags": [
+    "front view",
+    "low-angle view",
+    "leaning",
+    "solo",
+    "reaching"
+   ],
+   "tag_groups": {
+    "Camera position": [
+     "front view",
+     "low-angle view"
+    ],
+    "Character stance": [
+     "leaning"
+    ],
+    "Character count": [
+     "solo"
+    ],
+    "Gesture": [
+     "reaching"
+    ]
+   },
+   "image": "img/upper80v2_P005_low.webp",
+   "thumbnail": "thumbs/upper80v2_P005_low.webp"
+  },
+  {
+   "id": "upper80v2_P006_diag",
+   "label": "Lying face down, propped on both elbows with hands forward",
+   "prompt": "lying face down, propped on both elbows with hands forward, three-quarter view",
+   "category": "Upper body",
+   "angle": "three-quarter view",
+   "tags": [
+    "three-quarter view",
+    "lying",
+    "solo"
+   ],
+   "tag_groups": {
+    "Camera position": [
+     "three-quarter view"
+    ],
+    "Character stance": [
+     "lying"
+    ],
+    "Character count": [
+     "solo"
+    ],
+    "Gesture": []
+   },
+   "image": "img/upper80v2_P006_diag.webp",
+   "thumbnail": "thumbs/upper80v2_P006_diag.webp"
+  },
+  {
+   "id": "upper80v2_P007_diag",
+   "label": "Standing with the head tilted down and arms extended outward",
+   "prompt": "standing with the head tilted down and arms extended outward, three-quarter view",
+   "category": "Upper body",
+   "angle": "three-quarter view",
+   "tags": [
+    "three-quarter view",
+    "standing",
+    "solo"
+   ],
+   "tag_groups": {
+    "Camera position": [
+     "three-quarter view"
+    ],
+    "Character stance": [
+     "standing"
+    ],
+    "Character count": [
+     "solo"
+    ],
+    "Gesture": []
+   },
+   "image": "img/upper80v2_P007_diag.webp",
+   "thumbnail": "thumbs/upper80v2_P007_diag.webp"
+  },
+  {
+   "id": "full_single_P008_diag",
+   "label": "Kneeling with both hands braced on the floor beside the hips",
+   "prompt": "kneeling with both hands braced on the floor beside the hips, three-quarter view",
+   "category": "Full body",
+   "angle": "three-quarter view",
+   "tags": [
+    "three-quarter view",
+    "kneeling",
+    "solo"
+   ],
+   "tag_groups": {
+    "Camera position": [
+     "three-quarter view"
+    ],
+    "Character stance": [
+     "kneeling"
+    ],
+    "Character count": [
+     "solo"
+    ],
+    "Gesture": []
+   },
+   "image": "img/full_single_P008_diag.webp",
+   "thumbnail": "thumbs/full_single_P008_diag.webp"
+  },
+  {
+   "id": "upper80v2_P009_diag",
+   "label": "Leaning forward with one hand braced against the side of the head",
+   "prompt": "leaning forward with one hand braced against the side of the head, three-quarter view",
+   "category": "Upper body",
+   "angle": "three-quarter view",
+   "tags": [
+    "three-quarter view",
+    "leaning",
+    "solo"
+   ],
+   "tag_groups": {
+    "Camera position": [
+     "three-quarter view"
+    ],
+    "Character stance": [
+     "leaning"
+    ],
+    "Character count": [
+     "solo"
+    ],
+    "Gesture": []
+   },
+   "image": "img/upper80v2_P009_diag.webp",
+   "thumbnail": "thumbs/upper80v2_P009_diag.webp"
+  },
+  {
+   "id": "upper80v2_P010_diag",
+   "label": "Sitting with one knee raised and a hand resting on the shin",
+   "prompt": "sitting with one knee raised and a hand resting on the shin, three-quarter view",
+   "category": "Upper body",
+   "angle": "three-quarter view",
+   "tags": [
+    "three-quarter view",
+    "sitting",
+    "solo",
+    "hands on knee"
+   ],
+   "tag_groups": {
+    "Camera position": [
+     "three-quarter view"
+    ],
+    "Character stance": [
+     "sitting"
+    ],
+    "Character count": [
+     "solo"
+    ],
+    "Gesture": [
+     "hands on knee"
+    ]
+   },
+   "image": "img/upper80v2_P010_diag.webp",
+   "thumbnail": "thumbs/upper80v2_P010_diag.webp"
+  },
+  {
+   "id": "upper80v2_P011_diag",
+   "label": "Upper torso with the head lowered and angled toward one shoulder",
+   "prompt": "upper torso with the head lowered and angled toward one shoulder, three-quarter view",
+   "category": "Upper body",
+   "angle": "three-quarter view",
+   "tags": [
+    "three-quarter view",
+    "solo"
+   ],
+   "tag_groups": {
+    "Camera position": [
+     "three-quarter view"
+    ],
+    "Character stance": [],
+    "Character count": [
+     "solo"
+    ],
+    "Gesture": []
+   },
+   "image": "img/upper80v2_P011_diag.webp",
+   "thumbnail": "thumbs/upper80v2_P011_diag.webp"
+  },
+  {
+   "id": "upper80v2_P012_front",
+   "label": "Touching the cheek with one raised hand and a bent elbow",
+   "prompt": "touching the cheek with one raised hand and a bent elbow, front view",
+   "category": "Upper body",
+   "angle": "front view",
+   "tags": [
+    "front view",
+    "solo"
+   ],
+   "tag_groups": {
+    "Camera position": [
+     "front view"
+    ],
+    "Character stance": [],
+    "Character count": [
+     "solo"
+    ],
+    "Gesture": []
+   },
+   "image": "img/upper80v2_P012_front.webp",
+   "thumbnail": "thumbs/upper80v2_P012_front.webp"
+  },
+  {
+   "id": "upper80v2_P013_diag",
+   "label": "Reaching forward with one arm while the other hand hangs loosely",
+   "prompt": "reaching forward with one arm while the other hand hangs loosely, three-quarter view",
+   "category": "Upper body",
+   "angle": "three-quarter view",
+   "tags": [
+    "three-quarter view",
+    "solo",
+    "reaching"
+   ],
+   "tag_groups": {
+    "Camera position": [
+     "three-quarter view"
+    ],
+    "Character stance": [],
+    "Character count": [
+     "solo"
+    ],
+    "Gesture": [
+     "reaching"
+    ]
+   },
+   "image": "img/upper80v2_P013_diag.webp",
+   "thumbnail": "thumbs/upper80v2_P013_diag.webp"
+  },
+  {
+   "id": "upper80v2_P014_diag",
+   "label": "Lying prone, propped on the elbows with chin resting on one hand",
+   "prompt": "lying prone, propped on the elbows with chin resting on one hand, three-quarter view",
+   "category": "Upper body",
+   "angle": "three-quarter view",
+   "tags": [
+    "three-quarter view",
+    "lying",
+    "solo"
+   ],
+   "tag_groups": {
+    "Camera position": [
+     "three-quarter view"
+    ],
+    "Character stance": [
+     "lying"
+    ],
+    "Character count": [
+     "solo"
+    ],
+    "Gesture": []
+   },
+   "image": "img/upper80v2_P014_diag.webp",
+   "thumbnail": "thumbs/upper80v2_P014_diag.webp"
+  },
+  {
+   "id": "full_single_P015_diag",
+   "label": "Lying prone and propped on both forearms with legs stretched behind",
+   "prompt": "lying prone and propped on both forearms with legs stretched behind, three-quarter view",
+   "category": "Full body",
+   "angle": "three-quarter view",
+   "tags": [
+    "three-quarter view",
+    "high-angle view",
+    "lying",
+    "solo"
+   ],
+   "tag_groups": {
+    "Camera position": [
+     "three-quarter view",
+     "high-angle view"
+    ],
+    "Character stance": [
+     "lying"
+    ],
+    "Character count": [
+     "solo"
+    ],
+    "Gesture": []
+   },
+   "image": "img/full_single_P015_diag.webp",
+   "thumbnail": "thumbs/full_single_P015_diag.webp"
+  },
+  {
+   "id": "upper80v2_P016_low",
+   "label": "Crawling with the torso pitched forward and arms extended downward",
+   "prompt": "crawling with the torso pitched forward and arms extended downward, low-angle view",
+   "category": "Upper body",
+   "angle": "low-angle view",
+   "tags": [
+    "low-angle view",
+    "crawling",
+    "solo",
+    "reaching"
+   ],
+   "tag_groups": {
+    "Camera position": [
+     "low-angle view"
+    ],
+    "Character stance": [
+     "crawling"
+    ],
+    "Character count": [
+     "solo"
+    ],
+    "Gesture": [
+     "reaching"
+    ]
+   },
+   "image": "img/upper80v2_P016_low.webp",
+   "thumbnail": "thumbs/upper80v2_P016_low.webp"
+  },
+  {
+   "id": "upper80v2_P017_diag",
+   "label": "Lying prone and reaching forward with one arm",
+   "prompt": "lying prone and reaching forward with one arm, three-quarter view",
+   "category": "Upper body",
+   "angle": "three-quarter view",
+   "tags": [
+    "three-quarter view",
+    "lying",
+    "solo",
+    "reaching"
+   ],
+   "tag_groups": {
+    "Camera position": [
+     "three-quarter view"
+    ],
+    "Character stance": [
+     "lying"
+    ],
+    "Character count": [
+     "solo"
+    ],
+    "Gesture": [
+     "reaching"
+    ]
+   },
+   "image": "img/upper80v2_P017_diag.webp",
+   "thumbnail": "thumbs/upper80v2_P017_diag.webp"
+  },
+  {
+   "id": "full_single_P018_diag",
+   "label": "Kneeling with one leg raised and one arm extended sideways",
+   "prompt": "kneeling with one leg raised and one arm extended sideways, three-quarter view",
+   "category": "Full body",
+   "angle": "three-quarter view",
+   "tags": [
+    "three-quarter view",
+    "kneeling",
+    "solo",
+    "reaching"
+   ],
+   "tag_groups": {
+    "Camera position": [
+     "three-quarter view"
+    ],
+    "Character stance": [
+     "kneeling"
+    ],
+    "Character count": [
+     "solo"
+    ],
+    "Gesture": [
+     "reaching"
+    ]
+   },
+   "image": "img/full_single_P018_diag.webp",
+   "thumbnail": "thumbs/full_single_P018_diag.webp"
+  },
+  {
+   "id": "upper80v2_P019_diag",
+   "label": "Reclining with one arm extended and the other hand pointing toward the face",
+   "prompt": "reclining with one arm extended and the other hand pointing toward the face, three-quarter view",
+   "category": "Upper body",
+   "angle": "three-quarter view",
+   "tags": [
+    "three-quarter view",
+    "reclining",
+    "solo",
+    "pointing"
+   ],
+   "tag_groups": {
+    "Camera position": [
+     "three-quarter view"
+    ],
+    "Character stance": [
+     "reclining"
+    ],
+    "Character count": [
+     "solo"
+    ],
+    "Gesture": [
+     "pointing"
+    ]
+   },
+   "image": "img/upper80v2_P019_diag.webp",
+   "thumbnail": "thumbs/upper80v2_P019_diag.webp"
+  },
+  {
+   "id": "upper80v2_P020_front",
+   "label": "Lying prone, propped on one forearm with the other hand at the face",
+   "prompt": "lying prone, propped on one forearm with the other hand at the face, front view",
+   "category": "Upper body",
+   "angle": "front view",
+   "tags": [
+    "front view",
+    "lying",
+    "solo"
+   ],
+   "tag_groups": {
+    "Camera position": [
+     "front view"
+    ],
+    "Character stance": [
+     "lying"
+    ],
+    "Character count": [
+     "solo"
+    ],
+    "Gesture": []
+   },
+   "image": "img/upper80v2_P020_front.webp",
+   "thumbnail": "thumbs/upper80v2_P020_front.webp"
+  },
+  {
+   "id": "upper80v2_P021_diag",
+   "label": "Sitting with head bowed and one hand resting against the forehead",
+   "prompt": "sitting with head bowed and one hand resting against the forehead, three-quarter view",
+   "category": "Upper body",
+   "angle": "three-quarter view",
+   "tags": [
+    "three-quarter view",
+    "sitting",
+    "solo",
+    "arms raised"
+   ],
+   "tag_groups": {
+    "Camera position": [
+     "three-quarter view"
+    ],
+    "Character stance": [
+     "sitting"
+    ],
+    "Character count": [
+     "solo"
+    ],
+    "Gesture": [
+     "arms raised"
+    ]
+   },
+   "image": "img/upper80v2_P021_diag.webp",
+   "thumbnail": "thumbs/upper80v2_P021_diag.webp"
+  },
+  {
+   "id": "upper80v2_P022_front",
+   "label": "Standing with one arm extended toward the viewer",
+   "prompt": "standing with one arm extended toward the viewer, front view",
+   "category": "Upper body",
+   "angle": "front view",
+   "tags": [
+    "front view",
+    "standing",
+    "solo",
+    "reaching"
+   ],
+   "tag_groups": {
+    "Camera position": [
+     "front view"
+    ],
+    "Character stance": [
+     "standing"
+    ],
+    "Character count": [
+     "solo"
+    ],
+    "Gesture": [
+     "reaching"
+    ]
+   },
+   "image": "img/upper80v2_P022_front.webp",
+   "thumbnail": "thumbs/upper80v2_P022_front.webp"
+  },
+  {
+   "id": "full_single_P023_diag",
+   "label": "Kneeling with the torso turned and one hand resting on the knee",
+   "prompt": "kneeling with the torso turned and one hand resting on the knee, three-quarter view",
+   "category": "Full body",
+   "angle": "three-quarter view",
+   "tags": [
+    "three-quarter view",
+    "kneeling",
+    "solo",
+    "hands on knee"
+   ],
+   "tag_groups": {
+    "Camera position": [
+     "three-quarter view"
+    ],
+    "Character stance": [
+     "kneeling"
+    ],
+    "Character count": [
+     "solo"
+    ],
+    "Gesture": [
+     "hands on knee"
+    ]
+   },
+   "image": "img/full_single_P023_diag.webp",
+   "thumbnail": "thumbs/full_single_P023_diag.webp"
+  },
+  {
+   "id": "upper80v2_P024_high",
+   "label": "Reclining with one arm extended and the other hand pointing beside the head",
+   "prompt": "reclining with one arm extended and the other hand pointing beside the head, high-angle view",
+   "category": "Upper body",
+   "angle": "high-angle view",
+   "tags": [
+    "high-angle view",
+    "reclining",
+    "solo",
+    "arms raised",
+    "reaching",
+    "pointing"
+   ],
+   "tag_groups": {
+    "Camera position": [
+     "high-angle view"
+    ],
+    "Character stance": [
+     "reclining"
+    ],
+    "Character count": [
+     "solo"
+    ],
+    "Gesture": [
+     "arms raised",
+     "reaching",
+     "pointing"
+    ]
+   },
+   "image": "img/upper80v2_P024_high.webp",
+   "thumbnail": "thumbs/upper80v2_P024_high.webp"
+  },
+  {
+   "id": "upper80v2_P025_diag",
+   "label": "Tilting the head with one hand resting against the temple",
+   "prompt": "tilting the head with one hand resting against the temple, three-quarter view",
+   "category": "Upper body",
+   "angle": "three-quarter view",
+   "tags": [
+    "three-quarter view",
+    "solo"
+   ],
+   "tag_groups": {
+    "Camera position": [
+     "three-quarter view"
+    ],
+    "Character stance": [],
+    "Character count": [
+     "solo"
+    ],
+    "Gesture": []
+   },
+   "image": "img/upper80v2_P025_diag.webp",
+   "thumbnail": "thumbs/upper80v2_P025_diag.webp"
+  },
+  {
+   "id": "full_sexy_P026_side",
+   "label": "Crouching in profile with one arm raised and the other lowered",
+   "prompt": "crouching in profile with one arm raised and the other lowered, side view",
+   "category": "Expressive full body",
+   "angle": "side view",
+   "tags": [
+    "side view",
+    "crouching",
+    "solo",
+    "arms raised"
+   ],
+   "tag_groups": {
+    "Camera position": [
+     "side view"
+    ],
+    "Character stance": [
+     "crouching"
+    ],
+    "Character count": [
+     "solo"
+    ],
+    "Gesture": [
+     "arms raised"
+    ]
+   },
+   "image": "img/full_sexy_P026_side.webp",
+   "thumbnail": "thumbs/full_sexy_P026_side.webp"
+  },
+  {
+   "id": "upper80v2_P027_high",
+   "label": "Crawling on forearms with hips raised and thighs bent",
+   "prompt": "crawling on forearms with hips raised and thighs bent, high-angle view",
+   "category": "Upper body",
+   "angle": "high-angle view",
+   "tags": [
+    "three-quarter view",
+    "high-angle view",
+    "crawling",
+    "solo"
+   ],
+   "tag_groups": {
+    "Camera position": [
+     "three-quarter view",
+     "high-angle view"
+    ],
+    "Character stance": [
+     "crawling"
+    ],
+    "Character count": [
+     "solo"
+    ],
+    "Gesture": []
+   },
+   "image": "img/upper80v2_P027_high.webp",
+   "thumbnail": "thumbs/upper80v2_P027_high.webp"
+  },
+  {
+   "id": "upper80v2_P028_side",
+   "label": "Standing upright with one arm hanging relaxed at the side",
+   "prompt": "standing upright with one arm hanging relaxed at the side, side view",
+   "category": "Upper body",
+   "angle": "side view",
+   "tags": [
+    "side view",
+    "standing",
+    "solo"
+   ],
+   "tag_groups": {
+    "Camera position": [
+     "side view"
+    ],
+    "Character stance": [
+     "standing"
+    ],
+    "Character count": [
+     "solo"
+    ],
+    "Gesture": []
+   },
+   "image": "img/upper80v2_P028_side.webp",
+   "thumbnail": "thumbs/upper80v2_P028_side.webp"
+  }
+ ],
+ "outfit": []
+}

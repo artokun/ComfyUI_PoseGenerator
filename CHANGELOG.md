@@ -1,5 +1,11 @@
 # Changelog
 
+## 0.1.3
+
+- Ship two pose galleries made with Pose Studio from our own photos: **Instagram Poses** (28 drawings, 24 with saved depth maps) and **OF poses** (24 drawings). They appear in the **Pose gallery** dropdown with no setup. Drawings are WebP with thumbnails; depth maps sit beside the drawings.
+- Add `scripts/bundle_gallery.py`, which turns a finished Pose Studio run into a shippable folder gallery (drawings, depth maps and reviewed catalog rows only; no source photos, comparisons, history or batch receipts).
+- The release check allowlists those two galleries (WebP and JSON only) and still refuses the original gallery.
+
 ## 0.1.2
 
 - **Saved depth** now also reads depth maps stored beside the drawing (`img/depth/<drawing name>`), the layout the original gallery uses. Before, only Pose Studio's `depth/` folder worked, so every original-gallery pose failed in Saved depth mode.

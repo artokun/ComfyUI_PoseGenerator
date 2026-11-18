@@ -22,6 +22,10 @@ REQUIRED = {"__init__.py", "nodes.py", "library.py", "prompts.py", "routes.py",
             "web/pose-gallery.js", "web/pose-gallery.css", "pyproject.toml",
             "requirements.txt", "LICENSE", "THIRD_PARTY.md", "README.md",
             "docs/notices/anhao-LICENSE.txt"}
+# Galleries made with Pose Studio from the publisher's own photos. Only their
+# drawings, depth maps and catalogs ship; never the original gallery (assets/gallery*).
+BUNDLED_GALLERIES = ("assets/Instagram Poses/", "assets/OF poses/")
+BUNDLED_SUFFIXES = {".webp", ".json"}
 
 
 def shipped_paths(root, working_tree=False):
@@ -84,6 +88,8 @@ def stage(root, working_tree=False):
             raise ValueError(f"Missing or non-regular package file: {relative}")
         if source.name.startswith(".env") or relative.startswith(("assets/gallery", ".cache/", ".venv/")):
             raise ValueError(f"Private or third-party material would ship: {relative}")
+        if relative not in REQUIRED and not (relative.startswith(BUNDLED_GALLERIES) and source.suffix in BUNDLED_SUFFIXES):
+            raise ValueError(f"Unexpected file would ship: {relative}")
         content = source.read_bytes()
         if source.suffix == ".py":
             validate_python(source)

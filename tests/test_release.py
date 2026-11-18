@@ -31,3 +31,17 @@ def test_english_descriptions_have_expected_coverage():
     data = json.loads(path.read_text())
     assert set(data) == {"full_single", "full_sexy", "upper80v2", "pair60"}
     assert all(text.isascii() and len(text) > 10 for group in data.values() for text in group.values())
+
+
+def test_bundled_galleries_ship_but_original_gallery_and_other_assets_do_not(tmp_path):
+    (tmp_path / ".comfyignore").write_text((ROOT / ".comfyignore").read_text())
+    (tmp_path / ".gitignore").write_text((ROOT / ".gitignore").read_text())
+    bundled = {"assets/Instagram Poses/catalog.json", "assets/Instagram Poses/img/a.webp",
+               "assets/Instagram Poses/img/depth/a.webp", "assets/OF poses/thumbs/b.webp"}
+    elsewhere = {"assets/gallery/img/p.webp", "assets/gallery-webp/costume/o.webp",
+                 "assets/cozy_poses/img/c.png", "assets/gallery-studio/x/img/d.png"}
+    for relative in REQUIRED | bundled | elsewhere:
+        path = tmp_path / relative
+        path.parent.mkdir(parents=True, exist_ok=True)
+        path.write_text("fixture")
+    assert set(shipped_paths(tmp_path, working_tree=True)) == REQUIRED | bundled

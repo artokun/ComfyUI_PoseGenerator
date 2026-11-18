@@ -53,12 +53,14 @@ python -m pip install -r requirements.txt
 
 Add **Pose & Outfit Reference** from **image → reference**.
 
+**Two pose galleries come with the pack:** **Instagram Poses** (28 poses, most with saved depth maps) and **OF poses** (24 poses). Both are mannequin drawings made with Pose Studio from the publisher's own photos. Pick them from the node's **Pose gallery** dropdown; no setup needed. They contain poses only, no outfits.
+
 **Bring references you have permission to use.** Put your images and a
 `catalog.json` in `assets/gallery`, or point `POSE_GENERATOR_ASSETS` to your own
 library folder. [Library setup and catalog example](docs/library.md).
 
 The public source and registry package do **not** bundle the original gallery
-images. The original pose and outfit sites currently prohibit bulk downloading
+images (poses or outfits). The original pose and outfit sites currently prohibit bulk downloading
 and redistribution, including modified copies. Gallery distribution and automated
 setup remain on hold pending the rights holder's permission. The local research
 catalog contained 1,439 poses and 1,407 outfits; these are not included downloads.

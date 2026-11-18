@@ -1,6 +1,6 @@
 [project]
 name = "comfyui-pose-generator"
-version = "0.1.2"
+version = "0.1.3"
 description = "Browse local pose and outfit references, output images, and compose an editable positive prompt."
 requires-python = ">=3.10"
 license = { file = "LICENSE" }
