@@ -201,7 +201,7 @@ def test_fresh_install_lists_only_bundled_galleries(tmp_path, monkeypatch):
     monkeypatch.delenv("POSE_GENERATOR_ASSETS", raising=False)
     monkeypatch.setattr(library, "DEFAULT_ROOT", primary)
     library._read_catalog.cache_clear()
-    bundled = tmp_path / "assets" / "Instagram Poses"
+    bundled = tmp_path / "assets" / "shipped" / "Instagram Poses"
     (bundled / "img").mkdir(parents=True)
     Image.new("RGB", (12, 8), "blue").save(bundled / "img" / "p.webp")
     row = {"id": "p", "label": "Standing", "prompt": "standing", "category": "Full body",
@@ -318,3 +318,23 @@ def test_old_templates_still_get_the_edit_opener_and_the_location(local_library)
                            location="Plain studio", subject_image=photo)[2]
     assert custom.endswith("on a plain white studio background")
     assert node.generate("pose-a", "None", "Celia", old, "", subject_image=photo)[2] == "Celia, standing, front view"  # references off
+
+
+def test_shipped_and_local_galleries_share_ids_and_the_local_folder_wins(tmp_path, monkeypatch):
+    from pose_generator import library
+    monkeypatch.delenv("POSE_GENERATOR_ASSETS", raising=False)
+    monkeypatch.setattr(library, "DEFAULT_ROOT", tmp_path / "assets" / "gallery")
+    library._read_catalog.cache_clear()
+    def gallery(folder, colour, label):
+        (folder / "img").mkdir(parents=True)
+        Image.new("RGB", (12, 8), colour).save(folder / "img" / "p.png")
+        row = {"id": "p", "label": label, "prompt": "standing", "category": "Full body", "image": "img/p.png", "thumbnail": "img/p.png"}
+        (folder / "catalog.json").write_text(json.dumps({"schema_version": 1, "pose": [row], "outfit": []}))
+    gallery(tmp_path / "assets/shipped/Studio Set", "blue", "shipped")
+    gallery(tmp_path / "assets/shipped/Beach Set", "green", "beach")
+    gallery(tmp_path / "assets/Studio Set", "red", "local")
+    galleries, entries = library.gallery_index()
+    assert [g["label"] for g in galleries] == ["Studio Set", "Beach Set"]
+    assert entries["pose"]["@folder.Studio%20Set:p"]["label"] == "local"
+    assert "@folder.Beach%20Set:p" in entries["pose"]
+    library._read_catalog.cache_clear()

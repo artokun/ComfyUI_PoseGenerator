@@ -1,3 +1,4 @@
+import pytest
 import yara
 
 from scripts.check_release import REQUIRED, ROOT, shipped_paths
@@ -36,12 +37,30 @@ def test_english_descriptions_have_expected_coverage():
 def test_bundled_galleries_ship_but_original_gallery_and_other_assets_do_not(tmp_path):
     (tmp_path / ".comfyignore").write_text((ROOT / ".comfyignore").read_text())
     (tmp_path / ".gitignore").write_text((ROOT / ".gitignore").read_text())
-    bundled = {"assets/Instagram Poses/catalog.json", "assets/Instagram Poses/img/a.webp",
-               "assets/Instagram Poses/img/depth/a.webp", "assets/OF poses/thumbs/b.webp", "assets/Outfits/catalog.json", "assets/Outfits/img/preppy_O001.webp"}
-    elsewhere = {"assets/gallery/img/p.webp", "assets/gallery-webp/costume/o.webp",
+    bundled = {"assets/shipped/Instagram Poses/catalog.json", "assets/shipped/Instagram Poses/img/a.webp",
+               "assets/shipped/Instagram Poses/img/depth/a.webp", "assets/shipped/OF poses/thumbs/b.webp",
+               "assets/shipped/Outfits/catalog.json", "assets/shipped/Outfits/img/preppy_O001.webp"}
+    elsewhere = {"assets/gallery/img/p.webp", "assets/gallery-webp/costume/o.webp", "assets/My Outfits/catalog.json",
                  "assets/cozy_poses/img/c.png", "assets/gallery-studio/x/img/d.png"}
     for relative in REQUIRED | bundled | elsewhere:
         path = tmp_path / relative
         path.parent.mkdir(parents=True, exist_ok=True)
         path.write_text("fixture")
     assert set(shipped_paths(tmp_path, working_tree=True)) == REQUIRED | bundled
+
+
+@pytest.mark.parametrize("relative, allowed", [
+    ("assets/shipped/My Poses/catalog.json", True),
+    ("assets/shipped/My Poses/img/a.webp", True),
+    ("assets/shipped/My Poses/img/depth/a.webp", True),
+    ("assets/shipped/My Poses/thumbs/a.webp", True),
+    ("assets/shipped/My Poses/batch.json", False),      # raw Pose Studio run: holds local paths
+    ("assets/shipped/My Poses/studio.json", False),
+    ("assets/shipped/My Poses/img/a.png", False),       # unconverted drawing
+    ("assets/shipped/My Poses/source/photo.webp", False),
+    ("assets/shipped/notes.json", False),
+    ("assets/My Poses/catalog.json", False),            # local galleries never ship
+])
+def test_only_bundled_gallery_files_pass_in_the_shipped_folder(relative, allowed):
+    from scripts.check_release import shipped_gallery_file
+    assert shipped_gallery_file(relative) is allowed

@@ -3,7 +3,7 @@
 
     python scripts/build_outfit_gallery.py \\
         --specs scripts/outfits/outfit_specs.json \\
-        --renders .cache/outfit-renders --dest assets/Outfits
+        --renders .cache/outfit-renders --dest assets/shipped/Outfits
 
 Each spec with a render becomes img/<id>.webp, thumbs/<id>.webp and a catalog row
 (id, label, prompt, category, tags, tag_groups). Specs without a render are listed
@@ -53,7 +53,7 @@ def main():
     parser = argparse.ArgumentParser(description=__doc__, formatter_class=argparse.RawDescriptionHelpFormatter)
     parser.add_argument("--specs", type=Path, default=ROOT / "scripts/outfits/outfit_specs.json")
     parser.add_argument("--renders", type=Path, default=ROOT / ".cache/outfit-renders")
-    parser.add_argument("--dest", type=Path, default=ROOT / "assets/Outfits")
+    parser.add_argument("--dest", type=Path, default=ROOT / "assets/shipped/Outfits")
     parser.add_argument("--exclude", nargs="*", default=[], help="Outfit ids to leave out")
     args = parser.parse_args()
     specs = json.loads(args.specs.read_text(encoding="utf-8"))

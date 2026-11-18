@@ -8,7 +8,7 @@ whole set looks consistent.
 
     OPENAI_API_KEY=... python scripts/generate_outfits.py \\
         --specs scripts/outfits/outfit_specs.json \\
-        --reference "assets/Outfits/img/preppy_O001.webp" \\
+        --reference "assets/shipped/Outfits/img/preppy_O001.webp" \\
         --out .cache/outfit-renders --model gpt-image-2
 
 Finished PNGs are skipped on a rerun, so an interrupted batch resumes.
@@ -160,7 +160,7 @@ def collect_batch(args, key):
 def main():
     parser = argparse.ArgumentParser(description=__doc__, formatter_class=argparse.RawDescriptionHelpFormatter)
     parser.add_argument("--specs", type=Path, default=ROOT / "scripts/outfits/outfit_specs.json")
-    parser.add_argument("--reference", type=Path, default=ROOT / "assets/Outfits/img/preppy_O001.webp")
+    parser.add_argument("--reference", type=Path, default=ROOT / "assets/shipped/Outfits/img/preppy_O001.webp")
     parser.add_argument("--out", type=Path, default=ROOT / ".cache/outfit-renders")
     parser.add_argument("--model", default="gpt-image-2")
     parser.add_argument("--size", default="1024x1536")

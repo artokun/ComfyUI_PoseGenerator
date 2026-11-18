@@ -60,8 +60,8 @@ match. Legacy catalogs can still use their category and camera angle filters.
 ## Add your own outfits
 
 Outfits live in a **folder gallery**: any folder directly under `assets/` with a
-`catalog.json`. The pack ships one, `assets/Outfits/` (91 outfits); its first entry
-(`preppy_O001`) is the template to copy. Put new outfits there, or in your own
+`catalog.json`. The pack ships one, `assets/shipped/Outfits/` (91 outfits); its first
+entry (`preppy_O001`) is the template to copy. Put your own outfits in your own
 folder such as `assets/My Outfits/`. A folder that only holds outfits does not
 appear in the **Pose gallery** picker; its outfits show up in **Browse outfits**
 and the `outfit` dropdown. Restart ComfyUI (or reload the page) after adding rows.
@@ -187,3 +187,21 @@ folder as your library, or use the default `assets/gallery-webp` destination.
 
 The optimizer is a development helper, excluded from the registry archive. Tinify
 is optional and is never called by the node during workflow execution.
+
+## Ship a gallery with the pack (maintainers)
+
+Everything in `assets/shipped/` is committed and published; every other folder under
+`assets/` stays on your machine. To promote a gallery:
+
+1. Bundle it. For a Pose Studio run: `python scripts/bundle_gallery.py <run folder>`
+   writes `assets/shipped/<run name>/` with only the drawings, depth maps and reviewed
+   captions. For outfits, `scripts/build_outfit_gallery.py` does the same.
+   A gallery that is already bundled (for example `assets/My Outfits/`) can simply be
+   moved into `assets/shipped/`.
+2. Commit and release.
+
+A gallery keeps the same IDs in `assets/` and in `assets/shipped/`, so saved workflows
+keep working when it moves. The release check refuses anything in `assets/shipped/`
+that is not `catalog.json` or WebP under `img/` or `thumbs/`, so a raw run (source
+photos, `batch.json`, `studio.json`) cannot ship by accident. Only promote images you
+own or are licensed to publish.
