@@ -311,7 +311,7 @@ async function openGallery(node, initialKind) {
       card.title = `${entry.label}${entry.angle ? ` · ${entry.angle}` : ""}`;
       card.append(imageElement(kind, entry));
       card.append(element("span", "pg-card-title", entry.label));
-      card.append(element("span", "pg-card-caption", entry.angle || entry.id));
+      card.append(element("span", "pg-card-caption", entry.angle || entry.catalog_id || entry.id));
       grid.append(card);
     }
     if (!matches.length) {
