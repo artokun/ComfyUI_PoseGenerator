@@ -1,5 +1,16 @@
 # Changelog
 
+## 0.1.4
+
+- **Subject photo.** Connect a photo of a person to the new optional `subject_image` input and the prompt refers to that person by picture number.
+- **Numbered pictures.** New outputs `picture_1`, `picture_2`, `picture_3` hold the subject, pose and outfit that exist, in the order the prompt numbers them. Wire them to your model's image 1, 2, 3. An unselected reference leaves its slot empty instead of sending a black square. `width` and `height` report the size of `picture_1`.
+- **Picture-aware prompt.** `picture_tag` sets how the prompt names a picture (`<Picture {n}>` for MiniMax H3, `image {n}` for Qwen Edit, Kontext or Seedream, empty for a plain text prompt). `{subject}`, `{pose}` and `{outfit}` then point at their pictures, and new `{edit}` and `{location}` fields open the edit instruction and set the scene.
+- **`edit_target`**: which picture the model edits. **Pose** (default) keeps the drawing's pose, framing and camera angle. **Subject** keeps the photo's scene.
+- **`location`**: with the pose as the edited picture, take the place and lighting **from the subject photo** (default), use a **plain studio**, or describe it yourself in `extra`.
+- **`megapixels`** resizes `picture_1` (sides are multiples of 32), and **`reference_text`** chooses whether the pose and outfit descriptions are added alongside the pictures.
+- Workflows saved with earlier versions load unchanged: new inputs and outputs are appended, and old workflows keep the plain text prompt.
+- Add a MiniMax H3 Image example: `examples/minimax-h3-image-edit.json` (drop on the canvas) and `examples/minimax-h3-image-edit-api.json` (API format). Tested on MiniMax H3 Image.
+
 ## 0.1.3
 
 - Ship two pose galleries made with Pose Studio from our own photos: **Instagram Poses** (28 drawings) and **OF poses** (22 drawings), every drawing with a saved depth map. They appear in the **Pose gallery** dropdown with no setup. Drawings are WebP with thumbnails; depth maps sit beside the drawings.

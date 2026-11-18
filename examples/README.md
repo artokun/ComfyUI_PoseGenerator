@@ -25,3 +25,21 @@ To use this in a generation workflow, connect either image to your preferred
 image-conditioning nodes. Connect `positive_prompt` to a text encoder. The pose
 reference is a drawing, not a precomputed OpenPose skeleton; use the appropriate
 preprocessor if your conditioning model requires one.
+
+# MiniMax H3 Image edit
+
+[`minimax-h3-image-edit.json`](minimax-h3-image-edit.json) puts the person from a
+photo into a chosen pose and outfit with MiniMax H3 Image. Drop it onto the canvas,
+pick your photo in **Subject photo**, choose a pose and outfit, and click **Run**.
+[`minimax-h3-image-edit-api.json`](minimax-h3-image-edit-api.json) is the same graph
+in API format for scripts.
+
+It has ten nodes: three model loaders, the photo, **Pose & Outfit Reference**,
+**MiniMax H3 Image Conditioning**, and the sampler, decoder and save nodes. The
+reference node's `picture_1..3`, `positive_prompt`, `width` and `height` go straight
+into the conditioning node. No resize nodes are needed.
+
+You need the MiniMax H3 Image model, its Qwen text encoder and its VAE, under the
+file names in the loader nodes (change them to match yours). Settings: 6 steps,
+cfg 1, euler / simple. The photo is optional: without it you get a person in the
+chosen pose and outfit described by the `subject` text.

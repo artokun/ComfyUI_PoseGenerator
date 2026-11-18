@@ -392,7 +392,9 @@ app.registerExtension({
     // no picture references, no resizing.
     const configure = nodeType.prototype.configure;
     nodeType.prototype.configure = function (info) {
-      const values = info?.widgets_values;
+      let values = info?.widgets_values;
+      // 0.1.0 had no pose_image_mode either.
+      if (Array.isArray(values) && values.length === 11) values = [...values.slice(0, 7), "Drawing", ...values.slice(7)];
       if (Array.isArray(values) && values.length === 12) {
         info = { ...info, widgets_values: [...values.slice(0, 8), "", "Subject", 0, "Image and description", "Custom", ...values.slice(8)] };
       }
