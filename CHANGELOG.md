@@ -1,5 +1,9 @@
 # Changelog
 
+## Unreleased
+
+- **Location picture.** Connect a picture of a place to the new optional `location_image` input and the result is set there: its setting, background and lighting, not any people in it. It is the last numbered picture and comes out on the new `picture_4` output (or an earlier one when the subject, pose or outfit is missing). It takes over from "From the subject photo"; **Plain studio** ignores it, and with **Custom** the picture is passed on and you describe the scene in `extra`. Tested on MiniMax H3 Image.
+
 ## 0.1.5
 
 - **`location` and the edit opener now work with any prompt template.** A template without `{location}` or `{edit}`, which includes every workflow saved before 0.1.4, ignored the location setting and left out the "Edit <Picture 1>:" opener. The node now adds both itself when the template leaves them out: the opener at the start and the location before `{extra}`. To leave the location out, set `location` to **Custom**.

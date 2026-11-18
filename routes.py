@@ -47,7 +47,8 @@ async def preview_prompt(request):
         pose = selected("pose", body.get("pose", "None"))
         outfit = selected("outfit", body.get("outfit", "None"))
         order = picture_order(bool(body.get("has_subject_image")), pose is not None, outfit is not None,
-                              body.get("edit_target", "Subject"))
+                              body.get("edit_target", "Subject"),
+                              bool(body.get("has_location_image")) and body.get("location") != "Plain studio")
         values = compose_values(
             str(body.get("subject", "")), body.get("pose_override", "").strip() or (pose["prompt"] if pose else ""),
             body.get("outfit_override", "").strip() or (outfit["prompt"] if outfit else ""), str(body.get("extra", "")),
