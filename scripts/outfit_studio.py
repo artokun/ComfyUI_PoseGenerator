@@ -14,7 +14,7 @@ Runs queue behind each other, can be paused after the current item and resumed, 
 restart paid work on their own after the server stops. Single items can be redone.
 
 Each step runs on OpenAI (gpt-image-2) or SpicyAPI (Seedream 5.5 edit). Every result is
-fitted to OUTPUT_SIZE (3:4) so the steps and the gallery line up. Finished outfits can be
+fitted to OUTPUT_SIZE (2:3, the size of the bundled Outfits gallery) so the steps and the gallery line up. Finished outfits can be
 saved into a folder gallery (assets/<name>/catalog.json), which the ComfyUI node lists.
 """
 
@@ -42,7 +42,7 @@ except ImportError:
 
 ROOT = generation.ROOT
 PROMPTS = ROOT / "scripts/prompts"
-OUTPUT_SIZE = (1152, 1536)
+OUTPUT_SIZE = (1024, 1536)
 MAX_UPLOAD = 20 * 1024 * 1024
 OPENAI = "https://api.openai.com/v1"
 OPENAI_MODEL = "gpt-image-2"
@@ -70,7 +70,10 @@ Return one JSON object with exactly these keys:
 - "prompt": one sentence that starts with "wearing" and names every garment with its colour and fabric, then the shoes.
 - "category": one style word such as Casual, Preppy, Streetwear, Formal, Business, Party, Sporty, Loungewear, Boho, Y2K, Gothic, Cottagecore, Lingerie, Swimwear.
 - "tag_groups": an object whose keys are a subset of: """ + ", ".join(OUTFIT_GROUPS) + """. Each value is a list of short lowercase tags.
-  Socks, tights and stockings go under Legs. Feet is footwear only. Leave out groups the outfit does not use."""
+  Socks, tights and stockings go under Legs. Feet is footwear only. Leave out groups the outfit does not use.
+- "checks": an object with "logo" (true if any brand name, logo, monogram, emblem or readable word is visible anywhere, including
+  on bags, belts and shoes), "body" (true if any skin, face, hair, hands, legs or mannequin limbs are visible), and "note"
+  (a few words saying where, or an empty string)."""
 
 
 class RunStop(generation.BatchError):
@@ -177,7 +180,7 @@ def spicy_render(prompt, images, client, max_charge, receipt=None, save=lambda: 
                 raise generation.BatchError("Seedream edit needs at least one image. Keep the style reference on.")
             uris = [client.upload(png)["uri"] for png in images]
             request = {"model": generation.MODEL, "input": {
-                "image_urls": uris, "prompt": prompt, "aspect_ratio": "3:4", "resolution": "2k",
+                "image_urls": uris, "prompt": prompt, "aspect_ratio": "2:3", "resolution": "2k",
                 "output_format": "png", "background": "opaque",
             }}
             quoted = client.api("POST", "/jobs/quote", payload=request)
@@ -208,9 +211,11 @@ def caption_outfit(content, provider, key):
     if provider == "xai":
         tags = {"type": "object", "additionalProperties": False, "required": list(OUTFIT_GROUPS),
                 "properties": {group: {"type": "array", "items": {"type": "string"}} for group in OUTFIT_GROUPS}}
-        schema = {"type": "object", "additionalProperties": False, "required": ["label", "prompt", "category", "tag_groups"],
+        checks = {"type": "object", "additionalProperties": False, "required": ["logo", "body", "note"],
+                  "properties": {"logo": {"type": "boolean"}, "body": {"type": "boolean"}, "note": {"type": "string"}}}
+        schema = {"type": "object", "additionalProperties": False, "required": ["label", "prompt", "category", "tag_groups", "checks"],
                   "properties": {"label": {"type": "string"}, "prompt": {"type": "string"},
-                                 "category": {"type": "string"}, "tag_groups": tags}}
+                                 "category": {"type": "string"}, "tag_groups": tags, "checks": checks}}
         endpoint = "https://api.x.ai/v1/responses"
         payload = {"model": model, "store": False, "reasoning": {"effort": "low"}, "max_output_tokens": 1200,
                    "text": {"format": {"type": "json_schema", "name": "outfit_metadata", "strict": True, "schema": schema}},
@@ -260,7 +265,18 @@ def clean_metadata(raw):
     extra = raw.get("tags") if isinstance(raw.get("tags"), list) else []
     tags = sorted({tag for values in groups.values() for tag in values} |
                   {" ".join(str(tag).lower().split())[:40] for tag in extra if str(tag).strip()})[:60]
-    return {"label": label, "prompt": prompt, "category": category, "tag_groups": groups, "tags": tags}
+    fields = {"label": label, "prompt": prompt, "category": category, "tag_groups": groups, "tags": tags}
+    if isinstance(raw.get("checks"), dict):  # only a vision caption carries checks
+        found = raw["checks"]
+        fields["checks"] = {"logo": found.get("logo") is True, "body": found.get("body") is True,
+                            "note": " ".join(str(found.get("note", "")).split())[:200]}
+    return fields
+
+
+def held(item):
+    """A caption found a logo or visible body and nobody has confirmed the outfit is clean."""
+    checks = item.get("checks") or {}
+    return bool(checks.get("logo") or checks.get("body")) and not item.get("cleared")
 
 
 class OutfitStudio:
@@ -364,7 +380,7 @@ class OutfitStudio:
 
     # Runs ---------------------------------------------------------------
     def create_run(self, body):
-        provider, mode, pose = body.get("provider"), body.get("mode"), body.get("pose", "a-pose")
+        provider, mode, pose = body.get("provider"), body.get("mode"), body.get("pose", "i-pose")
         if provider not in ("openai", "spicy"):
             raise generation.BatchError("Choose OpenAI or SpicyAPI.")
         if mode not in ("photo", "text"):
@@ -385,7 +401,7 @@ class OutfitStudio:
         for index, entry in enumerate(entries):
             item = {"index": index, "state": "waiting", "error": None, "posed": False, "outfit": False, "deleted": False,
                     "revision": 0, "requests": 0, "receipts": {}, "saved_as": None,
-                    "label": "", "prompt": "", "category": "", "tags": [], "tag_groups": {}}
+                    "label": "", "prompt": "", "category": "", "tags": [], "tag_groups": {}, "checks": None, "cleared": False}
             if mode == "photo":
                 if not isinstance(entry, dict):
                     raise generation.BatchError("Invalid photo list.")
@@ -582,7 +598,7 @@ class OutfitStudio:
             item["receipts"].pop("extract", None)
             item["receipts"].pop("text", None)
             self.file(run_id, index, "outfit").unlink(missing_ok=True)
-            item.update(state="waiting", error=None, deleted=False, saved_as=None)
+            item.update(state="waiting", error=None, deleted=False, saved_as=None, checks=None, cleared=False)
             item["revision"] += 1
         self.change(run_id, mutate)
         self.enqueue(run_id)
@@ -600,6 +616,8 @@ class OutfitStudio:
         fields = clean_metadata({"label": body.get("label", ""), "prompt": body.get("prompt", ""),
                                  "category": body.get("category", ""), "tag_groups": body.get("tag_groups", {}),
                                  "tags": [tag for tag in str(body.get("tags", "")).split(",")] if isinstance(body.get("tags"), str) else body.get("tags", [])})
+        if "cleared" in body:
+            fields["cleared"] = body["cleared"] is True
         return self.public(self.change(run_id, lambda run: self.item(run, index).update(fields)))
 
     # Captions -----------------------------------------------------------
@@ -642,6 +660,7 @@ class OutfitStudio:
                 if run["mode"] == "text":  # the written description is the prompt
                     fields = {**fields, "prompt": item["prompt"] or fields["prompt"]}
                 item.update(fields)
+                item["cleared"] = False
                 run["caption"]["done"] += 1
             self.change(run_id, mutate)
         self.change(run_id, lambda run: run["caption"].update(running=False, error=error))
@@ -666,9 +685,14 @@ class OutfitStudio:
         fallback = " ".join(str(body.get("category") or "Custom").split())[:40] or "Custom"
         run = self.run(run_id)
         wanted = body.get("indices")
-        chosen = [item for item in run["items"] if item["outfit"] and not item["deleted"] and not item["saved_as"]
-                  and (wanted is None or item["index"] in wanted)]
+        ready = [item for item in run["items"] if item["outfit"] and not item["deleted"] and not item["saved_as"]
+                 and (wanted is None or item["index"] in wanted)]
+        chosen = [item for item in ready if not held(item)]
+        held_back = len(ready) - len(chosen)
         if not chosen:
+            if held_back:
+                raise generation.BatchError(f"{held_back} outfit{'' if held_back == 1 else 's'} held back: the caption check found a logo "
+                                            "or visible body. Open each one, then regenerate it or confirm it is clean.")
             raise generation.BatchError("No finished outfits left to save.")
         folder = self.root / "assets" / name
         catalog_path = folder / "catalog.json"
@@ -705,7 +729,8 @@ class OutfitStudio:
             for index, where in saved.items():
                 current["items"][index]["saved_as"] = where
         self.change(run_id, mutate)
-        return {"saved": len(saved), "gallery": name, "count": len(catalog["outfit"]), "run": self.public(self.run(run_id))}
+        return {"saved": len(saved), "held": held_back, "gallery": name, "count": len(catalog["outfit"]),
+                "run": self.public(self.run(run_id))}
 
     # Views --------------------------------------------------------------
     def public(self, run):
@@ -716,6 +741,7 @@ class OutfitStudio:
             view["urls"] = {"source": f"{base}/source" if run["mode"] == "photo" else None,
                             "posed": f"{base}/posed?v={item['revision']}" if item["posed"] else None,
                             "outfit": f"{base}/outfit?v={item['revision']}" if item["outfit"] else None}
+            view["held"] = held(item)
             view["charged"] = str(sum((generation.money(r["max_charge"]) for r in item["receipts"].values() if r.get("task_id")),
                                       generation.money("0")))
             items.append(view)

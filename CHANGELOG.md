@@ -8,11 +8,15 @@
     - **A person**: posed in an A-pose or I-pose on white, then removed, keeping the clothes as a ghost mannequin. Posing can be skipped.
     - **Flat lay or collage** (for example a Pinterest outfit board): the separate pieces are assembled into one worn outfit in a single step. Brand names, logos and text are removed, and items that are not worn (perfume, cosmetics, phones) are left out.
   - **Descriptions**: one outfit per line becomes a ghost-mannequin outfit.
-  - Each run uses OpenAI gpt-image-2 or Seedream 5.5 on SpicyAPI. Results are 1152 × 1536 (3:4).
+  - Each run uses OpenAI gpt-image-2 or Seedream 5.5 on SpicyAPI.
   - Runs queue one after another, can be paused after the current outfit and resumed, and never restart paid work by themselves after the server stops. A failed outfit does not stop the run and can be retried; the pose or the outfit of any item can be regenerated.
   - SpicyAPI requests are quoted first and held to a per-image and a total cap; an accepted job is picked up again after a restart, not submitted twice.
   - **Caption outfits** asks a vision model (Grok or Nemotron VL) for each outfit's label, prompt, category and body-zone tags, all editable.
   - **Save outfits to gallery** writes them to a folder gallery under `assets/` with `{category}_O001` IDs. Move that folder into `assets/shipped/` to ship it.
+  - The default for a photo of a person is the two-step path: an I-pose on white, then the person is made invisible so only the clothes remain. Neither step may invent pieces: feet that are not in the photo come out bare, so no shoes appear.
+  - The style reference is off by default for pictures, so the model cannot borrow its cardigan or loafers; it stays on for descriptions.
+  - **Caption outfits** also checks each outfit for logos and visible skin. Flagged outfits are held back from saving until you regenerate them or confirm they are clean.
+  - Results are 1024 × 1536 (2:3), the size of the bundled Outfits gallery.
   - Development tool only: the ComfyUI node never calls it.
 - Three more outfits in the Instagram category (`instagram_O021`–`instagram_O023`): a black blazer and pinstripe corset look, a black cami with a grey bow mini skirt, and a white faux-fur jacket look. They were assembled from flat-lay collages with gpt-image-2, with all brand names and logos removed. 94 outfits in total.
 
