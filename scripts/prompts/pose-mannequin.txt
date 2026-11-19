@@ -2,6 +2,8 @@ Image 1 is a drawing-style reference only. Image 2 is the sole reference for the
 
 Redraw the main person in Image 2 as a smooth, featureless, hairless figure-drawing mannequin in the drawing style of Image 1. Preserve the visible pose precisely: limb positions, joint bends, hand gestures, head tilt and turn, torso rotation, body proportions, foreshortening, and overlaps. Preserve the original camera angle, crop, and the figure's position and scale within the frame. Do not mirror, straighten, re-pose, or exaggerate the figure. Do not copy the pose, proportions, camera angle, or framing of Image 1.
 
+Proportions: a realistic adult human body with a small, human-sized head (about one seventh to one eighth of the standing height, its width about one third of the shoulder width) on a normal neck. Never an oversized, anime or chibi head, even if Image 1 draws one larger.
+
 Use a blank oval head with only a vertical centre guide and a curved horizontal eye-level guide, following the head's orientation. Use smooth simplified body volumes, rounded joint markers at visible shoulders, elbows, wrists, hips, knees, and ankles, and simple segmented hands and feet. Add sparse curved construction lines around the torso and limbs to describe their volume. Preserve the source hand gestures even when an object held in the hand is removed. Do not invent visible joints on the hidden side of the figure or draw through overlapping body parts.
 
 Line work: clean, dark, even outer contours; thinner, lighter grey interior construction lines. White body fill. No shading, gradients, colour, texture, hatching, or cast shadows.

@@ -528,8 +528,8 @@ function renderRun(run) {
     $("per-image").value = run.per_image; $("total-cap").value = run.total;
     $("style-uri").value = run.style_id ? "" : run.recipe.style;
     state.styleId = run.style_id; $("style-preview").hidden = !run.style_id;
-    $("clear-style").hidden = !run.style_id;
-    if (run.style_id) { $("style-image").src = `/media/style/${run.style_id}`; $("style-name").textContent = "Saved style image"; }
+    $("clear-style").hidden = !run.style_id || run.style_id === state.config.builtin_style?.id;
+    if (run.style_id) { $("style-image").src = `/media/style/${run.style_id}`; $("style-name").textContent = run.style_id === state.config.builtin_style?.id ? state.config.builtin_style.label : "Saved style image"; }
     promptCount(); lockForm(true);
   }
   const visible = new Set(run.files.map((file) => file.name));
@@ -609,13 +609,23 @@ $("style-input").addEventListener("change", () => guarded(async () => {
     $("style-preview").hidden = false; $("clear-style").hidden = false; $("style-uri").disabled = true;
   } finally { state.busy = false; $("style-input").value = ""; updateBudget(); }
 }));
-$("clear-style").addEventListener("click", () => { state.styleId = null; $("style-preview").hidden = true; $("clear-style").hidden = true; $("style-uri").disabled = false; $("style-uri").value ||= state.config.style_uri; });
+function useBuiltinStyle() {
+  const builtin = state.config?.builtin_style;
+  state.styleId = builtin ? builtin.id : null;
+  $("style-preview").hidden = !builtin; $("clear-style").hidden = true; $("style-uri").disabled = !!builtin;
+  if (builtin) { $("style-image").src = builtin.url; $("style-name").textContent = builtin.label; $("style-uri").value = ""; }
+  else $("style-uri").value ||= state.config?.style_uri || "";
+  updateBudget();
+}
+$("clear-style").addEventListener("click", useBuiltinStyle);
 $("profile").addEventListener("change", () => applyProfile($("profile").value));
 $("prompt").addEventListener("input", promptCount);
 for (const id of ["per-image", "total-cap"]) $(id).addEventListener("input", updateBudget);
 $("select-all").addEventListener("click", () => { state.selected = new Set(state.source.files.map((file) => file.name)); renderSources(); });
 $("select-none").addEventListener("click", () => { state.selected.clear(); renderSources(); });
-$("new-run").addEventListener("click", newRun);
+// "New run" starts from the defaults (built-in style, current prompt preset); "Use settings for
+// new run" keeps the open run's settings instead.
+$("new-run").addEventListener("click", () => { newRun(); applyProfile($("profile").value); useBuiltinStyle(); });
 $("grid-gallery").addEventListener("change", () => {
   $("history").value = $("grid-gallery").value;
   $("history").dispatchEvent(new Event("change"));
@@ -668,7 +678,7 @@ async function boot() {
     if (!state.config.metadata_providers?.xai && state.config.metadata_providers?.spicy) $("metadata-provider").value = "spicy";
     for (const profile of state.config.profiles) $("profile").add(new Option(profile.label, profile.id));
     applyProfile(state.config.profiles[0]?.id);
-    $("style-uri").value = state.config.style_uri;
+    useBuiltinStyle();
     $("staged-button").hidden = !state.config.staged_available;
     connection(true);
     if (!state.config.key_ready) notice("Add SPICY_API_KEY or SAI_API_TOKEN to the project .env, then restart Pose Studio. The key stays on the server.");

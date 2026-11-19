@@ -2,6 +2,7 @@
 
 ## Unreleased
 
+- **Human-sized heads in Pose Studio drawings.** Users reported that the mannequin's head came out oversized, like an anime figure: it came from the drawing-style reference every pose is drawn from. Pose Studio now has a built-in style reference (`scripts/styles/mannequin-human.png`) with realistic adult proportions and a human-sized head, selected by default, and all three pose prompts ask for a head about one seventh to one eighth of the standing height. The SpicyAPI style upload the studio used to default to had expired. The 50 shipped pose drawings are unchanged until they are regenerated.
 - **Location picture.** Connect a picture of a place to the new optional `location_image` input and the result is set there: its setting, background and lighting, not any people in it. It is the last numbered picture and comes out on the new `picture_4` output (or an earlier one when the subject, pose or outfit is missing). Choose **From the location image** in `location` to make that explicit (thanks to @cozy-afk for the idea); a connected picture also takes over from "From the subject photo" without changing the setting; **Plain studio** ignores it, and with **Custom** the picture is passed on and you describe the scene in `extra`. Tested on MiniMax H3 Image.
 - Pose Studio gets an **Outfits** page (`/outfits`) that makes outfit references in queued runs, the way the Poses page makes drawings:
   - **Pictures**: choose a folder, pick files, or drop or paste images onto the page.
