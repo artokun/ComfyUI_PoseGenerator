@@ -358,3 +358,20 @@ def test_location_image_is_the_last_picture_and_sets_the_scene(local_library):
     assert output[2].partition("|")[2] == "" and output[10] is not None
     output = run(edit_target="Pose", location="Plain studio", subject_image=photo, location_image=place)
     assert output[2].endswith("on a plain white studio background") and output[10] is None
+
+
+def test_from_the_location_image_is_an_explicit_choice_and_the_default_still_takes_over(local_library):
+    from pose_generator.prompts import LOCATIONS
+    assert LOCATIONS[0] == "From the subject photo" and "From the location image" in LOCATIONS  # default unchanged
+    photo, place = torch.rand(1, 64, 64, 3), torch.rand(1, 48, 80, 3)
+    node = PoseOutfitReference()
+    def run(**kwargs):
+        return node.generate("pose-a", "outfit-a", "Celia", "{edit}|{location}", "", picture_tag=H3, edit_target="Pose",
+                             subject_image=photo, **kwargs)
+    sentence = "in the place shown in <Picture 4> (its setting, background and lighting only, not any people in it)"
+    explicit = run(location="From the location image", location_image=place)
+    assert explicit[2].partition("|")[2] == sentence and torch.equal(explicit[10], place)
+    assert run(location="From the subject photo", location_image=place)[2].partition("|")[2] == sentence
+    # The explicit choice with nothing connected adds no location and does not fall back to the subject photo.
+    missing = run(location="From the location image")
+    assert missing[2].partition("|")[2] == "" and missing[10] is None

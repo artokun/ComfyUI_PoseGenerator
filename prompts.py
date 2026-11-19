@@ -8,7 +8,7 @@ DEFAULT_TEMPLATE = "{edit} {subject}, {pose}, {outfit}, {location}, {extra}"
 DEFAULT_PICTURE_TAG = "<Picture {n}>"
 EDIT_TARGETS = ("Pose", "Subject")
 REFERENCE_TEXT = ("Image and description", "Image only")
-LOCATIONS = ("From the subject photo", "Plain studio", "Custom")
+LOCATIONS = ("From the subject photo", "From the location image", "Plain studio", "Custom")
 
 
 def validate_picture_tag(tag):

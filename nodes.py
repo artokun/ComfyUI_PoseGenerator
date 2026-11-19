@@ -114,7 +114,7 @@ class PoseOutfitReference:
             "reference_text": (list(REFERENCE_TEXT), {"default": REFERENCE_TEXT[0],
                                "tooltip": "With picture references on, also add the pose and outfit descriptions, or point at the pictures only."}),
             "location": (list(LOCATIONS), {"default": LOCATIONS[0],
-                         "tooltip": "Where the scene comes from. A connected location_image takes over from the subject photo. From the subject photo: the photo's place and lighting (needs a photo that shows a place; the pose match is a little looser). Plain studio: white background, tightest pose match. Custom: describe it in extra."}),
+                         "tooltip": "Where the scene comes from. From the location image: the place in the connected location_image; a connected location_image also takes over from the subject photo without changing this. From the subject photo: the photo's place and lighting (needs a photo that shows a place; the pose match is a little looser). Plain studio: white background, tightest pose match. Custom: describe it in extra."}),
             "subject_image": ("IMAGE", {"tooltip": "Optional photo of the subject. The prompt then refers to this person by picture number."}),
             "location_image": ("IMAGE", {"tooltip": "Optional picture of a place. It becomes the last picture and the prompt sets the scene there (its setting, background and lighting). Ignored when location is Plain studio; with Custom the picture is passed on and you describe the scene in extra."}),
         }}
