@@ -240,3 +240,11 @@ def test_collage_runs_assemble_the_pieces_in_one_step_and_strip_logos(studio):
     assert "flat lay or collage" in prompt and "Replace every brand name, logo" in prompt and "perfume bottles" in prompt
     with pytest.raises(generation.BatchError):
         studio.regenerate(run["id"], 0, "pose")  # nothing to pose
+
+
+def test_outfit_page_element_ids_are_unique():
+    import re
+    from collections import Counter
+    html = (outfit_studio.ROOT / "scripts/pose_studio_web/outfits.html").read_text()
+    repeated = [name for name, count in Counter(re.findall(r'\bid="([^"]+)"', html)).items() if count > 1]
+    assert repeated == []  # a repeated id sent the result cards into the gallery-name input, so none showed

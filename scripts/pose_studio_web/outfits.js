@@ -356,7 +356,7 @@ $("reuse").addEventListener("click", () => {
 $("caption").addEventListener("click", () => guarded(async () => showRun(await post(`/api/outfits/runs/${state.run.id}/caption`, { provider: $("caption-provider").value }))));
 $("caption-all").addEventListener("click", () => guarded(async () => showRun(await post(`/api/outfits/runs/${state.run.id}/caption`, { provider: $("caption-provider").value, all: true }))));
 $("save").addEventListener("click", () => guarded(async () => {
-  const result = await post(`/api/outfits/runs/${state.run.id}/save`, { gallery: $("gallery").value, category: $("category").value });
+  const result = await post(`/api/outfits/runs/${state.run.id}/save`, { gallery: $("gallery-name").value, category: $("category").value });
   showRun(result.run);
   $("save-status").textContent = `Saved ${result.saved} outfit${result.saved === 1 ? "" : "s"} to assets/${result.gallery} (${result.count} in the gallery). Reload ComfyUI to see them in Browse outfits.`;
   await loadConfig();
