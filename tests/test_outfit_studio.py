@@ -278,3 +278,9 @@ def test_two_step_is_the_default_and_neither_step_may_invent_pieces(studio):
     assert "arms hanging straight down" in pose_prompt and "do not invent garments, accessories, socks or shoes" in pose_prompt
     assert "making them invisible" in extract_prompt and "only the body disappears" in extract_prompt
     assert [call["images"] for call in studio.calls] == [1, 1]  # no style reference on either step
+def test_outfit_page_element_ids_are_unique():
+    import re
+    from collections import Counter
+    html = (outfit_studio.ROOT / "scripts/pose_studio_web/outfits.html").read_text()
+    repeated = [name for name, count in Counter(re.findall(r'\bid="([^"]+)"', html)).items() if count > 1]
+    assert repeated == []  # a repeated id sent the result cards into the gallery-name input, so none showed
