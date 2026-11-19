@@ -28,7 +28,8 @@ def studio(tmp_path, monkeypatch):
 
     def fake_caption(content, provider, key):
         return {"label": "Pink cardigan, white sneakers", "prompt": "a pink cardigan and white sneakers", "category": "Cute",
-                "tag_groups": {"Top": ["Cardigan"], "Feet": ["sneakers"], "Nope": ["x"], "Colors": ["pink", "pink"]}}
+                "tag_groups": {"Top": ["Cardigan"], "Feet": ["sneakers"], "Nope": ["x"], "Colors": ["pink", "pink"]},
+                "checks": {"logo": False, "body": False, "note": ""}}
 
     instance = outfit_studio.OutfitStudio(tmp_path, openai_render_fn=fake_render, caption_fn=fake_caption)
     instance.calls = calls
@@ -219,9 +220,9 @@ def test_bad_input_is_rejected(studio):
 
 
 def test_padding_continues_the_backdrop_instead_of_a_flat_corner_colour():
-    image = Image.new("RGB", (1024, 1536))
+    image = Image.new("RGB", (960, 1536))  # narrower than the 2:3 output, so the sides are padded
     for y in range(1536):  # vertical vignette: darker at the top, lighter at the bottom
-        image.paste((180 + y * 60 // 1536,) * 3, (0, y, 1024, y + 1))
+        image.paste((180 + y * 60 // 1536,) * 3, (0, y, 960, y + 1))
     buffer = io.BytesIO()
     image.save(buffer, "PNG")
     with Image.open(io.BytesIO(outfit_studio.fit_output(buffer.getvalue()))) as fitted:
@@ -242,6 +243,41 @@ def test_collage_runs_assemble_the_pieces_in_one_step_and_strip_logos(studio):
         studio.regenerate(run["id"], 0, "pose")  # nothing to pose
 
 
+def test_caption_check_holds_back_outfits_with_a_logo_until_confirmed_or_regenerated(studio, tmp_path):
+    run = photo_run(studio, count=2, pose="collage")
+    studio.work(run["id"])
+    flagged = {"label": "Denim top", "prompt": "a denim top", "category": "Y2K", "tag_groups": {},
+               "checks": {"logo": True, "body": False, "note": "emblem on the top"}}
+    clean = {**flagged, "label": "Clean top", "checks": {"logo": False, "body": False, "note": ""}}
+    replies = iter([flagged, clean])
+    studio.caption_fn = lambda content, provider, key: next(replies)
+    studio.start_caption(run["id"], "xai")
+    items = studio.public(studio.run(run["id"]))["items"]
+    assert [item["held"] for item in items] == [True, False] and items[0]["checks"]["note"] == "emblem on the top"
+    result = studio.save(run["id"], {"gallery": "My Outfits"})
+    assert (result["saved"], result["held"]) == (1, 1)
+    with pytest.raises(generation.BatchError, match="held back"):
+        studio.save(run["id"], {"gallery": "My Outfits"})
+    studio.edit(run["id"], 0, {"label": "Denim top", "prompt": "a denim top", "cleared": True})
+    assert studio.save(run["id"], {"gallery": "My Outfits"})["saved"] == 1
+    # Regenerating throws the old verdict away.
+    studio.regenerate(run["id"], 1, "extract")
+    assert studio.run(run["id"])["items"][1]["checks"] is None
+
+
+def test_results_match_the_bundled_gallery_size():
+    assert outfit_studio.OUTPUT_SIZE == (1024, 1536)
+
+
+def test_two_step_is_the_default_and_neither_step_may_invent_pieces(studio):
+    upload = studio.add_upload(png())
+    run = studio.create_run({"provider": "openai", "mode": "photo", "use_style": False, "uploads": [{"id": upload["id"], "name": "a.jpg"}]})
+    assert run["pose"] == "i-pose"
+    studio.work(run["id"])
+    pose_prompt, extract_prompt = (call["prompt"] for call in studio.calls)
+    assert "arms hanging straight down" in pose_prompt and "do not invent garments, accessories, socks or shoes" in pose_prompt
+    assert "making them invisible" in extract_prompt and "only the body disappears" in extract_prompt
+    assert [call["images"] for call in studio.calls] == [1, 1]  # no style reference on either step
 def test_outfit_page_element_ids_are_unique():
     import re
     from collections import Counter

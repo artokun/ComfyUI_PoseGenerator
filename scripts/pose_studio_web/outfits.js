@@ -62,6 +62,7 @@ function setMode(mode) {
   $("tab-text").setAttribute("aria-selected", String(mode === "text"));
   $("photo-mode").hidden = mode !== "photo";
   $("text-mode").hidden = mode !== "text";
+  styleDefault();
   if (!state.run) renderSources();
   refreshControls();
 }
@@ -136,6 +137,10 @@ function itemStatus(run, item) {
   if (item.state === "waiting" && item.posed && !item.outfit) return "Posed · waiting to extract";
   return STATES[item.state] || item.state;
 }
+function checkText(item) {
+  const found = [item.checks?.logo && "possible logo", item.checks?.body && "visible skin or body"].filter(Boolean).join(" and ");
+  return found + (item.checks?.note ? ` (${item.checks.note})` : "");
+}
 function retryStep(run, item) { return run.mode === "photo" && !singleStep(run.pose) && !item.posed ? "pose" : "extract"; }
 function itemCard(run, item) {
   const card = element("article", "card"), button = element("button", "card-image");
@@ -169,8 +174,9 @@ function updateCard(entry, run, item) {
   entry.status.textContent = itemStatus(run, item);
   entry.saved.textContent = item.saved_as ? `Saved as ${item.saved_as.id} · ${item.saved_as.gallery}` : "";
   entry.saved.hidden = !item.saved_as;
-  entry.error.textContent = item.error || "";
-  entry.error.hidden = !item.error;
+  const warning = item.error || (item.held ? `Held back: ${checkText(item)}` : "");
+  entry.error.textContent = warning;
+  entry.error.hidden = !warning;
   const active = item.state === "posing" || item.state === "extracting";
   entry.retry.hidden = item.state !== "failed" || item.deleted;
   entry.retry.disabled = entry.remove.disabled = state.busy || active;
@@ -203,9 +209,10 @@ function showRun(run) {
   $("destination").textContent = run.folder;
   $("pause").hidden = !["running", "queued"].includes(run.status);
   $("resume").hidden = run.status !== "paused";
-  const unsaved = live.filter((item) => item.outfit && !item.saved_as).length;
+  const unsaved = live.filter((item) => item.outfit && !item.saved_as && !item.held).length;
+  const heldCount = live.filter((item) => item.outfit && !item.saved_as && item.held).length;
   $("curation").hidden = done === 0;
-  $("save").textContent = unsaved ? `Save ${unsaved} outfit${unsaved === 1 ? "" : "s"} to gallery` : "All outfits saved";
+  $("save").textContent = unsaved ? `Save ${unsaved} outfit${unsaved === 1 ? "" : "s"} to gallery` : heldCount ? `${heldCount} held back by the check` : "All outfits saved";
   $("save").disabled = state.busy || !unsaved;
   const caption = run.caption || {}, uncaptioned = live.filter((item) => item.outfit && !item.label).length;
   $("caption").textContent = uncaptioned ? `Caption ${uncaptioned} outfit${uncaptioned === 1 ? "" : "s"}` : "All outfits captioned";
@@ -238,7 +245,7 @@ async function loadConfig() {
     ...state.config.runs.map((run) => Object.assign(element("option", "", `${run.label} · ${run.done}/${run.total} · ${run.status}`), { value: run.id })));
   history.value = current;
   $("gallery-list").replaceChildren(...state.config.galleries.map((name) => Object.assign(element("option"), { value: name })));
-  $("output-size").textContent = `${state.config.size[0]} × ${state.config.size[1]} · 3:4`;
+  $("output-size").textContent = `${state.config.size[0]} × ${state.config.size[1]} · 2:3`;
   refreshControls();
 }
 
@@ -253,7 +260,9 @@ function frame(id, url, placeholder) {
 function renderDetail(loadFields) {
   const run = state.run, item = run.items[state.detail];
   $("detail-title").textContent = item.label || item.name;
-  $("detail-status").textContent = [itemStatus(run, item), item.error, item.saved_as ? `Saved as ${item.saved_as.id} in ${item.saved_as.gallery}` : ""].filter(Boolean).join(" · ");
+  $("detail-status").textContent = [itemStatus(run, item), item.error, item.held ? `Held back: ${checkText(item)}` : "",
+    item.saved_as ? `Saved as ${item.saved_as.id} in ${item.saved_as.gallery}` : ""].filter(Boolean).join(" · ");
+  $("cleared-field").hidden = !(item.checks?.logo || item.checks?.body);
   $("detail-source").hidden = $("detail-posed").hidden = run.mode !== "photo";
   $("detail-posed").hidden = run.mode !== "photo" || singleStep(run.pose);
   $("detail-source").querySelector("figcaption").textContent = run.pose === "collage" ? "Flat lay" : "Photo";
@@ -270,6 +279,7 @@ function renderDetail(loadFields) {
   if (loadFields) {
     $("edit-label").value = item.label; $("edit-prompt").value = item.prompt;
     $("edit-category").value = item.category; $("edit-tags").value = item.tags.join(", ");
+    $("edit-cleared").checked = !!item.cleared;
     $("edit-status").textContent = "";
   }
 }
@@ -287,7 +297,8 @@ $("outfit-editor").addEventListener("submit", (event) => {
   event.preventDefault();
   guarded(async () => {
     showRun(await post(`/api/outfits/runs/${state.run.id}/items/${state.detail}/edit`, {
-      label: $("edit-label").value, prompt: $("edit-prompt").value, category: $("edit-category").value, tags: $("edit-tags").value }));
+      label: $("edit-label").value, prompt: $("edit-prompt").value, category: $("edit-category").value, tags: $("edit-tags").value,
+      cleared: $("edit-cleared").checked }));
     renderDetail(true);
     $("edit-status").textContent = "Saved.";
   });
@@ -322,6 +333,8 @@ document.addEventListener("paste", (event) => {
 $("tab-photo").addEventListener("click", () => setMode("photo"));
 $("tab-text").addEventListener("click", () => setMode("text"));
 for (const id of ["provider", "pose", "per-image", "total-cap", "outfit-texts"]) $(id).addEventListener("input", refreshControls);
+// Pictures already show the clothes; a style reference only tempts the model to borrow its pieces.
+function styleDefault() { if (state.config?.style_reference) $("use-style").checked = state.mode === "text"; }
 $("caption-provider").addEventListener("change", () => { if (state.run) showRun(state.run); });
 $("select-all").addEventListener("click", () => { state.selected = new Set(state.sources.map((source) => source.id)); renderSources(); });
 $("select-none").addEventListener("click", () => { state.selected.clear(); renderSources(); });
@@ -358,7 +371,8 @@ $("caption-all").addEventListener("click", () => guarded(async () => showRun(awa
 $("save").addEventListener("click", () => guarded(async () => {
   const result = await post(`/api/outfits/runs/${state.run.id}/save`, { gallery: $("gallery-name").value, category: $("category").value });
   showRun(result.run);
-  $("save-status").textContent = `Saved ${result.saved} outfit${result.saved === 1 ? "" : "s"} to assets/${result.gallery} (${result.count} in the gallery). Reload ComfyUI to see them in Browse outfits.`;
+  $("save-status").textContent = `Saved ${result.saved} outfit${result.saved === 1 ? "" : "s"} to assets/${result.gallery} (${result.count} in the gallery).` +
+    (result.held ? ` ${result.held} held back by the logo and skin check.` : "") + " Reload ComfyUI to see them in Browse outfits.";
   await loadConfig();
 }));
 
@@ -368,4 +382,4 @@ for (const id of ["provider", "pose"]) {
   $(id).addEventListener("change", () => { try { localStorage.setItem(`outfits.${id}`, $(id).value); } catch { /* storage blocked */ } });
 }
 setMode("photo");
-loadConfig().catch((error) => { notice(error.message); refreshControls(); });
+loadConfig().then(styleDefault).catch((error) => { notice(error.message); refreshControls(); });

@@ -56,13 +56,14 @@
         <div id="pose-field">
           <label for="pose">What the pictures show</label>
           <select id="pose">
-            <option value="a-pose">A person: A-pose on white, then extract</option>
-            <option value="i-pose">A person: I-pose on white, then extract</option>
+            <option value="i-pose">A person: I-pose on white, then make them invisible</option>
+            <option value="a-pose">A person: A-pose on white, then make them invisible</option>
             <option value="skip">A person: extract straight from the photo</option>
             <option value="collage">Flat lay or collage: assemble the pieces</option>
           </select>
         </div>
-        <label class="check"><input type="checkbox" id="use-style" checked> Match the Outfits gallery look (style reference)</label>
+        <label class="check"><input type="checkbox" id="use-style"> Match the Outfits gallery look (style reference)</label>
+        <p class="help">Off by default for pictures: the clothes come out more accurate, because the model cannot borrow pieces from the reference. On for descriptions.</p>
         <label for="extra">Extra instructions</label>
         <input id="extra" maxlength="1000" placeholder="e.g. keep the gold necklace">
       </section>
@@ -79,7 +80,7 @@
         <button id="generate" class="primary" type="button" disabled>Generate selected outfits <span>↗</span></button>
         <p class="help">Runs queue one after another and can be paused after the current outfit. Nothing restarts by itself after the server stops.</p>
       </section>
-      <div class="model-label">OUTPUT <span id="output-size">1152 × 1536 · 3:4</span></div>
+      <div class="model-label">OUTPUT <span id="output-size">1024 × 1536 · 2:3</span></div>
     </aside>
 
     <main>
@@ -99,7 +100,7 @@
             <button id="caption" class="secondary" type="button">Caption outfits</button>
             <button id="caption-all" class="text-button" type="button">Redo all captions</button>
           </div>
-          <p class="help">Captions write each outfit's label, prompt and tags. One paid vision request per outfit.</p>
+          <p class="help">Captions write each outfit's label, prompt and tags, and check it for logos and visible skin. Flagged outfits are held back from saving. One paid vision request per outfit.</p>
           <p id="caption-status" class="help" role="status"></p>
           <div class="save-grid">
             <div><label for="gallery-name">Gallery folder</label><input id="gallery-name" list="gallery-list" value="My Outfits" maxlength="60"><datalist id="gallery-list"></datalist></div>
@@ -111,7 +112,7 @@
       </div>
       <div class="gallery-toolbar"><div><h2 id="gallery-title">Your rack is empty</h2><span id="gallery-count" class="muted"></span></div><div id="selection-tools" hidden><button id="select-all" type="button" class="text-button">Select all</button><button id="select-none" type="button" class="text-button">Clear</button></div></div>
       <div id="empty-state">
-        <h3>Photos in. Outfits out.</h3><p>Your photos or descriptions appear here. Select one for a test or queue them all.</p><span class="empty-footnote">Ghost mannequin · no skin · 3:4 on light grey</span>
+        <h3>Photos in. Outfits out.</h3><p>Your photos or descriptions appear here. Select one for a test or queue them all.</p><span class="empty-footnote">Ghost mannequin · no skin · 2:3 on light grey</span>
       </div>
       <div id="gallery" class="gallery"></div>
     </main>
@@ -130,6 +131,7 @@
         <label for="edit-prompt">Prompt text</label><textarea id="edit-prompt" rows="4" maxlength="600"></textarea>
         <label for="edit-category">Category</label><input id="edit-category" maxlength="40">
         <label for="edit-tags">Tags · comma separated</label><textarea id="edit-tags" rows="3" maxlength="900"></textarea>
+        <label class="check" id="cleared-field" hidden><input type="checkbox" id="edit-cleared"> I checked it: no logo, no skin. Allow saving.</label>
         <div class="drawing-edit-actions"><button id="save-edit" class="primary compact" type="submit">Save changes</button></div>
         <p id="edit-status" class="help" role="status"></p>
       </form>
