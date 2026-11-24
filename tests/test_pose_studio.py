@@ -1076,3 +1076,14 @@ async def test_depth_pass_uses_current_drawing_and_reuses_saved_map(setup, monke
     manager.start_depth(run, None)
     await manager.depth_tasks[run]
     assert len(captured) == 2
+
+
+
+def test_builtin_human_proportion_style_is_cached_under_a_fixed_id(tmp_path):
+    manager = studio.Studio(tmp_path, lambda: None)
+    builtin = manager.style_path(studio.BUILTIN_STYLE_ID)
+    assert builtin.read_bytes() == studio.BUILTIN_STYLE.read_bytes()
+    assert studio.BUILTIN_STYLE.is_file()
+    # The pose prompts ask for a human-sized head whatever the style image draws.
+    for name in ("pose-mannequin-v2.txt", "pose-mannequin-v3.txt", "pose-mannequin.txt"):
+        assert "human-sized head" in (studio.ROOT / "scripts/prompts" / name).read_text()

@@ -28,7 +28,12 @@ UI = Path(__file__).with_name("pose_studio_web")
 MAX_IMAGE = 10 * 1024 * 1024
 MAX_FILES = 500
 MAX_FOLDER = 1024 * 1024 * 1024
-DEFAULT_STYLE = "spicy://f/fil_06gyh8s891hf037cmrt9970590"
+DEFAULT_STYLE = ""  # The SpicyAPI upload this used to name has expired; the built-in style below replaces it.
+# Built-in drawing style: a figure-drawing mannequin with realistic adult proportions and a
+# human-sized head. It is copied into the style cache under a fixed ID, so a run made with it
+# resumes and regenerates exactly like a run with an uploaded style image.
+BUILTIN_STYLE = Path(__file__).with_name("styles") / "mannequin-human.png"
+BUILTIN_STYLE_ID = "a11" + "0" * 28 + "1"
 STUDIO = web.AppKey("studio", object)
 
 
@@ -222,6 +227,10 @@ class Studio:
         self.depth_status = {}
         self.outputs.mkdir(parents=True, exist_ok=True)
         self.cache.mkdir(parents=True, exist_ok=True)
+        builtin = self.cache / "styles" / (BUILTIN_STYLE_ID + ".image")
+        if BUILTIN_STYLE.is_file() and (not builtin.is_file() or builtin.read_bytes() != BUILTIN_STYLE.read_bytes()):
+            builtin.parent.mkdir(parents=True, exist_ok=True)
+            generation.atomic_write(builtin, BUILTIN_STYLE.read_bytes())
         self.tag_path = self.outputs / "tag-groups.json"
         self.tag_groups = pose_metadata.pose_tags.validate(read_json(self.tag_path)
                             if self.tag_path.exists() else pose_metadata.pose_tags.DEFAULT)
@@ -1084,6 +1093,8 @@ async def config(request):
         if path.is_file():
             profiles.append({"id": name, "label": label, "prompt": path.read_text().strip(), "image_order": order})
     return web.json_response({"key_ready": key_ready, "profiles": profiles, "style_uri": DEFAULT_STYLE,
+                              "builtin_style": {"id": BUILTIN_STYLE_ID, "url": f"/media/style/{BUILTIN_STYLE_ID}",
+                                                "label": "Built-in mannequin · human proportions"} if BUILTIN_STYLE.is_file() else None,
                               "drawing_editor": True, "caption_queue": True,
                               "tag_groups": studio.tag_groups,
                               "default_caption_prompt": pose_metadata.DEFAULT_PROMPT, "metadata_models": pose_metadata.MODELS,
